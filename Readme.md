@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Vitaliy Avdyeyev](https://up.htmlacademy.ru/react/5/user/1465455).
-* Наставник: `Неизвестно`.
+* Наставник: `Дмитрий Марков`.
 
 ---
 
