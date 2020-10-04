@@ -27,7 +27,7 @@ const App = (props) => {
         <Route exact path="/dev-genre">
           <QuestionGenreScreen />
         </Route>
-        <Route exact path="/win">
+        <Route exact path="/result">
           <WinScreen />
         </Route>
         <Route exact path="/lose">
