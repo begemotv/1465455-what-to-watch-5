@@ -3,15 +3,14 @@ import ReactDOM from "react-dom";
 import App from "./components/app/app";
 
 const MainMovieData = {
-  TITLE: `The Grand Budapest Hotel`,
-  GENRE: `Drama`,
-  RELEASE_YEAR: 2014
-
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  releaseYear: 2014
 };
 
 ReactDOM.render(
     <App
-      title={MainMovieData.TITLE} genre={MainMovieData.GENRE} releaseYear={MainMovieData.RELEASE_YEAR}
+      title={MainMovieData.title} genre={MainMovieData.genre} releaseYear={MainMovieData.releaseYear}
     />,
     document.querySelector(`#root`)
 );
