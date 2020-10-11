@@ -16,14 +16,14 @@ class FilmList extends PureComponent {
 
     return (
       <div className="catalog__movies-list">
-        {films.map((film, index) =>
+        {films.map((film) =>
           <FilmCard
-            key={`film-${index}`}
+            key={film.id}
             film={film}
-            handleFilmCardClick={handleFilmCardClick}
             handleFilmCardMouseOver={() => {
-              this.setState({activeFilm: `film-${index}`});
+              this.setState({activeFilm: film.id});
             }}
+            handleFilmCardClick={handleFilmCardClick}
           />)}
       </div>
     );
@@ -37,4 +37,5 @@ FilmList.propTypes = {
 
 export default FilmList;
 
-// onCardClick={(film.link) => history.push(`/${film.link}`)}
+// handleFilmCardClick={(film.link) => history.push(`/${film.link}`)}
+// {`film-${index}`}

@@ -1,19 +1,39 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+const TOP_RATING = 5;
+
 class AddComment extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      ratingStars: [false, false, false, false, false],
+      ratingStars: 5,
       text: ``
     };
+
+    this.handleRatingChange = this._handleRatingChange.bind(this);
+    this.handleTextChange = this._handleTextChange.bind(this);
+  }
+
+  _handleRatingChange(evt) {
+    const value = evt.target.value;
+    this.setState(() => ({
+      ratingStars: value
+    }));
+  }
+
+  _handleTextChange(evt) {
+    const value = evt.target.value;
+    this.setState(() => ({
+      text: value
+    }));
   }
 
   render() {
     const {onCommentAdd} = this.props;
     const {ratingStars: userRatingStars, text} = this.state;
+    const ratingTempArr = new Array(TOP_RATING).fill(``);
 
     return (
       <div className="add-review">
@@ -27,7 +47,7 @@ class AddComment extends PureComponent {
         >
           <div className="rating">
             <div className="rating__stars">
-              {userRatingStars.map((star, index) => (
+              {ratingTempArr.map((star, index) => (
                 <React.Fragment key={`star-${index + 1}`}>
                   <input
                     className="rating__input"
@@ -35,12 +55,7 @@ class AddComment extends PureComponent {
                     type="radio"
                     name="rating"
                     value={index + 1}
-                    onChange={(evt) => {
-                      const value = evt.target.checked;
-                      this.setState({
-                        ratingStars: [...userRatingStars.slice(0, i), value, ...userRatingStars.slice(i + 1)],
-                      });
-                    }}
+                    onChange={this.handleRatingChange}
                   />
                   <label className="rating__label" htmlFor={`star-${index + 1}`}>Rating {index + 1}</label>
                 </React.Fragment>
@@ -54,10 +69,7 @@ class AddComment extends PureComponent {
               name="review-text"
               id="review-text"
               placeholder="Review text"
-              onChange={(evt) => {
-                const input = evt.target.value;
-                this.setState({text: input});
-              }}
+              onChange={this.handleTextChange}
               value={text}
             />
             <div className="add-review__submit">

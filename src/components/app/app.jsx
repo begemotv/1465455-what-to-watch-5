@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+
 import MainScreen from "../main-screen/main-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
@@ -10,7 +11,7 @@ import SignInScreen from "../sign-in-screen/sign-in-screen";
 
 
 const App = (props) => {
-  const {mainFilm, films, reviews} = props;
+  const {mainFilm, films} = props;
 
   return (
     <BrowserRouter>
@@ -47,7 +48,7 @@ const App = (props) => {
           render={({history}) => (
             <FilmScreen
               films={films}
-              film={films[films.length]}
+              film={films[films.length - 1]}
               handlePlayBtnClick={() => history.push(`/player/:id`)}
               handleFilmCardClick={() => history.push(`/films/:id`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
@@ -57,14 +58,13 @@ const App = (props) => {
         </Route>
         <Route exact path="/films/:id/review">
           <AddReviewScreen
-            film={films[films.length]}
-            review={reviews[reviews.length]}
+            film={films[films.length - 1]}
             onCommentAdd={() => {}}
           />
         </Route>
         <Route exact path="/player/:id">
           <PlayerScreen
-            film={films[films.length]}
+            film={films[films.length - 1]}
           />
         </Route>
       </Switch>
@@ -78,8 +78,7 @@ App.propTypes = {
     genre: PropTypes.string.isRequired,
     releaseYear: PropTypes.number.isRequired,
   }),
-  films: PropTypes.array.isRequired,
-  reviews: PropTypes.array.isRequired
+  films: PropTypes.array.isRequired
 };
 
 export default App;

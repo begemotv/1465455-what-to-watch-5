@@ -64,10 +64,10 @@ const AddReviewScreen = (props) => {
 
 AddReviewScreen.propTypes = {
   onCommentAdd: PropTypes.func.isRequired,
-  film: {
+  film: PropTypes.shape({
     name: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
-  }
+  })
 };
 
 export default AddReviewScreen;

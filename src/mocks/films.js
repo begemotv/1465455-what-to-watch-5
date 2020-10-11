@@ -2,6 +2,7 @@ import {nameRating} from "../utils.js";
 
 export default [
   {
+    id: 1,
     name: `Whiplash`,
     link: `whiplash.html`,
     genre: `Drama`,
@@ -18,6 +19,7 @@ export default [
     videoSrc: `https://commons.wikimedia.org/wiki/File:Stroll_on_Beach_Ave.webm`
   },
   {
+    id: 2,
     name: `Climax`,
     link: `climax.html`,
     genre: `Horror`,
@@ -34,6 +36,7 @@ export default [
     videoSrc: `https://commons.wikimedia.org/wiki/File:Zoom_2.webm`
   },
   {
+    id: 3,
     name: `The Room`,
     link: `the-room.html`,
     genre: `Drama`,
@@ -50,6 +53,7 @@ export default [
     videoSrc: `https://commons.wikimedia.org/wiki/File:Spiral_staircase_in_the_Courtauld_Gallery,_London,_UK_-_20150620.webm`
   },
   {
+    id: 4,
     name: `Total Recall`,
     link: `total-recall.html`,
     genre: `Action`,
@@ -66,6 +70,7 @@ export default [
     videoSrc: `https://commons.wikimedia.org/wiki/File:Primarie.webm`
   },
   {
+    id: 5,
     name: `The Big Lebowski`,
     link: `the-big-lebowski.html`,
     genre: `Comedy`,
@@ -82,6 +87,7 @@ export default [
     videoSrc: `https://commons.wikimedia.org/wiki/File:GCT_video.webm`
   },
   {
+    id: 6,
     name: `Monty Python and the Holy Grail`,
     link: `monthy-python-and-the-holy-grail.html`,
     genre: `Comedy`,
@@ -98,13 +104,14 @@ export default [
     videoSrc: `https://commons.wikimedia.org/wiki/File:Manhatta_(1921).webm`
   },
   {
+    id: 7,
     name: `Lost in Translation`,
     link: `lost-in-translation.html`,
     genre: `Drama`,
     releaseYear: 2003,
     description: `Lost in Translation is a 2003 American romantic comedy-drama film[note 1] written and directed by Sofia Coppola. Bill Murray stars as Bob Harris, a fading American movie star who is having a midlife crisis when he travels to Tokyo to promote Suntory whisky. There, he befriends another estranged American named Charlotte, a young woman and recent college graduate played by Scarlett Johansson. Giovanni Ribisi and Anna Faris also feature. The film explores themes of alienation and disconnection against a backdrop of cultural displacement in Japan. Further analysis by critics and scholars has focused on the film's defiance of mainstream narrative conventions and its atypical depiction of romance.`,
     rating: 8.5,
-    ratingName: nameRating(8.5,),
+    ratingName: nameRating(8.5),
     director: `Sofia Coppola`,
     starring: `Bill Murray, Scarlett Johansson, Giovanni Ribisi, Anna Faris, Fumihiro Hayashi, Catherine Lambert`,
     runningTime: `1h 42m`,
@@ -114,6 +121,7 @@ export default [
     videoSrc: `https://commons.wikimedia.org/wiki/File:St._Paul%27s_Cathedral,_Cincinnati.webm`
   },
   {
+    id: 8,
     name: `Twin Peaks: Fire Walk with Me`,
     link: `twin-peaks-fire-walk-with-me.html`,
     genre: `Thriller`,
