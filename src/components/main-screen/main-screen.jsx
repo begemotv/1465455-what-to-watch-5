@@ -3,8 +3,14 @@ import PropTypes from "prop-types";
 import FilmList from "../film-list/film-list";
 
 const MainScreen = (props) => {
-  const {mainFilm, films} = props;
-  const {title, genre, releaseYear} = mainFilm;
+  const {
+    mainFilm: {
+      title,
+      genre,
+      releaseYear
+    },
+    films
+  } = props;
 
   return <React.Fragment>
     <section className="movie-card">

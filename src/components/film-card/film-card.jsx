@@ -2,8 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const FilmCard = (props) => {
-  const {film, key, onCardClick} = props;
-  const {previewImg, name, link} = film;
+  const {
+    film: {
+      previewImg,
+      name,
+      link
+    },
+    key,
+    onCardClick
+  } = props;
+
   console.log(props)
   console.log(name)
 

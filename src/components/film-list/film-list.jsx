@@ -11,10 +11,6 @@ class FilmList extends PureComponent {
     };
   }
 
-  onMouseOver() {
-
-  }
-
   render() {
     const {films, handleFilmCardClick} = this.props;
 

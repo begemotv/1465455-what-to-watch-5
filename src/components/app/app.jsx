@@ -10,13 +10,13 @@ import SignInScreen from "../sign-in-screen/sign-in-screen";
 
 
 const App = (props) => {
-  const {title, genre, releaseYear, films, reviews} = props;
+  const {mainFilm, films, reviews} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainScreen title={title} genre={genre} releaseYear={releaseYear} />
+          <MainScreen mainFilm={mainFilm} />
         </Route>
         <Route exact path="/login">
           <SignInScreen />
