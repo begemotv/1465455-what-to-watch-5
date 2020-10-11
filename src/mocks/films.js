@@ -15,6 +15,7 @@ export default [
     voteCount: 4,
     poster: `https://images-na.ssl-images-amazon.com/images/I/51GXgsoSPaL._AC_.jpg`,
     previewImg: `https://static.standard.co.uk/s3fs-public/thumbnails/image/2015/01/16/09/AN_60329794-(Read-Only).jpg`,
+    videoSrc: `https://commons.wikimedia.org/wiki/File:Stroll_on_Beach_Ave.webm`
   },
   {
     name: `Climax`,
@@ -30,6 +31,7 @@ export default [
     voteCount: 6,
     poster: `https://m.media-amazon.com/images/M/MV5BMjllYmQ2OGQtN2IxZC00ODJiLWI4NjQtYmNlZjYzNzUzYjkyXkEyXkFqcGdeQXVyNTAzMTY4MDA@._V1_SY1000_CR0,0,734,1000_AL_.jpg`,
     previewImg: `https://pyxis.nymag.com/v1/imgs/fbc/edb/5d0f02584fbaf8d92b667cb28b4ef7b3c7-13-climaxlede.rhorizontal.w700.jpg`,
+    videoSrc: `https://commons.wikimedia.org/wiki/File:Zoom_2.webm`
   },
   {
     name: `The Room`,
@@ -45,6 +47,7 @@ export default [
     voteCount: 5,
     poster: `https://upload.wikimedia.org/wikipedia/en/e/e1/TheRoomMovie.jpg`,
     previewImg: `https://www.indiewire.com/wp-content/uploads/2017/09/the-room-tommy-wiseau-james-franco-01.jpg`,
+    videoSrc: `https://commons.wikimedia.org/wiki/File:Spiral_staircase_in_the_Courtauld_Gallery,_London,_UK_-_20150620.webm`
   },
   {
     name: `Total Recall`,
@@ -60,6 +63,7 @@ export default [
     voteCount: 1,
     poster: `https://upload.wikimedia.org/wikipedia/en/f/f9/Total_recall.jpg`,
     previewImg: `https://www.pastapadre.com/wordpress/wp-content/uploads/2010/10/totalrecall.jpg`,
+    videoSrc: `https://commons.wikimedia.org/wiki/File:Primarie.webm`
   },
   {
     name: `The Big Lebowski`,
@@ -75,6 +79,7 @@ export default [
     voteCount: 5,
     poster: `https://upload.wikimedia.org/wikipedia/en/3/35/Biglebowskiposter.jpg`,
     previewImg: `https://images.squarespace-cdn.com/content/v1/5b18735a3917ee20d18a2117/1570745997244-MEH9D29ERFKZUU2JC7OH/ke17ZwdGBToddI8pDm48kIeG7dMD3pq1bzBXoYbpC0oUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dh3MLXLQRQE9aD9TYNORRl_o0Bjw4lHMlAnQ-ty1osYSbSexTd1-frD7527z4SM9QQ/eventbrite2.jpg`,
+    videoSrc: `https://commons.wikimedia.org/wiki/File:GCT_video.webm`
   },
   {
     name: `Monty Python and the Holy Grail`,
@@ -90,6 +95,7 @@ export default [
     voteCount: 2,
     poster: `https://m.media-amazon.com/images/M/MV5BN2IyNTE4YzUtZWU0Mi00MGIwLTgyMmQtMzQ4YzQxYWNlYWE2XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY1000_CR0,0,666,1000_AL_.jpg`,
     previewImg: `http://www.sitemason.com/files/rKK6Ig/MontyPythonAndTheHolyGrailweb.jpg/main.jpg`,
+    videoSrc: `https://commons.wikimedia.org/wiki/File:Manhatta_(1921).webm`
   },
   {
     name: `Lost in Translation`,
@@ -105,6 +111,7 @@ export default [
     voteCount: 14,
     poster: `https://upload.wikimedia.org/wikipedia/ru/4/4c/Lost_in_Translation_poster.jpg`,
     previewImg: `https://www.japansociety.org/resources/legacy/event/lit_xlalt.jpg`,
+    videoSrc: `https://commons.wikimedia.org/wiki/File:St._Paul%27s_Cathedral,_Cincinnati.webm`
   },
   {
     name: `Twin Peaks: Fire Walk with Me`,
@@ -120,5 +127,6 @@ export default [
     voteCount: 7,
     poster: `https://upload.wikimedia.org/wikipedia/en/3/3d/Twin_Peaks_-_Fire_Walk_with_Me.png`,
     previewImg: `https://observer-media.go-vip.net/wp-content/uploads/sites/2/2017/05/fire-walk-with-me31.jpg`,
+    videoSrc: `https://commons.wikimedia.org/wiki/File:Stroll_on_Beach_Ave.webm`
   }
 ];

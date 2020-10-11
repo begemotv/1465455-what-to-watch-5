@@ -15,23 +15,57 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <MainScreen mainFilm={mainFilm} />
+        <Route
+          exact
+          path="/"
+          render={({history}) => (
+            <MainScreen
+              mainFilm={mainFilm}
+              films={films}
+              handlePlayBtnClick={() => history.push(`/player/:id`)}
+              handleFilmCardClick={() => history.push(`/films/:id`)}
+              handleMyListBtnClick={() => history.push(`/mylist`)}
+            />
+          )}>
         </Route>
         <Route exact path="/login">
           <SignInScreen />
         </Route>
-        <Route exact path="/mylist">
-          <MyListScreen />
+        <Route
+          exact
+          path="/mylist"
+          render={({history}) => (
+            <MyListScreen
+              films={films}
+              handleFilmCardClick={() => history.push(`/films/:id`)}
+            />
+          )}>
         </Route>
-        <Route exact path="/films/:id">
-          <FilmScreen />
+        <Route
+          exact
+          path="/films/:id"
+          render={({history}) => (
+            <FilmScreen
+              films={films}
+              film={films[films.length]}
+              handlePlayBtnClick={() => history.push(`/player/:id`)}
+              handleFilmCardClick={() => history.push(`/films/:id`)}
+              handleMyListBtnClick={() => history.push(`/mylist`)}
+            />
+          )}
+        >
         </Route>
         <Route exact path="/films/:id/review">
-          <AddReviewScreen />
+          <AddReviewScreen
+            film={films[films.length]}
+            review={reviews[reviews.length]}
+            onCommentAdd={() => {}}
+          />
         </Route>
         <Route exact path="/player/:id">
-          <PlayerScreen />
+          <PlayerScreen
+            film={films[films.length]}
+          />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -39,9 +73,11 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseYear: PropTypes.number.isRequired,
+  mainFilm: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseYear: PropTypes.number.isRequired,
+  }),
   films: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from 'react-router-dom';
 import FilmList from "../film-list/film-list";
 
 const MainScreen = (props) => {
@@ -9,24 +10,27 @@ const MainScreen = (props) => {
       genre,
       releaseYear
     },
-    films
+    films,
+    handlePlayBtnClick,
+    handleMyListBtnClick,
+    handleFilmCardClick
   } = props;
 
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <img src="img/bg-the-grand-budapest-hotel.jpg" alt={title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header movie-card__head">
         <div className="logo">
-          <a className="logo__link">
+          <Link to="/" className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="user-block">
@@ -39,7 +43,7 @@ const MainScreen = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src="img/the-grand-budapest-hotel-poster.jpg" alt={`${name} poster`} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
@@ -50,13 +54,21 @@ const MainScreen = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <button
+                className="btn btn--play movie-card__button"
+                type="button"
+                onClick={handlePlayBtnClick}
+              >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
+              <button
+                className="btn btn--list movie-card__button"
+                type="button"
+                onClick={handleMyListBtnClick}
+              >
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
@@ -74,39 +86,39 @@ const MainScreen = (props) => {
 
         <ul className="catalog__genres-list">
           <li className="catalog__genres-item catalog__genres-item--active">
-            <a href="#" className="catalog__genres-link">All genres</a>
+            <Link to="/" className="catalog__genres-link">All genres</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Comedies</a>
+            <Link to="/" className="catalog__genres-link">Comedies</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Crime</a>
+            <Link to="/" className="catalog__genres-link">Crime</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Documentary</a>
+            <Link to="/" className="catalog__genres-link">Documentary</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Dramas</a>
+            <Link to="/" className="catalog__genres-link">Dramas</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Horror</a>
+            <Link to="/" className="catalog__genres-link">Horror</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Kids & Family</a>
+            <Link to="/" className="catalog__genres-link">Kids & Family</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Romance</a>
+            <Link to="/" className="catalog__genres-link">Romance</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Sci-Fi</a>
+            <Link to="/" className="catalog__genres-link">Sci-Fi</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Thrillers</a>
+            <Link to="/" className="catalog__genres-link">Thrillers</Link>
           </li>
         </ul>
 
         <div className="catalog__movies-list">
-          <FilmList films={films} />
+          <FilmList films={films} handleFilmCardClick={handleFilmCardClick} />
         </div>
 
         <div className="catalog__more">
@@ -116,11 +128,11 @@ const MainScreen = (props) => {
 
       <footer className="page-footer">
         <div className="logo">
-          <a className="logo__link logo__link--light">
+          <Link to="/" className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="copyright">
@@ -137,7 +149,10 @@ MainScreen.propTypes = {
     genre: PropTypes.string.isRequired,
     releaseYear: PropTypes.number.isRequired,
   }),
-  films: PropTypes.array.isRequired
+  films: PropTypes.array.isRequired,
+  handlePlayBtnClick: PropTypes.func.isRequired,
+  handleMyListBtnClick: PropTypes.func.isRequired,
+  handleFilmCardClick: PropTypes.func.isRequired
 };
 
 export default MainScreen;
