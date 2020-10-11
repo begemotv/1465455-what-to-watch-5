@@ -10,7 +10,7 @@ import SignInScreen from "../sign-in-screen/sign-in-screen";
 
 
 const App = (props) => {
-  const {title, genre, releaseYear} = props;
+  const {title, genre, releaseYear, films, reviews} = props;
 
   return (
     <BrowserRouter>
@@ -41,7 +41,9 @@ const App = (props) => {
 App.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
-  releaseYear: PropTypes.number.isRequired
+  releaseYear: PropTypes.number.isRequired,
+  films: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired
 };
 
 export default App;
