@@ -8,7 +8,7 @@ export const filmPropTypes = {
   link: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
-  previewImg: PropTypes. string.isRequired,
+  previewImg: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   ratingName: PropTypes.string.isRequired,
   releaseYear: PropTypes.number.isRequired,
