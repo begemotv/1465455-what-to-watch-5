@@ -12,6 +12,14 @@ class GameScreen extends PureComponent {
     this.state = {
       step: 0,
     };
+
+    this.handleAnswerClick = this._handleAnswerClick.bind(this);
+  }
+
+  _handleAnswerClick() {
+    this.setState((prevState) => ({
+      step: prevState.step + 1,
+    }));
   }
 
   render() {
@@ -30,22 +38,14 @@ class GameScreen extends PureComponent {
         return (
           <QuestionArtistScreen
             question={question}
-            onAnswer={() => {
-              this.setState((prevState) => ({
-                step: prevState.step + 1,
-              }));
-            }}
+            onAnswer={this.handleAnswerClick}
           />
         );
       case GameType.GENRE:
         return (
           <QuestionGenreScreen
             question={question}
-            onAnswer={() => {
-              this.setState((prevState) => ({
-                step: prevState.step + 1,
-              }));
-            }}
+            onAnswer={this.handleAnswerClick}
           />
         );
     }
@@ -56,7 +56,7 @@ class GameScreen extends PureComponent {
 }
 
 GameScreen.propTypes = {
-  questions: PropTypes.array.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default GameScreen;

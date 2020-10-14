@@ -13,7 +13,6 @@ import GameScreen from "../game-screen/game-screen";
 const App = (props) => {
   const {errorsCount, questions} = props;
   const [firstQuestion, secondQuestion] = questions;
-  console.log(`click`)
 
   return (
     <BrowserRouter>
