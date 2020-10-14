@@ -1,5 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+
+import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
 
 class FilmList extends PureComponent {
@@ -31,11 +33,11 @@ class FilmList extends PureComponent {
 }
 
 FilmList.propTypes = {
-  films: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ).isRequired,
   handleFilmCardClick: PropTypes.func.isRequired
 };
 
 export default FilmList;
 
-// handleFilmCardClick={(film.link) => history.push(`/${film.link}`)}
-// {`film-${index}`}

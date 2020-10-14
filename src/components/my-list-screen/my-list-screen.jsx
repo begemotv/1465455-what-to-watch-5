@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+
+import {filmPropTypes} from "../../prop-types";
 import FilmList from "../film-list/film-list";
 
 const MyListScreen = (props) => {
@@ -52,7 +54,9 @@ const MyListScreen = (props) => {
 };
 
 MyListScreen.propTypes = {
-  films: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ).isRequired,
   handleFilmCardClick: PropTypes.func.isRequired
 };
 

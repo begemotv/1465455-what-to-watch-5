@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
 
+import {filmPropTypes} from "../../prop-types";
+
 const FilmCard = (props) => {
   const {
     film: {
-      previewImg,
-      name
+      name,
+      previewImg
     },
     handleFilmCardClick,
     handleFilmCardMouseOver
@@ -33,10 +35,7 @@ const FilmCard = (props) => {
 FilmCard.propTypes = {
   handleFilmCardClick: PropTypes.func.isRequired,
   handleFilmCardMouseOver: PropTypes.func.isRequired,
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    previewImg: PropTypes. string.isRequired
-  })
+  film: PropTypes.shape(filmPropTypes).isRequired
 };
 
 export default FilmCard;

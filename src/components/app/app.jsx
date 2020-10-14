@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
+import {filmPropTypes} from "../../prop-types";
 import MainScreen from "../main-screen/main-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
@@ -11,7 +12,7 @@ import SignInScreen from "../sign-in-screen/sign-in-screen";
 
 
 const App = (props) => {
-  const {mainFilm, films} = props;
+  const {films} = props;
 
   return (
     <BrowserRouter>
@@ -21,7 +22,7 @@ const App = (props) => {
           path="/"
           render={({history}) => (
             <MainScreen
-              mainFilm={mainFilm}
+              film={films[0]}
               films={films}
               handlePlayBtnClick={() => history.push(`/player/:id`)}
               handleFilmCardClick={() => history.push(`/films/:id`)}
@@ -48,7 +49,7 @@ const App = (props) => {
           render={({history}) => (
             <FilmScreen
               films={films}
-              film={films[films.length - 1]}
+              film={films[0]}
               handlePlayBtnClick={() => history.push(`/player/:id`)}
               handleFilmCardClick={() => history.push(`/films/:id`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
@@ -58,13 +59,13 @@ const App = (props) => {
         </Route>
         <Route exact path="/films/:id/review">
           <AddReviewScreen
-            film={films[films.length - 1]}
+            film={films[0]}
             onCommentAdd={() => {}}
           />
         </Route>
         <Route exact path="/player/:id">
           <PlayerScreen
-            film={films[films.length - 1]}
+            film={films[0]}
           />
         </Route>
       </Switch>
@@ -73,12 +74,9 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  mainFilm: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-  }),
-  films: PropTypes.array.isRequired
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ).isRequired,
 };
 
 export default App;

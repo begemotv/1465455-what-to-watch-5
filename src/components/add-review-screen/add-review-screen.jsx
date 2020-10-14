@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+
+import {filmPropTypes} from "../../prop-types";
 import AddComment from "../add-comment/add-comment";
 
 const AddReviewScreen = (props) => {
@@ -8,6 +10,7 @@ const AddReviewScreen = (props) => {
     film: {
       name,
       poster,
+      previewImg,
     },
     onCommentAdd
   } = props;
@@ -16,7 +19,7 @@ const AddReviewScreen = (props) => {
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src={poster} alt={name} />
+          <img src={previewImg} alt={name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -64,10 +67,7 @@ const AddReviewScreen = (props) => {
 
 AddReviewScreen.propTypes = {
   onCommentAdd: PropTypes.func.isRequired,
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-  })
+  film: PropTypes.shape(filmPropTypes).isRequired
 };
 
 export default AddReviewScreen;

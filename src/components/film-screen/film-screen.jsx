@@ -1,27 +1,29 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+
+import {filmPropTypes} from "../../prop-types";
 import FilmList from "../film-list/film-list";
 
 const FilmScreen = (props) => {
   const {
     film: {
+      description,
+      director,
+      genre,
       name,
       poster,
-      genre,
-      releaseYear,
       previewImg,
       rating,
       ratingName,
-      voteCount,
-      description,
-      director,
-      starring
+      releaseYear,
+      starring,
+      voteCount
     },
     films,
-    handlePlayBtnClick,
+    handleFilmCardClick,
     handleMyListBtnClick,
-    handleFilmCardClick
+    handlePlayBtnClick
   } = props;
 
   return (
@@ -157,21 +159,10 @@ const FilmScreen = (props) => {
 };
 
 FilmScreen.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-    previewImg: PropTypes. string.isRequired,
-    poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingName: PropTypes.string.isRequired,
-    voteCount: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired
-  }),
-  films: PropTypes.array.isRequired,
+  film: PropTypes.shape(filmPropTypes).isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ).isRequired,
   handlePlayBtnClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
   handleFilmCardClick: PropTypes.func.isRequired

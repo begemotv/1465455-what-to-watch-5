@@ -1,11 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+
+import {filmPropTypes} from "../../prop-types";
+
 
 const PlayerScreen = (props) => {
   const {
     film: {
-      videoSrc,
-      name
+      name,
+      videoSrc
     }
   } = props;
 
@@ -50,10 +53,7 @@ const PlayerScreen = (props) => {
 };
 
 PlayerScreen.propTypes = {
-  film: PropTypes.shape({
-    videoSrc: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
-  }),
+  film: PropTypes.shape(filmPropTypes).isRequired
 };
 
 export default PlayerScreen;

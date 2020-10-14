@@ -1,25 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
+
+import {filmPropTypes} from "../../prop-types";
 import FilmList from "../film-list/film-list";
 
 const MainScreen = (props) => {
   const {
-    mainFilm: {
-      title,
+    film: {
       genre,
+      name,
+      poster,
+      previewImg,
       releaseYear
     },
     films,
-    handlePlayBtnClick,
+    handleFilmCardClick,
     handleMyListBtnClick,
-    handleFilmCardClick
+    handlePlayBtnClick
   } = props;
 
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt={title} />
+        <img src={previewImg} alt={name} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -43,11 +47,11 @@ const MainScreen = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt={`${name} poster`} width="218" height="327" />
+            <img src={poster} alt={`${name} poster`} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{title}</h2>
+            <h2 className="movie-card__title">{name}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{releaseYear}</span>
@@ -144,15 +148,13 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  mainFilm: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-  }),
-  films: PropTypes.array.isRequired,
-  handlePlayBtnClick: PropTypes.func.isRequired,
+  film: PropTypes.shape(filmPropTypes).isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ).isRequired,
+  handleFilmCardClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
-  handleFilmCardClick: PropTypes.func.isRequired
+  handlePlayBtnClick: PropTypes.func.isRequired
 };
 
 export default MainScreen;
