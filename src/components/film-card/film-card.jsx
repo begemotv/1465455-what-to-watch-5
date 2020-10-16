@@ -7,6 +7,7 @@ import {filmPropTypes} from "../../prop-types";
 const FilmCard = (props) => {
   const {
     film: {
+      id,
       name,
       previewImg
     },
@@ -24,7 +25,7 @@ const FilmCard = (props) => {
         <img src={previewImg} alt={name} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title">
-        <Link to="/films/:id" className="small-movie-card__link">
+        <Link to={`/films/${id}`} className="small-movie-card__link">
           {name}
         </Link>
       </h3>

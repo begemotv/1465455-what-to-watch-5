@@ -165,7 +165,7 @@ FilmScreen.propTypes = {
   ).isRequired,
   handlePlayBtnClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
-  handleFilmCardClick: PropTypes.func.isRequired
+  handleFilmCardClick: PropTypes.func.isRequired,
 };
 
 export default FilmScreen;
