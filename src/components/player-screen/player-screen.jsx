@@ -1,9 +1,24 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
-const PlayerScreen = () => {
+import {filmPropTypes} from "../../prop-types";
+
+
+const PlayerScreen = (props) => {
+  const {
+    film: {
+      name,
+      videoSrc
+    }
+  } = props;
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video
+        src={videoSrc}
+        className="player__video"
+        poster="img/player-poster.jpg"
+      />
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -23,7 +38,7 @@ const PlayerScreen = () => {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{name}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
@@ -35,6 +50,10 @@ const PlayerScreen = () => {
       </div>
     </div>
   );
+};
+
+PlayerScreen.propTypes = {
+  film: PropTypes.shape(filmPropTypes).isRequired
 };
 
 export default PlayerScreen;
