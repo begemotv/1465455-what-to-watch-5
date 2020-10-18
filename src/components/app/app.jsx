@@ -25,7 +25,7 @@ const App = (props) => {
               film={films[0]}
               films={films}
               handlePlayBtnClick={() => history.push(`/player/:id`)}
-              handleFilmCardClick={() => history.push(`/films/:id`)}
+              // handleFilmCardClick={() => history.push(`/films/:id`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
             />
           )}>
@@ -41,17 +41,17 @@ const App = (props) => {
               films={films}
               handleFilmCardClick={() => history.push(`/films/:id`)}
             />
-          )}>
+          )}>s
         </Route>
         <Route
           exact
           path="/films/:id"
-          render={({history}) => (
+          render={({history, match}) => (
             <FilmScreen
               films={films}
-              film={films[0]}
-              handlePlayBtnClick={() => history.push(`/player/:id`)}
-              handleFilmCardClick={() => history.push(`/films/:id`)}
+              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+              handlePlayBtnClick={() => history.push(`/player/${match.params.id}`)}
+              // handleFilmCardClick={() => history.push(`/films/:id`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
             />
           )}

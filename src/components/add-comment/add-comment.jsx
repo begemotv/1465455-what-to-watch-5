@@ -32,8 +32,8 @@ class AddComment extends PureComponent {
   _handleCommentAdd(evt) {
     evt.preventDefault();
     const {onCommentAdd} = this.props;
-    const {ratingStars: userRatingStars, text} = this.state;
-    onCommentAdd(text, userRatingStars);
+    const {ratingStars, text} = this.state;
+    onCommentAdd(text, ratingStars);
   }
 
   render() {
