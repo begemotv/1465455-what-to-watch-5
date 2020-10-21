@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+
 import {GameType} from "../../const";
 
 class QuestionGenreScreen extends PureComponent {
@@ -15,12 +16,13 @@ class QuestionGenreScreen extends PureComponent {
 
   _handleAnswerChange(i) {
     return (evt) => {
-    const value = evt.target.checked;
+      const value = evt.target.checked;
 
-    this.setState({
-      answers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
-    });
-  }}
+      this.setState((prevState) => ({
+        answers: [...prevState.answers.slice(0, i), value, ...prevState.answers.slice(i + 1)]
+      }));
+    };
+  }
 
 
   render() {

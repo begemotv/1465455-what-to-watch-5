@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import {Redirect} from 'react-router-dom';
+
 import {GameType} from '../../const';
 import QuestionArtistScreen from "../question-artist-screen/question-artist-screen";
 import QuestionGenreScreen from "../question-genre-screen/question-genre-screen";
@@ -56,7 +57,20 @@ class GameScreen extends PureComponent {
 }
 
 GameScreen.propTypes = {
-  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  questions: PropTypes.arrayOf(PropTypes.shape({
+    answers: PropTypes.arrayOf(PropTypes.shape({
+      src: PropTypes.string,
+      genre: PropTypes.string,
+      picture: PropTypes.string,
+      artist: PropTypes.string,
+    })).isRequired,
+    genre: PropTypes.string,
+    song: PropTypes.shape({
+      artist: PropTypes.string.isRequired,
+      src: PropTypes.string.isRequired
+    }),
+    type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired,
+  })).isRequired
 };
 
 export default GameScreen;
