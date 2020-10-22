@@ -6,6 +6,11 @@ import {GameType} from '../../const';
 import QuestionArtistScreen from "../question-artist-screen/question-artist-screen";
 import QuestionGenreScreen from "../question-genre-screen/question-genre-screen";
 
+import withActivePlayer from "../../hocs/with-active-player/with-active-player";
+
+const QuestionArtistScreenHOC = withActivePlayer(QuestionArtistScreen);
+const QuestionGenreScreenHOC = withActivePlayer(QuestionGenreScreen);
+
 class GameScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -37,14 +42,14 @@ class GameScreen extends PureComponent {
     switch (question.type) {
       case GameType.ARTIST:
         return (
-          <QuestionArtistScreen
+          <QuestionArtistScreenHOC
             question={question}
             onAnswer={this.handleAnswerClick}
           />
         );
       case GameType.GENRE:
         return (
-          <QuestionGenreScreen
+          <QuestionGenreScreenHOC
             question={question}
             onAnswer={this.handleAnswerClick}
           />

@@ -1,59 +1,39 @@
-import React, {PureComponent, Fragment} from "react";
+import React, {PureComponent, Fragment, createRef} from "react";
 import PropTypes from "prop-types";
 
 export default class AudioPlayer extends PureComponent {
   constructor(props) {
     super(props);
 
+    this._audioRef = createRef();
+
     this.state = {
       isLoading: true,
-      isPlaying: props.isPlaying,
     };
-
-    this.handleButtonClick = this._handleButtonClick.bind(this);
-
   }
 
   componentDidMount() {
     const {src} = this.props;
+    const audio = this._audioRef.current;
 
-    this._audio = new Audio(src);
+    audio.src = src;
 
-    this._audio.oncanplaythrough = () => {
+    audio.oncanplaythrough = () => {
       this.setState({
         isLoading: false
-      });
-    };
-
-    this._audio.onplay = () => {
-      this.setState({
-        isPlaying: true
-      });
-    };
-
-    this._audio.onpause = () => {
-      this.setState({
-        isPlaying: false
       });
     };
   }
 
   componentWillUnmount() {
-    this._audio.oncanplaythrough = null;
-    this._audio.onplay = null;
-    this._audio.onpause = null;
-    this._audio = null;
-  }
+    const audio = this._audioRef.current;
 
-  _handleButtonClick(evt) {
-    evt.preventDefault();
-    this.setState({
-      isPlaying: !this.state.isPlaying
-    });
+    audio.oncanplaythrough = null;
   }
 
   render() {
-    const {isLoading, isPlaying} = this.state;
+    const {isLoading} = this.state;
+    const {isPlaying, onPlayButtonClick} = this.props;
 
     return (
       <Fragment>
@@ -61,25 +41,31 @@ export default class AudioPlayer extends PureComponent {
           className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
           type="button"
           disabled={isLoading}
-          onClick={this.handleButtonClick}
+          onClick={onPlayButtonClick}
         />
         <div className="track__status">
-          <audio />
+          <audio
+            autoPlay={isPlaying}
+            ref={this._audioRef}
+          />
         </div>
       </Fragment>
     );
   }
 
   componentDidUpdate() {
-    if (this.state.isPlaying) {
-      this._audio.play();
+    const audio = this._audioRef.current;
+
+    if (this.props.isPlaying) {
+      audio.play();
     } else {
-      this._audio.pause();
+      audio.pause();
     }
   }
 }
 
 AudioPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
   src: PropTypes.string.isRequired,
 };
