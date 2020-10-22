@@ -11,6 +11,7 @@ const FilmScreen = (props) => {
       description,
       director,
       genre,
+      id,
       name,
       poster,
       previewImg,
@@ -81,7 +82,7 @@ const FilmScreen = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to="/films/:id/review" className="btn movie-card__button">Add review</Link>
+                <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -100,13 +101,13 @@ const FilmScreen = (props) => {
               <nav className="movie-nav movie-card__nav">
                 <ul className="movie-nav__list">
                   <li className="movie-nav__item movie-nav__item--active">
-                    <Link to="/films/:id" className="movie-nav__link">Overview</Link>
+                    <Link to={`/films/${id}`} className="movie-nav__link">Overview</Link>
                   </li>
                   <li className="movie-nav__item">
-                    <Link to="/films/:id" className="movie-nav__link">Details</Link>
+                    <Link to={`/films/${id}`} className="movie-nav__link">Details</Link>
                   </li>
                   <li className="movie-nav__item">
-                    <Link to="/films/:id" className="movie-nav__link">Reviews</Link>
+                    <Link to={`/films/${id}`} className="movie-nav__link">Reviews</Link>
                   </li>
                 </ul>
               </nav>

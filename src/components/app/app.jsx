@@ -20,12 +20,12 @@ const App = (props) => {
         <Route
           exact
           path="/"
-          render={({history}) => (
+          render={({history, match}) => (
             <MainScreen
               film={films[0]}
               films={films}
               handlePlayBtnClick={() => history.push(`/player/:id`)}
-              // handleFilmCardClick={() => history.push(`/films/:id`)}
+              handleFilmCardClick={() => history.push(`/films/${id}`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
             />
           )}>
@@ -51,22 +51,32 @@ const App = (props) => {
               films={films}
               film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
               handlePlayBtnClick={() => history.push(`/player/${match.params.id}`)}
-              // handleFilmCardClick={() => history.push(`/films/:id`)}
+              handleFilmCardClick={() => history.push(`/films/:id`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
             />
           )}
         >
         </Route>
-        <Route exact path="/films/:id/review">
-          <AddReviewScreen
-            film={films[0]}
-            onCommentAdd={() => {}}
-          />
+        <Route
+          exact
+          path="/films/:id/review"
+          render={({match}) => (
+            <AddReviewScreen
+              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+              onCommentAdd={() => {}}
+            />
+          )}
+        >
         </Route>
-        <Route exact path="/player/:id">
-          <PlayerScreen
-            film={films[0]}
-          />
+        <Route
+          exact
+          path="/player/:id"
+          render={({match}) => (
+            <PlayerScreen
+              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+            />
+          )}
+        >
         </Route>
       </Switch>
     </BrowserRouter>

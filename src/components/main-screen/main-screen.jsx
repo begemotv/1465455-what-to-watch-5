@@ -20,6 +20,8 @@ const MainScreen = (props) => {
     handlePlayBtnClick
   } = props;
 
+  console.log(props)
+
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
