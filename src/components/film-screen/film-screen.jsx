@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import {filmPropTypes} from "../../prop-types";
 import FilmList from "../film-list/film-list";
+import Logo from "../logo/logo";
+import Avatar from "../avatar/avatar";
 
 const FilmScreen = (props) => {
   const {
@@ -34,23 +36,11 @@ const FilmScreen = (props) => {
           <div className="movie-card__bg">
             <img src={previewImg} alt={name} />
           </div>
-
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link to="/" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <Logo linkClassName={`logo__link`}/>
+            <Avatar />
           </header>
 
           <div className="movie-card__wrap">
@@ -139,20 +129,11 @@ const FilmScreen = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
           <FilmList films={films} handleFilmCardClick={handleFilmCardClick} />
-
         </section>
 
         <footer className="page-footer">
-          <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
+          <Logo linkClassName={`logo__link logo__link--light`}/>
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>
