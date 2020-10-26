@@ -9,6 +9,7 @@ const MainScreen = (props) => {
   const {
     film: {
       genre,
+      id,
       name,
       poster,
       previewImg,
@@ -61,7 +62,10 @@ const MainScreen = (props) => {
               <button
                 className="btn btn--play movie-card__button"
                 type="button"
-                onClick={handlePlayBtnClick}
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  handlePlayBtnClick(id);
+                }}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>

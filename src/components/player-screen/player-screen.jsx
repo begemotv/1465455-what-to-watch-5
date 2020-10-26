@@ -8,6 +8,7 @@ const PlayerScreen = (props) => {
   const {
     film: {
       name,
+      previewImg,
       videoSrc
     }
   } = props;
@@ -17,7 +18,7 @@ const PlayerScreen = (props) => {
       <video
         src={videoSrc}
         className="player__video"
-        poster="img/player-poster.jpg"
+        poster={previewImg}
       />
 
       <button type="button" className="player__exit">Exit</button>

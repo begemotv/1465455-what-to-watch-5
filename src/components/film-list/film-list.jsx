@@ -1,36 +1,23 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
 
-class FilmList extends PureComponent {
-  constructor(props) {
-    super(props);
+const FilmList = (props) => {
+  const {films, handleFilmCardClick} = props;
 
-    this.state = {
-      activeFilm: null
-    };
-  }
-
-  render() {
-    const {films, handleFilmCardClick} = this.props;
-
-    return (
-      <div className="catalog__movies-list">
-        {films.map((film) =>
-          <FilmCard
-            key={film.id}
-            film={film}
-            handleFilmCardMouseOver={() => {
-              this.setState({activeFilm: film.id});
-            }}
-            handleFilmCardClick={handleFilmCardClick}
-          />)}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="catalog__movies-list">
+      {films.map((film) =>
+        <FilmCard
+          key={film.id}
+          film={film}
+          handleFilmCardClick={handleFilmCardClick}
+        />)}
+    </div>
+  );
+};
 
 FilmList.propTypes = {
   films: PropTypes.arrayOf(

@@ -24,8 +24,8 @@ const App = (props) => {
             <MainScreen
               film={films[0]}
               films={films}
-              handlePlayBtnClick={() => history.push(`/player/:id`)}
-              handleFilmCardClick={() => history.push(`/films/:id`)}
+              handlePlayBtnClick={(id) => history.push(`/player/${id}`)}
+              handleFilmCardClick={(id) => history.push(`/films/${id}`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
             />
           )}>
@@ -39,34 +39,44 @@ const App = (props) => {
           render={({history}) => (
             <MyListScreen
               films={films}
-              handleFilmCardClick={() => history.push(`/films/:id`)}
+              handleFilmCardClick={(id) => history.push(`/films/${id}`)}
             />
           )}>
         </Route>
         <Route
           exact
           path="/films/:id"
-          render={({history}) => (
+          render={({history, match}) => (
             <FilmScreen
               films={films}
-              film={films[0]}
-              handlePlayBtnClick={() => history.push(`/player/:id`)}
-              handleFilmCardClick={() => history.push(`/films/:id`)}
+              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+              handlePlayBtnClick={(id) => history.push(`/player/${id}`)}
+              handleFilmCardClick={(id) => history.push(`/films/${id}`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
             />
           )}
         >
         </Route>
-        <Route exact path="/films/:id/review">
-          <AddReviewScreen
-            film={films[0]}
-            onCommentAdd={() => {}}
-          />
+        <Route
+          exact
+          path="/films/:id/review"
+          render={({match}) => (
+            <AddReviewScreen
+              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+              onCommentAdd={() => {}}
+            />
+          )}
+        >
         </Route>
-        <Route exact path="/player/:id">
-          <PlayerScreen
-            film={films[0]}
-          />
+        <Route
+          exact
+          path="/player/:id"
+          render={({match}) => (
+            <PlayerScreen
+              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+            />
+          )}
+        >
         </Route>
       </Switch>
     </BrowserRouter>
