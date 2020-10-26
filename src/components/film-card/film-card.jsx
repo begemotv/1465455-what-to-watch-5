@@ -18,7 +18,10 @@ const FilmCard = (props) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onClick={handleFilmCardClick}
+      onClick={(evt) => {
+        evt.preventDefault();
+        handleFilmCardClick(id);
+      }}
       onMouseOver={handleFilmCardMouseOver}
     >
       <div className="small-movie-card__image">

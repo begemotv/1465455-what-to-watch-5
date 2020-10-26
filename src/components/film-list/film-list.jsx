@@ -15,7 +15,6 @@ class FilmList extends PureComponent {
 
   render() {
     const {films, handleFilmCardClick} = this.props;
-    console.log(this.props)
 
     return (
       <div className="catalog__movies-list">

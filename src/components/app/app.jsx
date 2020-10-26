@@ -20,12 +20,12 @@ const App = (props) => {
         <Route
           exact
           path="/"
-          render={({history, match}) => (
+          render={({history}) => (
             <MainScreen
               film={films[0]}
               films={films}
-              handlePlayBtnClick={() => history.push(`/player/:id`)}
-              handleFilmCardClick={() => history.push(`/films/${id}`)}
+              handlePlayBtnClick={(id) => history.push(`/player/${id}`)}
+              handleFilmCardClick={(id) => history.push(`/films/${id}`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
             />
           )}>
@@ -39,9 +39,9 @@ const App = (props) => {
           render={({history}) => (
             <MyListScreen
               films={films}
-              handleFilmCardClick={() => history.push(`/films/:id`)}
+              handleFilmCardClick={(id) => history.push(`/films/${id}`)}
             />
-          )}>s
+          )}>
         </Route>
         <Route
           exact
@@ -50,8 +50,8 @@ const App = (props) => {
             <FilmScreen
               films={films}
               film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
-              handlePlayBtnClick={() => history.push(`/player/${match.params.id}`)}
-              handleFilmCardClick={() => history.push(`/films/:id`)}
+              handlePlayBtnClick={(id) => history.push(`/player/${id}`)}
+              handleFilmCardClick={(id) => history.push(`/films/${id}`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
             />
           )}
