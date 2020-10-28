@@ -104,7 +104,7 @@ const FilmScreen = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films} handleFilmCardClick={handleFilmCardClick}/>
+          <FilmList films={films} handleFilmCardClick={handleFilmCardClick} genre={genre}/>
         </section>
 
         <footer className="page-footer">

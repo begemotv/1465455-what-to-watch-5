@@ -25,7 +25,7 @@ export const reviewPropTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
         date: PropTypes.string.isRequired,
-        starsRating: PropTypes.number.isRequired,
+        rating: PropTypes.number.isRequired,
         text: PropTypes.string.isRequired,
         timeStamp: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired

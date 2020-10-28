@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 import {filmPropTypes} from "../../prop-types";
 
@@ -7,6 +8,7 @@ import {filmPropTypes} from "../../prop-types";
 const PlayerScreen = (props) => {
   const {
     film: {
+      id,
       name,
       previewImg,
       videoSrc
@@ -21,7 +23,9 @@ const PlayerScreen = (props) => {
         poster={previewImg}
       />
 
-      <button type="button" className="player__exit">Exit</button>
+      <button type="button" className="player__exit">
+        <Link to={`/films/${id}`} className="small-movie-card__link">Exit</Link>
+      </button>
 
       <div className="player__controls">
         <div className="player__controls-row">
