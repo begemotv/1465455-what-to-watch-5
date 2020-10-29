@@ -31,6 +31,9 @@ const FilmScreen = (props) => {
   } = props;
 
   const reviewsFilm = findReviews(reviews, name);
+  const genreFilms = films
+    .filter((item) => genre.includes(item.genre))
+    .filter((item) => item.id !== id);
 
   return (
     <React.Fragment>
@@ -104,7 +107,7 @@ const FilmScreen = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films} handleFilmCardClick={handleFilmCardClick} genre={genre}/>
+          <FilmList films={films} handleFilmCardClick={handleFilmCardClick} genreFilms={genreFilms}/>
         </section>
 
         <footer className="page-footer">

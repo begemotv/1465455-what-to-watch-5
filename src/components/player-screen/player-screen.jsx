@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {createBrowserHistory} from 'history';
 
 import {filmPropTypes} from "../../prop-types";
 
@@ -8,12 +8,13 @@ import {filmPropTypes} from "../../prop-types";
 const PlayerScreen = (props) => {
   const {
     film: {
-      id,
       name,
       previewImg,
       videoSrc
     }
   } = props;
+
+  let history = createBrowserHistory();
 
   return (
     <div className="player">
@@ -23,9 +24,13 @@ const PlayerScreen = (props) => {
         poster={previewImg}
       />
 
-      <button type="button" className="player__exit">
-        <Link to={`/films/${id}`} className="small-movie-card__link">Exit</Link>
-      </button>
+      <button
+        type="button"
+        className="player__exit"
+        onClick={() => {
+          history.goBack();
+        }}
+      >Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">

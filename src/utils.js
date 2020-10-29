@@ -22,3 +22,22 @@ export const nameRating = (rating) => {
   return ratingName;
 };
 
+export const convertDate = (timeStamp) => {
+  const months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
+
+  let day = timeStamp.slice(-2);
+  if (day[0] === `0`) {
+    day = day.substr(1);
+  }
+
+  let monthNumber = timeStamp.slice(-5, -3);
+  if (monthNumber[0] === `0`) {
+    monthNumber = monthNumber.substr(1);
+  }
+  const monthName = months[monthNumber - 1];
+
+  const year = timeStamp.slice(0, 4);
+
+  const date = `${monthName} ${day}, ${year}`;
+  return date;
+};

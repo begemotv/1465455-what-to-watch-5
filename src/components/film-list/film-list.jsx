@@ -5,16 +5,11 @@ import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
 
 const FilmList = (props) => {
-  const {films, handleFilmCardClick, genre} = props;
-  let genreFilms;
-
-  if (genre) {
-    genreFilms = films.filter((i) => genre.includes(i.genre));
-  }
+  const {films, genreFilms, handleFilmCardClick} = props;
 
   return (
     <React.Fragment>
-      {genre !== undefined &&
+      {genreFilms !== undefined &&
         <div className="catalog__movies-list">
           {genreFilms.map((film) =>
             <FilmCard
@@ -24,7 +19,7 @@ const FilmList = (props) => {
             />)}
         </div>
       }
-      {genre === undefined &&
+      {genreFilms === undefined &&
         <div className="catalog__movies-list">
           {films.map((film) =>
             <FilmCard
@@ -42,7 +37,9 @@ FilmList.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
-  genre: PropTypes.string,
+  genreFilms: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ),
   handleFilmCardClick: PropTypes.func.isRequired
 };
 

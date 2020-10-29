@@ -1,7 +1,11 @@
 import React, {PureComponent} from 'react';
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
-import Tab from "../tab/tab";
-import {tabNames} from "../../const";
+import {filmPropTypes, reviewPropTypes} from "../../prop-types";
+import TabOverview from "../tab-overview/tab-overview";
+import TabDetails from "../tab-details/tab-details";
+import TabReviews from "../tab-reviews/tab-reviews";
 
 class TabBar extends PureComponent {
   constructor(props) {
@@ -19,6 +23,9 @@ class TabBar extends PureComponent {
   }
 
   render() {
+    const tabNames = [`Overview`, `Details`, `Reviews`];
+    const {film, reviewsFilm} = this.props;
+
     return (
       <React.Fragment>
         <nav className="movie-nav movie-card__nav">
@@ -27,23 +34,35 @@ class TabBar extends PureComponent {
               <li
                 key={i}
                 className={`movie-nav__item ${i === this.state.activeTab ? `movie-nav__item--active` : ``}`}>
-                <div
-                  style={{cursor: `pointer`}}
-                  key={i}
+                <Link
+                  to="#"
                   className="movie-nav__link"
                   onClick={() => this.handleTabClick(i)}
-                >{tab}</div>
+                >{tab}</Link>
               </li>
             ))}
           </ul>
         </nav>
         <div>
-          <Tab tab={this.state.activeTab} {...this.props}/>
+          {this.state.activeTab === 0 &&
+            <TabOverview film={film}/>
+          }
+          {this.state.activeTab === 1 &&
+            <TabDetails film={film}/>
+          }
+          {this.state.activeTab === 2 &&
+            <TabReviews reviewsFilm={reviewsFilm}/>
+          }
         </div>
       </React.Fragment>
     );
   }
 }
+
+TabBar.propTypes = {
+  film: PropTypes.shape(filmPropTypes).isRequired,
+  reviewsFilm: PropTypes.shape(reviewPropTypes).isRequired
+};
 
 export default TabBar;
 
