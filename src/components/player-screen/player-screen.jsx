@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {createBrowserHistory} from 'history';
 
 import {filmPropTypes} from "../../prop-types";
 
@@ -13,6 +14,8 @@ const PlayerScreen = (props) => {
     }
   } = props;
 
+  let history = createBrowserHistory();
+
   return (
     <div className="player">
       <video
@@ -21,7 +24,13 @@ const PlayerScreen = (props) => {
         poster={previewImg}
       />
 
-      <button type="button" className="player__exit">Exit</button>
+      <button
+        type="button"
+        className="player__exit"
+        onClick={() => {
+          history.goBack();
+        }}
+      >Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">

@@ -2,30 +2,38 @@ import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
-import {filmPropTypes} from "../../prop-types";
+import {filmPropTypes, reviewPropTypes} from "../../prop-types";
 import FilmList from "../film-list/film-list";
+import Logo from "../logo/logo";
+import Avatar from "../avatar/avatar";
+import TabBar from "../tab-bar/tab-bar";
+
+const findReviews = (reviews, filmName) => {
+  const reviewsFilm = reviews.find((value) => value.name === filmName);
+  return reviewsFilm;
+};
 
 const FilmScreen = (props) => {
   const {
     film: {
-      description,
-      director,
       genre,
       id,
       name,
       poster,
       previewImg,
-      rating,
-      ratingName,
-      releaseYear,
-      starring,
-      voteCount
+      releaseYear
     },
     films,
     handleFilmCardClick,
     handleMyListBtnClick,
-    handlePlayBtnClick
+    handlePlayBtnClick,
+    reviews
   } = props;
+
+  const reviewsFilm = findReviews(reviews, name);
+  const genreFilms = films
+    .filter((item) => genre.includes(item.genre))
+    .filter((item) => item.id !== id);
 
   return (
     <React.Fragment>
@@ -34,23 +42,11 @@ const FilmScreen = (props) => {
           <div className="movie-card__bg">
             <img src={previewImg} alt={name} />
           </div>
-
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link to="/" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <Logo linkClassName={`logo__link`}/>
+            <Avatar />
           </header>
 
           <div className="movie-card__wrap">
@@ -101,35 +97,7 @@ const FilmScreen = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <Link to={`/films/${id}`} className="movie-nav__link">Overview</Link>
-                  </li>
-                  <li className="movie-nav__item">
-                    <Link to={`/films/${id}`} className="movie-nav__link">Details</Link>
-                  </li>
-                  <li className="movie-nav__item">
-                    <Link to={`/films/${id}`} className="movie-nav__link">Reviews</Link>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="movie-rating">
-                <div className="movie-rating__score">{rating}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{ratingName}</span>
-                  <span className="movie-rating__count">{voteCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                <p>{description}</p>
-
-                <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-                <p className="movie-card__starring"><strong>Starring: {starring} and others</strong></p>
-              </div>
+              <TabBar film={props.film} reviewsFilm={reviewsFilm}/>
             </div>
           </div>
         </div>
@@ -139,20 +107,11 @@ const FilmScreen = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <FilmList films={films} handleFilmCardClick={handleFilmCardClick} />
-
+          <FilmList films={films} handleFilmCardClick={handleFilmCardClick} genreFilms={genreFilms}/>
         </section>
 
         <footer className="page-footer">
-          <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
+          <Logo linkClassName={`logo__link logo__link--light`}/>
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>
@@ -170,6 +129,9 @@ FilmScreen.propTypes = {
   handlePlayBtnClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
   handleFilmCardClick: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape(reviewPropTypes)
+  ).isRequired,
 };
 
 export default FilmScreen;

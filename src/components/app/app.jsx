@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
-import {filmPropTypes} from "../../prop-types";
+import {filmPropTypes, reviewPropTypes} from "../../prop-types";
 import MainScreen from "../main-screen/main-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
@@ -12,7 +12,7 @@ import SignInScreen from "../sign-in-screen/sign-in-screen";
 
 
 const App = (props) => {
-  const {films} = props;
+  const {films, reviews} = props;
 
   return (
     <BrowserRouter>
@@ -53,6 +53,7 @@ const App = (props) => {
               handlePlayBtnClick={(id) => history.push(`/player/${id}`)}
               handleFilmCardClick={(id) => history.push(`/films/${id}`)}
               handleMyListBtnClick={() => history.push(`/mylist`)}
+              reviews={reviews}
             />
           )}
         >
@@ -87,6 +88,9 @@ App.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape(reviewPropTypes)
+  ).isRequired
 };
 
 export default App;

@@ -13,15 +13,22 @@ export const filmPropTypes = {
   ratingName: PropTypes.string.isRequired,
   releaseYear: PropTypes.number.isRequired,
   runningTime: PropTypes.string.isRequired,
-  starring: PropTypes.string.isRequired,
+  starring: PropTypes.arrayOf(
+      PropTypes.string.isRequired
+  ).isRequired,
   videoSrc: PropTypes.string.isRequired,
   voteCount: PropTypes.number.isRequired
 };
 
 export const reviewPropTypes = {
-  date: PropTypes.string.isRequired,
-  starsRating: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        rating: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired,
+        timeStamp: PropTypes.string.isRequired,
+        username: PropTypes.string.isRequired
+      })
+  ).isRequired
 };
 
