@@ -41,3 +41,8 @@ export const convertDate = (timeStamp) => {
   const date = `${monthName} ${day}, ${year}`;
   return date;
 };
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+

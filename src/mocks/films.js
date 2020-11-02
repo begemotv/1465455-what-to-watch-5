@@ -4,7 +4,6 @@ export default [
   {
     id: 1,
     name: `Whiplash`,
-    link: `whiplash.html`,
     genre: `Drama`,
     releaseYear: 2014,
     description: `Whiplash is a 2014 American drama film written and directed by Damien Chazelle. It depicts the relationship between an ambitious jazz drummer (Miles Teller) and an abusive bandleader (J. K. Simmons) at the fictional Shaffer Conservatory. Paul Reiser and Melissa Benoist co-star.`,
@@ -21,7 +20,6 @@ export default [
   {
     id: 2,
     name: `Climax`,
-    link: `climax.html`,
     genre: `Horror`,
     releaseYear: 2018,
     description: `Climax is a 2018 psychological horror film directed, written and co-edited by Gaspar Noé.[7] An international co-production between France and Belgium, the film takes place in 1996 during winter, within a single building, and features a large ensemble cast of twenty-four (led by Sofia Boutella) portraying a French dance troupe throwing an after-party after a rehearsal; however, the celebrations take a darker turn when everyone becomes increasingly agitated and confused after consuming sangria laced with LSD.`,
@@ -38,7 +36,6 @@ export default [
   {
     id: 3,
     name: `The Room`,
-    link: `the-room.html`,
     genre: `Drama`,
     releaseYear: 2003,
     description: `The Room is a 2003 American independent drama film written, produced, and directed by Tommy Wiseau, who stars in the film alongside Juliette Danielle and Greg Sestero. The film centers on a melodramatic love triangle between amiable banker Johnny (Wiseau), his deceptive fiancée Lisa (Danielle), and his conflicted best friend Mark (Sestero). A significant portion of the film is dedicated to a series of unrelated subplots, most of which involve at least one supporting character and are left unresolved due to the film's inconsistent narrative structure.`,
@@ -55,7 +52,6 @@ export default [
   {
     id: 4,
     name: `Total Recall`,
-    link: `total-recall.html`,
     genre: `Action`,
     releaseYear: 1990,
     description: `Total Recall is a 1990 American science fiction action film directed by Paul Verhoeven and starring Arnold Schwarzenegger, Rachel Ticotin, Sharon Stone, Ronny Cox, and Michael Ironside. The film is loosely based on the 1966 Philip K. Dick short story "We Can Remember It for You Wholesale".`,
@@ -72,7 +68,6 @@ export default [
   {
     id: 5,
     name: `The Big Lebowski`,
-    link: `the-big-lebowski.html`,
     genre: `Comedy`,
     releaseYear: 1998,
     description: `The Big Lebowski (/ləˈbaʊski/) is a 1998 crime comedy film written, produced, and directed by Joel and Ethan Coen. It stars Jeff Bridges as Jeffrey "The Dude" Lebowski, a Los Angeles slacker and avid bowler. He is assaulted as a result of mistaken identity, then learns that a millionaire (also named Jeffrey Lebowski) was the intended victim. The millionaire Lebowski's trophy wife is kidnapped, and he commissions The Dude to deliver the ransom to secure her release; the plan goes awry when the Dude's friend Walter Sobchak (John Goodman) schemes to keep the ransom money.`,
@@ -89,7 +84,6 @@ export default [
   {
     id: 6,
     name: `Monty Python and the Holy Grail`,
-    link: `monthy-python-and-the-holy-grail.html`,
     genre: `Comedy`,
     releaseYear: 1975,
     description: `Monty Python and the Holy Grail is a 1975 British comedy film reflecting the Arthurian legend, written and performed by the Monty Python comedy group (Chapman, Cleese, Gilliam, Idle, Jones and Palin), directed by Gilliam and Jones. It was conceived during the hiatus between the third and fourth series of their BBC television series Monty Python's Flying Circus.`,
@@ -106,7 +100,6 @@ export default [
   {
     id: 7,
     name: `Lost in Translation`,
-    link: `lost-in-translation.html`,
     genre: `Drama`,
     releaseYear: 2003,
     description: `Lost in Translation is a 2003 American romantic comedy-drama film[note 1] written and directed by Sofia Coppola. Bill Murray stars as Bob Harris, a fading American movie star who is having a midlife crisis when he travels to Tokyo to promote Suntory whisky. There, he befriends another estranged American named Charlotte, a young woman and recent college graduate played by Scarlett Johansson. Giovanni Ribisi and Anna Faris also feature. The film explores themes of alienation and disconnection against a backdrop of cultural displacement in Japan. Further analysis by critics and scholars has focused on the film's defiance of mainstream narrative conventions and its atypical depiction of romance.`,
@@ -123,7 +116,6 @@ export default [
   {
     id: 8,
     name: `Twin Peaks: Fire Walk with Me`,
-    link: `twin-peaks-fire-walk-with-me.html`,
     genre: `Thriller`,
     releaseYear: 1992,
     description: `Twin Peaks: Fire Walk with Me is a 1992 psychological horror film directed by David Lynch and written by Lynch and Robert Engels. It serves as a prequel and sequel to the television series Twin Peaks (1990–1991), created by Mark Frost and Lynch, who were also executive producers. The film revolves around the investigation into the murder of Teresa Banks (Pamela Gidley) and the last seven days in the life of Laura Palmer (Sheryl Lee), a popular high school student in the fictional Washington town of Twin Peaks.`,
@@ -140,7 +132,6 @@ export default [
   {
     id: 9,
     name: `Whiplash 2`,
-    link: `whiplash.html`,
     genre: `Drama`,
     releaseYear: 2014,
     description: `Whiplash is a 2014 American drama film written and directed by Damien Chazelle. It depicts the relationship between an ambitious jazz drummer (Miles Teller) and an abusive bandleader (J. K. Simmons) at the fictional Shaffer Conservatory. Paul Reiser and Melissa Benoist co-star.`,
@@ -157,7 +148,6 @@ export default [
   {
     id: 10,
     name: `Climax 2`,
-    link: `climax.html`,
     genre: `Horror`,
     releaseYear: 2018,
     description: `Climax is a 2018 psychological horror film directed, written and co-edited by Gaspar Noé.[7] An international co-production between France and Belgium, the film takes place in 1996 during winter, within a single building, and features a large ensemble cast of twenty-four (led by Sofia Boutella) portraying a French dance troupe throwing an after-party after a rehearsal; however, the celebrations take a darker turn when everyone becomes increasingly agitated and confused after consuming sangria laced with LSD.`,
@@ -174,7 +164,6 @@ export default [
   {
     id: 11,
     name: `Climax 3`,
-    link: `climax.html`,
     genre: `Horror`,
     releaseYear: 2018,
     description: `Climax is a 2018 psychological horror film directed, written and co-edited by Gaspar Noé.[7] An international co-production between France and Belgium, the film takes place in 1996 during winter, within a single building, and features a large ensemble cast of twenty-four (led by Sofia Boutella) portraying a French dance troupe throwing an after-party after a rehearsal; however, the celebrations take a darker turn when everyone becomes increasingly agitated and confused after consuming sangria laced with LSD.`,
@@ -191,7 +180,6 @@ export default [
   {
     id: 12,
     name: `Climax 4`,
-    link: `climax.html`,
     genre: `Horror`,
     releaseYear: 2018,
     description: `Climax is a 2018 psychological horror film directed, written and co-edited by Gaspar Noé.[7] An international co-production between France and Belgium, the film takes place in 1996 during winter, within a single building, and features a large ensemble cast of twenty-four (led by Sofia Boutella) portraying a French dance troupe throwing an after-party after a rehearsal; however, the celebrations take a darker turn when everyone becomes increasingly agitated and confused after consuming sangria laced with LSD.`,
@@ -208,7 +196,6 @@ export default [
   {
     id: 13,
     name: `Total Recall 2`,
-    link: `total-recall.html`,
     genre: `Action`,
     releaseYear: 1990,
     description: `Total Recall is a 1990 American science fiction action film directed by Paul Verhoeven and starring Arnold Schwarzenegger, Rachel Ticotin, Sharon Stone, Ronny Cox, and Michael Ironside. The film is loosely based on the 1966 Philip K. Dick short story "We Can Remember It for You Wholesale".`,
@@ -225,7 +212,6 @@ export default [
   {
     id: 14,
     name: `Total Recall 3`,
-    link: `total-recall.html`,
     genre: `Action`,
     releaseYear: 1990,
     description: `Total Recall is a 1990 American science fiction action film directed by Paul Verhoeven and starring Arnold Schwarzenegger, Rachel Ticotin, Sharon Stone, Ronny Cox, and Michael Ironside. The film is loosely based on the 1966 Philip K. Dick short story "We Can Remember It for You Wholesale".`,
@@ -242,7 +228,6 @@ export default [
   {
     id: 15,
     name: `Total Recall 4`,
-    link: `total-recall.html`,
     genre: `Action`,
     releaseYear: 1990,
     description: `Total Recall is a 1990 American science fiction action film directed by Paul Verhoeven and starring Arnold Schwarzenegger, Rachel Ticotin, Sharon Stone, Ronny Cox, and Michael Ironside. The film is loosely based on the 1966 Philip K. Dick short story "We Can Remember It for You Wholesale".`,
@@ -259,7 +244,6 @@ export default [
   {
     id: 16,
     name: `The Big Lebowski 2`,
-    link: `the-big-lebowski.html`,
     genre: `Comedy`,
     releaseYear: 1998,
     description: `The Big Lebowski (/ləˈbaʊski/) is a 1998 crime comedy film written, produced, and directed by Joel and Ethan Coen. It stars Jeff Bridges as Jeffrey "The Dude" Lebowski, a Los Angeles slacker and avid bowler. He is assaulted as a result of mistaken identity, then learns that a millionaire (also named Jeffrey Lebowski) was the intended victim. The millionaire Lebowski's trophy wife is kidnapped, and he commissions The Dude to deliver the ransom to secure her release; the plan goes awry when the Dude's friend Walter Sobchak (John Goodman) schemes to keep the ransom money.`,
@@ -276,7 +260,6 @@ export default [
   {
     id: 17,
     name: `Monty Python and the Holy Grail 2`,
-    link: `monthy-python-and-the-holy-grail.html`,
     genre: `Comedy`,
     releaseYear: 1975,
     description: `Monty Python and the Holy Grail is a 1975 British comedy film reflecting the Arthurian legend, written and performed by the Monty Python comedy group (Chapman, Cleese, Gilliam, Idle, Jones and Palin), directed by Gilliam and Jones. It was conceived during the hiatus between the third and fourth series of their BBC television series Monty Python's Flying Circus.`,
@@ -293,7 +276,6 @@ export default [
   {
     id: 18,
     name: `Twin Peaks: Fire Walk with Me 2`,
-    link: `twin-peaks-fire-walk-with-me.html`,
     genre: `Thriller`,
     releaseYear: 1992,
     description: `Twin Peaks: Fire Walk with Me is a 1992 psychological horror film directed by David Lynch and written by Lynch and Robert Engels. It serves as a prequel and sequel to the television series Twin Peaks (1990–1991), created by Mark Frost and Lynch, who were also executive producers. The film revolves around the investigation into the murder of Teresa Banks (Pamela Gidley) and the last seven days in the life of Laura Palmer (Sheryl Lee), a popular high school student in the fictional Washington town of Twin Peaks.`,
@@ -310,7 +292,6 @@ export default [
   {
     id: 19,
     name: `Twin Peaks: Fire Walk with Me 3`,
-    link: `twin-peaks-fire-walk-with-me.html`,
     genre: `Thriller`,
     releaseYear: 1992,
     description: `Twin Peaks: Fire Walk with Me is a 1992 psychological horror film directed by David Lynch and written by Lynch and Robert Engels. It serves as a prequel and sequel to the television series Twin Peaks (1990–1991), created by Mark Frost and Lynch, who were also executive producers. The film revolves around the investigation into the murder of Teresa Banks (Pamela Gidley) and the last seven days in the life of Laura Palmer (Sheryl Lee), a popular high school student in the fictional Washington town of Twin Peaks.`,
@@ -327,7 +308,6 @@ export default [
   {
     id: 20,
     name: `Twin Peaks: Fire Walk with Me 4`,
-    link: `twin-peaks-fire-walk-with-me.html`,
     genre: `Thriller`,
     releaseYear: 1992,
     description: `Twin Peaks: Fire Walk with Me is a 1992 psychological horror film directed by David Lynch and written by Lynch and Robert Engels. It serves as a prequel and sequel to the television series Twin Peaks (1990–1991), created by Mark Frost and Lynch, who were also executive producers. The film revolves around the investigation into the murder of Teresa Banks (Pamela Gidley) and the last seven days in the life of Laura Palmer (Sheryl Lee), a popular high school student in the fictional Washington town of Twin Peaks.`,
@@ -344,7 +324,6 @@ export default [
   {
     id: 21,
     name: `Twin Peaks: Fire Walk with Me 5`,
-    link: `twin-peaks-fire-walk-with-me.html`,
     genre: `Thriller`,
     releaseYear: 1992,
     description: `Twin Peaks: Fire Walk with Me is a 1992 psychological horror film directed by David Lynch and written by Lynch and Robert Engels. It serves as a prequel and sequel to the television series Twin Peaks (1990–1991), created by Mark Frost and Lynch, who were also executive producers. The film revolves around the investigation into the murder of Teresa Banks (Pamela Gidley) and the last seven days in the life of Laura Palmer (Sheryl Lee), a popular high school student in the fictional Washington town of Twin Peaks.`,
@@ -361,7 +340,6 @@ export default [
   {
     id: 22,
     name: `The Big Lebowski 3`,
-    link: `the-big-lebowski.html`,
     genre: `Comedy`,
     releaseYear: 1998,
     description: `The Big Lebowski (/ləˈbaʊski/) is a 1998 crime comedy film written, produced, and directed by Joel and Ethan Coen. It stars Jeff Bridges as Jeffrey "The Dude" Lebowski, a Los Angeles slacker and avid bowler. He is assaulted as a result of mistaken identity, then learns that a millionaire (also named Jeffrey Lebowski) was the intended victim. The millionaire Lebowski's trophy wife is kidnapped, and he commissions The Dude to deliver the ransom to secure her release; the plan goes awry when the Dude's friend Walter Sobchak (John Goodman) schemes to keep the ransom money.`,
@@ -378,7 +356,6 @@ export default [
   {
     id: 23,
     name: `Total Recall 5`,
-    link: `total-recall.html`,
     genre: `Action`,
     releaseYear: 1990,
     description: `Total Recall is a 1990 American science fiction action film directed by Paul Verhoeven and starring Arnold Schwarzenegger, Rachel Ticotin, Sharon Stone, Ronny Cox, and Michael Ironside. The film is loosely based on the 1966 Philip K. Dick short story "We Can Remember It for You Wholesale".`,
@@ -395,7 +372,6 @@ export default [
   {
     id: 24,
     name: `Climax 5`,
-    link: `climax.html`,
     genre: `Horror`,
     releaseYear: 2018,
     description: `Climax is a 2018 psychological horror film directed, written and co-edited by Gaspar Noé.[7] An international co-production between France and Belgium, the film takes place in 1996 during winter, within a single building, and features a large ensemble cast of twenty-four (led by Sofia Boutella) portraying a French dance troupe throwing an after-party after a rehearsal; however, the celebrations take a darker turn when everyone becomes increasingly agitated and confused after consuming sangria laced with LSD.`,
@@ -412,7 +388,6 @@ export default [
   {
     id: 25,
     name: `Lost in Translation 2`,
-    link: `lost-in-translation.html`,
     genre: `Drama`,
     releaseYear: 2003,
     description: `Lost in Translation is a 2003 American romantic comedy-drama film[note 1] written and directed by Sofia Coppola. Bill Murray stars as Bob Harris, a fading American movie star who is having a midlife crisis when he travels to Tokyo to promote Suntory whisky. There, he befriends another estranged American named Charlotte, a young woman and recent college graduate played by Scarlett Johansson. Giovanni Ribisi and Anna Faris also feature. The film explores themes of alienation and disconnection against a backdrop of cultural displacement in Japan. Further analysis by critics and scholars has focused on the film's defiance of mainstream narrative conventions and its atypical depiction of romance.`,
