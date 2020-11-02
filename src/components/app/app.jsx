@@ -1,18 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
-import {GameType} from "../../const";
 import WelcomeScreen from "../welcome-screen/welcome-screen";
 import GameOverScreen from "../game-over-screen/game-over-screen";
 import LoginScreen from "../login-screen/login-screen";
 import WinScreen from "../win-screen/win-screen";
 import GameScreen from "../game-screen/game-screen";
+import {MAX_MISTAKE_COUNT} from "../../const";
 
-
-const App = (props) => {
-  const {errorsCount, questions} = props;
-
+const App = () => {
   return (
     <BrowserRouter>
       <Switch>
@@ -21,7 +17,7 @@ const App = (props) => {
           render={({history}) => (
             <WelcomeScreen
               onPlayButtonClick={() => history.push(`/game`)}
-              errorsCount={errorsCount}
+              errorsCount={MAX_MISTAKE_COUNT}
             />
           )}
         />
@@ -36,8 +32,7 @@ const App = (props) => {
         </Route>
         <Route exact path="/game">
           <GameScreen
-            errorsCount={errorsCount}
-            questions={questions}
+            errorsCount={MAX_MISTAKE_COUNT}
           />
         </Route>
       </Switch>
@@ -46,22 +41,6 @@ const App = (props) => {
   );
 };
 
-App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
-  questions: PropTypes.arrayOf(PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string,
-      genre: PropTypes.string,
-      picture: PropTypes.string,
-      artist: PropTypes.string,
-    })).isRequired,
-    genre: PropTypes.string,
-    song: PropTypes.shape({
-      artist: PropTypes.string.isRequired,
-      src: PropTypes.string.isRequired
-    }),
-    type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired,
-  })).isRequired
-};
+App.propTypes = {};
 
 export default App;
