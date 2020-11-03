@@ -3,10 +3,11 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
 import {filmPropTypes, reviewPropTypes} from "../../prop-types";
-import FilmList from "../film-list/film-list";
+import {filterFilmsByGenre} from "../../core";
 import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
 import TabBar from "../tab-bar/tab-bar";
+import MoreLikeThisFilms from "../more-like-this-films/more-like-this-films";
 
 const findReviews = (reviews, filmName) => {
   const reviewsFilm = reviews.find((value) => value.name === filmName);
@@ -23,7 +24,6 @@ const FilmScreen = (props) => {
       previewImg,
       releaseYear
     },
-    films,
     handleFilmCardClick,
     handleMyListBtnClick,
     handlePlayBtnClick,
@@ -31,9 +31,7 @@ const FilmScreen = (props) => {
   } = props;
 
   const reviewsFilm = findReviews(reviews, name);
-  const genreFilms = films
-    .filter((item) => genre.includes(item.genre))
-    .filter((item) => item.id !== id);
+  const genreFilms = filterFilmsByGenre(genre, id);
 
   return (
     <React.Fragment>
@@ -105,10 +103,7 @@ const FilmScreen = (props) => {
 
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films} handleFilmCardClick={handleFilmCardClick} genreFilms={genreFilms}/>
-        </section>
+        <MoreLikeThisFilms handleFilmCardClick={handleFilmCardClick} genreFilms={genreFilms}/>
 
         <footer className="page-footer">
           <Logo linkClassName={`logo__link logo__link--light`}/>
@@ -123,9 +118,6 @@ const FilmScreen = (props) => {
 
 FilmScreen.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape(filmPropTypes)
-  ).isRequired,
   handlePlayBtnClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
   handleFilmCardClick: PropTypes.func.isRequired,

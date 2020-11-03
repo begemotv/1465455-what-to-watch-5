@@ -1,13 +1,26 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+
+import {filmPropTypes} from "../../prop-types";
+import {ActionCreator} from "../../store/action";
 
 const GenreList = (props) => {
-  const {films, genre: activeGenre} = props;
-  let genreList = films
+  const {
+    activeGenre,
+    filmsAll,
+    handleGenreTabClick,
+    id
+  } = props;
+
+  let genreList = filmsAll
     .map((item) => item.genre)
     .filter((item, index, arr) => arr.indexOf(item) === index)
     .sort((a, b) => a - b)
-    .unshift(`All genres`);
+    .slice(0, 9);
+
+  genreList.unshift(`All genres`);
 
   return (
     <ul className="catalog__genres-list">
@@ -18,7 +31,7 @@ const GenreList = (props) => {
           <Link
             to="#"
             className="catalog__genres-link"
-            onClick={() => this.handleTabClick(i)}
+            onClick={() => handleGenreTabClick(genre, id)}
           >{genre}</Link>
         </li>
       ))}
@@ -26,3 +39,26 @@ const GenreList = (props) => {
   );
 };
 
+GenreList.propTypes = {
+  filmsAll: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ).isRequired,
+  activeGenre: PropTypes.string.isRequired,
+  handleGenreTabClick: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  activeGenre: state.activeGenre,
+  filmsAll: state.filmsAll
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleGenreTabClick(genre, id) {
+    dispatch(ActionCreator.changeGenre(genre));
+    dispatch(ActionCreator.filterByGenre(genre, id));
+  },
+});
+
+export {GenreList};
+export default connect(mapStateToProps, mapDispatchToProps)(GenreList);
