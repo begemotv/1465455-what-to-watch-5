@@ -3,32 +3,36 @@ import PropTypes from 'prop-types';
 import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 
-import {GameType} from '../../const';
+import {GameType, MAX_MISTAKE_COUNT} from '../../const';
 import QuestionArtistScreen from "../question-artist-screen/question-artist-screen";
 import QuestionGenreScreen from "../question-genre-screen/question-genre-screen";
 import Mistakes from "../mistakes/mistakes";
 import {ActionCreator} from "../../store/action";
 
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
+import withUserAnswer from "../../hocs/with-user-answer/with-user-answer";
 
 const QuestionArtistScreenHOC = withActivePlayer(QuestionArtistScreen);
-const QuestionGenreScreenHOC = withActivePlayer(QuestionGenreScreen);
+const QuestionGenreScreenHOC = withActivePlayer(withUserAnswer(QuestionGenreScreen));
 
 const GameScreen = (props) => {
   const {
     mistakes,
     onUserAnswer,
     questions,
-    resetGame,
     step
   } = props;
   const question = questions[step];
 
-  if (step >= questions.length || !question) {
-    resetGame();
-
+  if (mistakes >= MAX_MISTAKE_COUNT) {
     return (
-      <Redirect to="/" />
+      <Redirect to="/lose" />
+    );
+  }
+
+  if (step >= questions.length || !question) {
+    return (
+      <Redirect to="/result" />
     );
   }
 
@@ -73,7 +77,6 @@ GameScreen.propTypes = {
   })).isRequired,
   step: PropTypes.number.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
   mistakes: PropTypes.number.isRequired
 };
 
