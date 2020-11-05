@@ -17,7 +17,6 @@ const GenreList = (props) => {
   let genreList = filmsAll
     .map((item) => item.genre)
     .filter((item, index, arr) => arr.indexOf(item) === index)
-    .sort((a, b) => a - b)
     .slice(0, 9);
 
   genreList.unshift(`All genres`);
