@@ -4,15 +4,17 @@ import {connect} from "react-redux";
 
 import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
+import LoadMoreButton from "../load-more-button/load-more-button";
 
-const STEP = 8;
+const MOVIES_ON_MORE_BUTTON_CLICK_COUNT = 8;
+const MOVIES_SHOWN_ON_START_COUNT = 8;
 
 class FilmList extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      increment: 8
+      MOVIES_SHOWN_OVERALL: MOVIES_SHOWN_ON_START_COUNT
     };
 
     this.handleShowMoreButton = this._handleShowMoreButton.bind(this);
@@ -21,7 +23,7 @@ class FilmList extends PureComponent {
   _handleShowMoreButton() {
     this.setState((prevState) => {
       return {
-        increment: prevState.increment + STEP
+        MOVIES_SHOWN_OVERALL: prevState.MOVIES_SHOWN_OVERALL + MOVIES_ON_MORE_BUTTON_CLICK_COUNT
       };
     });
   }
@@ -32,7 +34,7 @@ class FilmList extends PureComponent {
     return (
       <React.Fragment>
         <div className="catalog__movies-list">
-          {(filmsByGenre.slice(0, this.state.increment))
+          {(filmsByGenre.slice(0, this.state.MOVIES_SHOWN_OVERALL))
             .map((film) =>
               <FilmCard
                 key={film.id}
@@ -40,15 +42,8 @@ class FilmList extends PureComponent {
                 handleFilmCardClick={handleFilmCardClick}
               />)}
         </div>
-
-        {this.state.increment <= filmsByGenre.length &&
-        <div className="catalog__more">
-          <button
-            className="catalog__button"
-            type="button"
-            onClick={this.handleShowMoreButton}
-          >Show more</button>
-        </div>}
+        {this.state.MOVIES_SHOWN_OVERALL <= filmsByGenre.length &&
+        <LoadMoreButton onButtonClick={this.handleShowMoreButton}/>}
       </React.Fragment>
     );
   }
