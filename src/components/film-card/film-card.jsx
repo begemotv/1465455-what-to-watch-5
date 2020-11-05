@@ -4,6 +4,10 @@ import {Link} from 'react-router-dom';
 
 import {filmPropTypes} from "../../prop-types";
 import VideoPlayer from "../video-player/video-player";
+import withVideo from "../../hocs/with-video/with-video";
+
+const VideoPlayerHOC = withVideo(VideoPlayer);
+
 
 const FilmCard = (props) => {
   const {
@@ -20,7 +24,7 @@ const FilmCard = (props) => {
       className="small-movie-card catalog__movies-card"
     >
       <Link to={`/films/${id}`} className="small-movie-card__link">
-        <VideoPlayer
+        <VideoPlayerHOC
           previewImg={previewImg}
           videoSrc={videoSrc}
         />

@@ -6,6 +6,9 @@ import {filmPropTypes} from "../../prop-types";
 import AddComment from "../add-comment/add-comment";
 import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
+import withComment from "../../hocs/with-comment/with-comment";
+
+const AddCommentHOC = withComment(AddComment);
 
 const AddReviewScreen = (props) => {
   const {
@@ -48,7 +51,7 @@ const AddReviewScreen = (props) => {
             width="218" height="327" />
         </div>
       </div>
-      <AddComment onCommentAdd={onCommentAdd} />
+      <AddCommentHOC onCommentAdd={onCommentAdd} />
     </section>
   );
 };
