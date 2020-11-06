@@ -8,6 +8,9 @@ import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
 import TabBar from "../tab-bar/tab-bar";
 import MoreLikeThisFilms from "../more-like-this-films/more-like-this-films";
+import withActiveTab from "../../hocs/with-active-tab/with-active-tab";
+
+const TabBarHOC = withActiveTab(TabBar);
 
 const findReviews = (reviews, filmName) => {
   const reviewsFilm = reviews.find((value) => value.name === filmName);
@@ -95,7 +98,7 @@ const FilmScreen = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <TabBar film={props.film} reviewsFilm={reviewsFilm}/>
+              <TabBarHOC film={props.film} reviewsFilm={reviewsFilm}/>
             </div>
           </div>
         </div>
