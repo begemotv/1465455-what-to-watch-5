@@ -30,7 +30,11 @@ const GenreList = (props) => {
           <Link
             to="#"
             className="catalog__genres-link"
-            onClick={() => handleGenreTabClick(genre, id)}
+            onClick={
+              (evt) => {
+                evt.preventDefault();
+                handleGenreTabClick(genre, id);
+              }}
           >{genre}</Link>
         </li>
       ))}

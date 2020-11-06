@@ -8,7 +8,6 @@ import withVideo from "../../hocs/with-video/with-video";
 
 const VideoPlayerHOC = withVideo(VideoPlayer);
 
-
 const FilmCard = (props) => {
   const {
     film: {
@@ -17,11 +16,13 @@ const FilmCard = (props) => {
       previewImg,
       videoSrc
     },
+    onFilmCardMouseOver
   } = props;
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
+      onMouseOver={() => onFilmCardMouseOver(id)}
     >
       <Link to={`/films/${id}`} className="small-movie-card__link">
         <VideoPlayerHOC
@@ -35,8 +36,8 @@ const FilmCard = (props) => {
 };
 
 FilmCard.propTypes = {
-  handleFilmCardClick: PropTypes.func.isRequired,
-  film: PropTypes.shape(filmPropTypes).isRequired
+  film: PropTypes.shape(filmPropTypes).isRequired,
+  onFilmCardMouseOver: PropTypes.func.isRequired
 };
 
 export default FilmCard;

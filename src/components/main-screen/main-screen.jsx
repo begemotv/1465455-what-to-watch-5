@@ -6,6 +6,10 @@ import FilmList from "../film-list/film-list";
 import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
 import GenreList from "../genre-list/genre-list";
+import withShowMoreButtonCount from "../../hocs/with-show-more-button-count/with-show-more-button-count";
+import withActiveFilm from "../../hocs/with-active-film/with-active-film";
+
+const FilmListHOC = withActiveFilm(withShowMoreButtonCount(FilmList));
 
 const MainScreen = (props) => {
   const {
@@ -18,7 +22,6 @@ const MainScreen = (props) => {
       releaseYear
     },
     films,
-    handleFilmCardClick,
     handleMyListBtnClick,
     handlePlayBtnClick
   } = props;
@@ -82,7 +85,7 @@ const MainScreen = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenreList id={id}/>
-        <FilmList films={films} handleFilmCardClick={handleFilmCardClick} />
+        <FilmListHOC films={films} />
       </section>
 
       <footer className="page-footer">
@@ -100,7 +103,6 @@ MainScreen.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
-  handleFilmCardClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
   handlePlayBtnClick: PropTypes.func.isRequired
 };

@@ -5,7 +5,7 @@ import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
 
 const MoreLikeThisFilms = (props) => {
-  const {genreFilms, handleFilmCardClick} = props;
+  const {genreFilms, onFilmCardMouseOver} = props;
   const genreFilmsFour = genreFilms.slice(0, 4);
 
   return (
@@ -16,7 +16,7 @@ const MoreLikeThisFilms = (props) => {
           <FilmCard
             key={film.id}
             film={film}
-            handleFilmCardClick={handleFilmCardClick}
+            onFilmCardMouseOver={onFilmCardMouseOver}
           />)}
       </div>
     </section>
@@ -27,7 +27,7 @@ MoreLikeThisFilms.propTypes = {
   genreFilms: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ),
-  handleFilmCardClick: PropTypes.func.isRequired
+  onFilmCardMouseOver: PropTypes.func.isRequired
 };
 
 export default MoreLikeThisFilms;

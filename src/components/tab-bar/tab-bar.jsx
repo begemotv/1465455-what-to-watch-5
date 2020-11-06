@@ -23,7 +23,10 @@ const TabBar = (props) => {
               <Link
                 to="#"
                 className="movie-nav__link"
-                onClick={() => onTabClick(i)}
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  onTabClick(i);
+                }}
               >{tab}</Link>
             </li>
           ))}

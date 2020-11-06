@@ -4,7 +4,6 @@ import {createBrowserHistory} from 'history';
 
 import {filmPropTypes} from "../../prop-types";
 
-
 const PlayerScreen = (props) => {
   const {
     film: {

@@ -5,12 +5,13 @@ import {filmPropTypes} from "../../prop-types";
 import FilmList from "../film-list/film-list";
 import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
+import withShowMoreButtonCount from "../../hocs/with-show-more-button-count/with-show-more-button-count";
+import withActiveFilm from "../../hocs/with-active-film/with-active-film";
+
+const FilmListHOC = withActiveFilm(withShowMoreButtonCount(FilmList));
 
 const MyListScreen = (props) => {
-  const {
-    films,
-    handleFilmCardClick
-  } = props;
+  const {films} = props;
 
   return (
     <div className="user-page">
@@ -22,7 +23,7 @@ const MyListScreen = (props) => {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmList films={films} handleFilmCardClick={handleFilmCardClick} />
+        <FilmListHOC films={films}/>
       </section>
 
       <footer className="page-footer">
@@ -38,8 +39,7 @@ const MyListScreen = (props) => {
 MyListScreen.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
-  ).isRequired,
-  handleFilmCardClick: PropTypes.func.isRequired
+  ).isRequired
 };
 
 export default MyListScreen;
