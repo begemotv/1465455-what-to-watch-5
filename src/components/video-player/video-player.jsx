@@ -2,23 +2,28 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const VideoPlayer = (props) => {
-  const {children, onMouseEnter, onMouseLeave} = props;
+  const {
+    previewImg,
+    videoRef,
+    videoSrc
+  } = props;
 
   return (
-    <div
-      className="small-movie-card__image"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      {children}
-    </div>
+    <video
+      className="player__video"
+      ref={videoRef}
+      src={videoSrc}
+      poster={previewImg}
+      loop
+      muted
+    />
   );
 };
 
 VideoPlayer.propTypes = {
-  children: PropTypes.node.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  videoRef: PropTypes.object.isRequired,
+  videoSrc: PropTypes.string.isRequired,
+  previewImg: PropTypes.string.isRequired
 };
 
 export default VideoPlayer;

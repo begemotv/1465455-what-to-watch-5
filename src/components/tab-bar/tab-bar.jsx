@@ -10,7 +10,12 @@ import TabReviews from "../tab-reviews/tab-reviews";
 const TAB_NAMES = [`Overview`, `Details`, `Reviews`];
 
 const TabBar = (props) => {
-  const {film, reviewsFilm, activeTab, onTabClick} = props;
+  const {
+    activeItem,
+    film,
+    onItemInteraction,
+    reviewsFilm
+  } = props;
 
   return (
     <React.Fragment>
@@ -19,13 +24,13 @@ const TabBar = (props) => {
           {TAB_NAMES.map((tab, i) => (
             <li
               key={i}
-              className={`movie-nav__item ${i === activeTab ? `movie-nav__item--active` : ``}`}>
+              className={`movie-nav__item ${i === activeItem ? `movie-nav__item--active` : ``}`}>
               <Link
                 to="#"
                 className="movie-nav__link"
                 onClick={(evt) => {
                   evt.preventDefault();
-                  onTabClick(i);
+                  onItemInteraction(i);
                 }}
               >{tab}</Link>
             </li>
@@ -33,13 +38,13 @@ const TabBar = (props) => {
         </ul>
       </nav>
       <div>
-        {activeTab === 0 &&
+        {activeItem === 0 &&
             <TabOverview film={film}/>
         }
-        {activeTab === 1 &&
+        {activeItem === 1 &&
             <TabDetails film={film}/>
         }
-        {activeTab === 2 &&
+        {activeItem === 2 &&
             <TabReviews reviewsFilm={reviewsFilm}/>
         }
       </div>
@@ -48,9 +53,9 @@ const TabBar = (props) => {
 };
 
 TabBar.propTypes = {
-  activeTab: PropTypes.number.isRequired,
+  activeItem: PropTypes.number.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
-  onTabClick: PropTypes.func.isRequired,
+  onItemInteraction: PropTypes.func.isRequired,
   reviewsFilm: PropTypes.shape(reviewPropTypes).isRequired
 };
 

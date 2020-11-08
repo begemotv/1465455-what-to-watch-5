@@ -8,11 +8,10 @@ import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
 import TabBar from "../tab-bar/tab-bar";
 import MoreLikeThisFilms from "../more-like-this-films/more-like-this-films";
-import withActiveTab from "../../hocs/with-active-tab/with-active-tab";
-import withActiveFilm from "../../hocs/with-active-film/with-active-film";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
-const TabBarHOC = withActiveTab(TabBar);
-const MoreLikeThisFilmsHOC = withActiveFilm(MoreLikeThisFilms);
+const TabBarHOC = withActiveItem(TabBar);
+const MoreLikeThisFilmsHOC = withActiveItem(MoreLikeThisFilms);
 
 const findReviews = (reviews, filmName) => {
   const reviewsFilm = reviews.find((value) => value.name === filmName);
@@ -29,6 +28,7 @@ const FilmScreen = (props) => {
       previewImg,
       releaseYear
     },
+    film,
     handleMyListBtnClick,
     handlePlayBtnClick,
     reviews
@@ -99,7 +99,7 @@ const FilmScreen = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <TabBarHOC film={props.film} reviewsFilm={reviewsFilm}/>
+              <TabBarHOC film={film} reviewsFilm={reviewsFilm}/>
             </div>
           </div>
         </div>

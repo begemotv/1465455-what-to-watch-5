@@ -43,10 +43,10 @@ const GenreList = (props) => {
 };
 
 GenreList.propTypes = {
+  activeGenre: PropTypes.string.isRequired,
   filmsAll: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
-  activeGenre: PropTypes.string.isRequired,
   handleGenreTabClick: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired
 };

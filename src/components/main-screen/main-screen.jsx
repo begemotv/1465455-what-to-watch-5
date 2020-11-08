@@ -7,9 +7,9 @@ import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
 import GenreList from "../genre-list/genre-list";
 import withShowMoreButtonCount from "../../hocs/with-show-more-button-count/with-show-more-button-count";
-import withActiveFilm from "../../hocs/with-active-film/with-active-film";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
-const FilmListHOC = withActiveFilm(withShowMoreButtonCount(FilmList));
+const FilmListHOC = withActiveItem(withShowMoreButtonCount(FilmList));
 
 const MainScreen = (props) => {
   const {

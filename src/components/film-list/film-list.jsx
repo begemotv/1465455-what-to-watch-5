@@ -8,10 +8,12 @@ import LoadMoreButton from "../load-more-button/load-more-button";
 
 const FilmList = (props) => {
   const {
+    activeItem,
     filmsByGenre,
     moviesShownOverall,
-    onShowMoreButtonClick,
-    onFilmCardMouseOver
+    onItemInteraction,
+    onItemInteractionEnd,
+    onShowMoreButtonClick
   } = props;
 
   return (
@@ -22,7 +24,9 @@ const FilmList = (props) => {
               <FilmCard
                 key={film.id}
                 film={film}
-                onFilmCardMouseOver={onFilmCardMouseOver}
+                onItemInteraction={onItemInteraction}
+                onItemInteractionEnd={onItemInteractionEnd}
+                isCardActive={film.id === activeItem}
               />)}
       </div>
       {moviesShownOverall <= filmsByGenre.length &&
@@ -32,11 +36,13 @@ const FilmList = (props) => {
 };
 
 FilmList.propTypes = {
+  activeItem: PropTypes.number.isRequired,
   filmsByGenre: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
   moviesShownOverall: PropTypes.number.isRequired,
-  onFilmCardMouseOver: PropTypes.func.isRequired,
+  onItemInteraction: PropTypes.func.isRequired,
+  onItemInteractionEnd: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired
 };
 
