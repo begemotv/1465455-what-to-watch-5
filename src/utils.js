@@ -46,3 +46,8 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
+export const getTimeElapsed = (duration, progress) => {
+  const delta = duration - progress;
+  const timeElapsed = new Date(delta * 1000).toISOString().substr(11, 8);
+  return timeElapsed;
+};

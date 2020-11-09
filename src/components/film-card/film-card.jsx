@@ -29,17 +29,19 @@ const FilmCard = (props) => {
     >
       <Link to={`/films/${id}`} className="small-movie-card__link">
         <div className="small-movie-card__image">
-          {isCardActive === true &&
+          {isCardActive &&
                 <VideoPlayerHOC
+                  isCardPreview={true}
                   previewImg={previewImg}
                   videoSrc={videoSrc}
+                  delay={1000}
                 />
           }
-          {isCardActive === false &&
-          <img
-            src={previewImg}
-            alt={name}
-          />
+          {!isCardActive &&
+                <img
+                  src={previewImg}
+                  alt={name}
+                />
           }
         </div>
         <h3 className="small-movie-card__title">{name}</h3>
