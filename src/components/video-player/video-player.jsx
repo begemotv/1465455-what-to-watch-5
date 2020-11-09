@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const VideoPlayer = (props) => {
   const {
+    isCardPreview,
     previewImg,
     videoRef,
     videoSrc
@@ -14,17 +15,17 @@ const VideoPlayer = (props) => {
       ref={videoRef}
       src={videoSrc}
       poster={previewImg}
-      loop
-      muted
+      loop={isCardPreview}
+      muted={isCardPreview}
     />
   );
 };
 
 VideoPlayer.propTypes = {
+  isCardPreview: PropTypes.bool.isRequired,
   videoRef: PropTypes.object.isRequired,
   videoSrc: PropTypes.string.isRequired,
   previewImg: PropTypes.string.isRequired
 };
 
 export default VideoPlayer;
-

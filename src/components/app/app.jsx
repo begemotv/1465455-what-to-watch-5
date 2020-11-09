@@ -9,6 +9,9 @@ import FilmScreen from "../film-screen/film-screen";
 import MyListScreen from "../my-list-screen/my-list-screen";
 import PlayerScreen from "../player-screen/player-screen";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
+import withVideo from "../../hocs/with-video/with-video";
+
+const PlayerScreenHOC = withVideo(PlayerScreen);
 
 const App = (props) => {
   const {films, reviews} = props;
@@ -68,7 +71,7 @@ const App = (props) => {
           exact
           path="/player/:id"
           render={({match}) => (
-            <PlayerScreen
+            <PlayerScreenHOC
               film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
             />
           )}
