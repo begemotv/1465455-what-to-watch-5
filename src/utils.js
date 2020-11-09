@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-export const extend = (a, b) => {
-  return Object.assign({}, a, b);
-};
-||||||| 26e337e
-=======
 export const nameRating = (rating) => {
   let ratingName = ``;
   switch (true) {
@@ -57,4 +51,3 @@ export const getTimeElapsed = (duration, progress) => {
   const timeElapsed = new Date(delta * 1000).toISOString().substr(11, 8);
   return timeElapsed;
 };
->>>>>>> ee660ffdecdc90dda74bb9322862d801d49f6796
