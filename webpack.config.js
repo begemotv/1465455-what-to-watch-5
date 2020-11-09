@@ -11,9 +11,14 @@ module.exports = {
         open: false,
         port: 1337,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         historyApiFallback: true,
 >>>>>>> 3e39f65b14999c75186ea351aa625f32717198cd
+||||||| 26e337e
+=======
+        historyApiFallback: true,
+>>>>>>> ee660ffdecdc90dda74bb9322862d801d49f6796
     },
     module: {
         rules: [

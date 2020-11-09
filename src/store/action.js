@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {isArtistAnswerCorrect, isGenreAnswerCorrect} from "../game";
 import {GameType} from "../const";
 
@@ -33,3 +34,27 @@ export const ActionCreator = {
     };
   },
 };
+||||||| 26e337e
+=======
+import {filterFilmsByGenre} from "../core";
+
+export const ActionType = {
+  CHANGE_GENRE: `CHANGE_GENRE`,
+  FILTER_BY_GENRE: `FILTER_BY_GENRE`
+};
+
+export const ActionCreator = {
+  changeGenre: (genre) => ({
+    type: ActionType.CHANGE_GENRE,
+    payload: genre
+  }),
+  filterByGenre: (genre, id) => {
+    const genreFilms = filterFilmsByGenre(genre, id);
+
+    return {
+      type: ActionType.FILTER_BY_GENRE,
+      payload: genreFilms
+    };
+  }
+};
+>>>>>>> ee660ffdecdc90dda74bb9322862d801d49f6796

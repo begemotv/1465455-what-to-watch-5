@@ -35,6 +35,7 @@
     "prop-types": "15.7.2",
     "react": "16.12.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-dom": "16.12.0"
 =======
     "react-dom": "16.12.0",
@@ -42,5 +43,13 @@
     "react-router-dom": "5.1.2",
     "redux": "4.0.5"
 >>>>>>> 3e39f65b14999c75186ea351aa625f32717198cd
+||||||| 26e337e
+    "react-dom": "16.12.0"
+=======
+    "react-dom": "16.12.0",
+    "react-redux": "7.2.2",
+    "react-router-dom": "5.1.2",
+    "redux": "4.0.5"
+>>>>>>> ee660ffdecdc90dda74bb9322862d801d49f6796
   }
 }
