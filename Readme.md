@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Vitaliy Avdyeyev](https://up.htmlacademy.ru/react/5/user/1465455).
 * Наставник: `Дмитрий Марков`.
+=======
+# Учебный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
+
+* Студент: [Vitaliy Avdyeyev](https://up.htmlacademy.ru/react/5/user/1465455).
+* Наставник: `Неизвестно`.
+>>>>>>> 3e39f65b14999c75186ea351aa625f32717198cd
 
 ---
 
@@ -48,5 +55,10 @@ git clone SSH-адрес_вашего_форка
 
 Репозиторий создан для обучения на профессиональном онлайн‑курсе «[React. Разработка сложных клиентских приложений](https://htmlacademy.ru/intensive/react)» от [HTML Academy](https://htmlacademy.ru).
 
+<<<<<<< HEAD
 [travis-image]: https://travis-ci.com/htmlacademy-react/1465455-what-to-watch-5.svg?branch=master
 [travis-url]: https://travis-ci.com/htmlacademy-react/1465455-what-to-watch-5
+=======
+[travis-image]: https://travis-ci.com/htmlacademy-react/1465455-guess-melody-5.svg?branch=master
+[travis-url]: https://travis-ci.com/htmlacademy-react/1465455-guess-melody-5
+>>>>>>> 3e39f65b14999c75186ea351aa625f32717198cd
