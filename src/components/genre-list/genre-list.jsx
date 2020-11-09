@@ -30,7 +30,11 @@ const GenreList = (props) => {
           <Link
             to="#"
             className="catalog__genres-link"
-            onClick={() => handleGenreTabClick(genre, id)}
+            onClick={
+              (evt) => {
+                evt.preventDefault();
+                handleGenreTabClick(genre, id);
+              }}
           >{genre}</Link>
         </li>
       ))}
@@ -39,10 +43,10 @@ const GenreList = (props) => {
 };
 
 GenreList.propTypes = {
+  activeGenre: PropTypes.string.isRequired,
   filmsAll: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
-  activeGenre: PropTypes.string.isRequired,
   handleGenreTabClick: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired
 };

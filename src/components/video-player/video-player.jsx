@@ -1,59 +1,30 @@
-import React, {PureComponent, createRef} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-export default class VideoPlayer extends PureComponent {
-  constructor(props) {
-    super(props);
+const VideoPlayer = (props) => {
+  const {
+    previewImg,
+    videoRef,
+    videoSrc
+  } = props;
 
-    this._videoRef = createRef();
-
-    this.state = {
-      isLoading: true,
-    };
-
-    this.handleVideoStart = this._handleVideoStart.bind(this);
-    this.handleVideoStop = this._handleVideoStop.bind(this);
-  }
-
-  _handleVideoStart() {
-    const video = this._videoRef.current;
-    this.filmTimerId = setTimeout(() => {
-      video.play();
-    }, 1000);
-  }
-
-  _handleVideoStop() {
-    const video = this._videoRef.current;
-    if (this.filmTimerId) {
-      clearTimeout(this.filmTimerId);
-    }
-    video.load();
-  }
-
-
-  render() {
-    const {previewImg, videoSrc} = this.props;
-
-    return (
-      <div
-        className="small-movie-card__image"
-        onMouseEnter={() => this.handleVideoStart()}
-        onMouseLeave={() => this.handleVideoStop()}
-      >
-        <video
-          className="small-movie-card__image"
-          ref={this._videoRef}
-          src={videoSrc}
-          poster={previewImg}
-          muted
-          loop
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <video
+      className="player__video"
+      ref={videoRef}
+      src={videoSrc}
+      poster={previewImg}
+      loop
+      muted
+    />
+  );
+};
 
 VideoPlayer.propTypes = {
-  previewImg: PropTypes.string.isRequired,
+  videoRef: PropTypes.object.isRequired,
   videoSrc: PropTypes.string.isRequired,
+  previewImg: PropTypes.string.isRequired
 };
+
+export default VideoPlayer;
+

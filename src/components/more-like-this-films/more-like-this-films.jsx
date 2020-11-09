@@ -5,7 +5,12 @@ import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
 
 const MoreLikeThisFilms = (props) => {
-  const {genreFilms, handleFilmCardClick} = props;
+  const {
+    activeItem,
+    genreFilms,
+    onItemInteraction,
+    onItemInteractionEnd
+  } = props;
   const genreFilmsFour = genreFilms.slice(0, 4);
 
   return (
@@ -16,7 +21,9 @@ const MoreLikeThisFilms = (props) => {
           <FilmCard
             key={film.id}
             film={film}
-            handleFilmCardClick={handleFilmCardClick}
+            onItemInteraction={onItemInteraction}
+            onItemInteractionEnd={onItemInteractionEnd}
+            isCardActive={film.id === activeItem}
           />)}
       </div>
     </section>
@@ -24,10 +31,12 @@ const MoreLikeThisFilms = (props) => {
 };
 
 MoreLikeThisFilms.propTypes = {
+  activeItem: PropTypes.number.isRequired,
   genreFilms: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ),
-  handleFilmCardClick: PropTypes.func.isRequired
+  onItemInteraction: PropTypes.func.isRequired,
+  onItemInteractionEnd: PropTypes.func.isRequired,
 };
 
 export default MoreLikeThisFilms;

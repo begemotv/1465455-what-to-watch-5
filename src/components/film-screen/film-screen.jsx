@@ -8,6 +8,10 @@ import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
 import TabBar from "../tab-bar/tab-bar";
 import MoreLikeThisFilms from "../more-like-this-films/more-like-this-films";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+
+const TabBarHOC = withActiveItem(TabBar);
+const MoreLikeThisFilmsHOC = withActiveItem(MoreLikeThisFilms);
 
 const findReviews = (reviews, filmName) => {
   const reviewsFilm = reviews.find((value) => value.name === filmName);
@@ -24,7 +28,7 @@ const FilmScreen = (props) => {
       previewImg,
       releaseYear
     },
-    handleFilmCardClick,
+    film,
     handleMyListBtnClick,
     handlePlayBtnClick,
     reviews
@@ -95,7 +99,7 @@ const FilmScreen = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <TabBar film={props.film} reviewsFilm={reviewsFilm}/>
+              <TabBarHOC film={film} reviewsFilm={reviewsFilm}/>
             </div>
           </div>
         </div>
@@ -103,7 +107,7 @@ const FilmScreen = (props) => {
 
 
       <div className="page-content">
-        <MoreLikeThisFilms handleFilmCardClick={handleFilmCardClick} genreFilms={genreFilms}/>
+        <MoreLikeThisFilmsHOC genreFilms={genreFilms}/>
 
         <footer className="page-footer">
           <Logo linkClassName={`logo__link logo__link--light`}/>
@@ -120,7 +124,6 @@ FilmScreen.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
   handlePlayBtnClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
-  handleFilmCardClick: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewPropTypes)
   ).isRequired,
