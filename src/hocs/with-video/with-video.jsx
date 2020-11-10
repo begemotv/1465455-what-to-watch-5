@@ -37,6 +37,7 @@ const withVideo = (Component) => {
             isLoading: false,
             duration: Math.floor(video.duration),
           });
+          video.play();
         };
 
         video.onplay = () => {
