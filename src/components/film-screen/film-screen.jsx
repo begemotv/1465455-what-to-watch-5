@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
 import {filmPropTypes, reviewPropTypes} from "../../prop-types";
-import {filterFilmsByGenre} from "../../core";
 import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
 import TabBar from "../tab-bar/tab-bar";
@@ -35,7 +34,6 @@ const FilmScreen = (props) => {
   } = props;
 
   const reviewsFilm = findReviews(reviews, name);
-  const genreFilms = filterFilmsByGenre(genre, id);
 
   return (
     <React.Fragment>
@@ -107,7 +105,7 @@ const FilmScreen = (props) => {
 
 
       <div className="page-content">
-        <MoreLikeThisFilmsHOC genreFilms={genreFilms}/>
+        <MoreLikeThisFilmsHOC />
 
         <footer className="page-footer">
           <Logo linkClassName={`logo__link logo__link--light`}/>

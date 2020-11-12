@@ -17,6 +17,7 @@ const FilmCard = (props) => {
       videoSrc,
     },
     isCardActive,
+    onCardClick,
     onItemInteraction,
     onItemInteractionEnd
   } = props;
@@ -24,6 +25,7 @@ const FilmCard = (props) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={onCardClick}
       onMouseEnter={() => onItemInteraction(id)}
       onMouseLeave={onItemInteractionEnd}
     >
@@ -53,6 +55,7 @@ const FilmCard = (props) => {
 FilmCard.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
   isCardActive: PropTypes.bool.isRequired,
+  onCardClick: PropTypes.func.isRequired,
   onItemInteraction: PropTypes.func.isRequired,
   onItemInteractionEnd: PropTypes.func.isRequired,
 };

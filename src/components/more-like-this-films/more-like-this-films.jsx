@@ -1,26 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
+import {changeActiveFilmId, changeActiveFilmIdGenre} from "../../store/action";
+import {getMoreLikeFilms} from "../../store/selectors";
 
 const MoreLikeThisFilms = (props) => {
   const {
     activeItem,
-    genreFilms,
+    changeActiveFilmAction,
+    moreLikeFilms,
     onItemInteraction,
     onItemInteractionEnd
   } = props;
-  const genreFilmsFour = genreFilms.slice(0, 4);
 
   return (
     <section className="catalog catalog--like-this">
       <h2 className="catalog__title">More like this</h2>
       <div className="catalog__movies-list">
-        {genreFilmsFour.map((film) =>
+        {moreLikeFilms.map((film) =>
           <FilmCard
             key={film.id}
             film={film}
+            onCardClick={() => changeActiveFilmAction(film.id, film.genre)}
             onItemInteraction={onItemInteraction}
             onItemInteractionEnd={onItemInteractionEnd}
             isCardActive={film.id === activeItem}
@@ -32,11 +36,24 @@ const MoreLikeThisFilms = (props) => {
 
 MoreLikeThisFilms.propTypes = {
   activeItem: PropTypes.number.isRequired,
-  genreFilms: PropTypes.arrayOf(
+  changeActiveFilmAction: PropTypes.func.isRequired,
+  moreLikeFilms: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ),
   onItemInteraction: PropTypes.func.isRequired,
   onItemInteractionEnd: PropTypes.func.isRequired,
 };
 
-export default MoreLikeThisFilms;
+const mapStateToProps = (state) => ({
+  moreLikeFilms: getMoreLikeFilms(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  changeActiveFilmAction(id, genre) {
+    dispatch(changeActiveFilmId(id));
+    dispatch(changeActiveFilmIdGenre(genre));
+  },
+});
+
+export {MoreLikeThisFilms};
+export default connect(mapStateToProps, mapDispatchToProps)(MoreLikeThisFilms);
