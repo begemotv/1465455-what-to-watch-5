@@ -14,7 +14,7 @@ const FilmCard = (props) => {
       id,
       name,
       previewImg,
-      videoSrc,
+      videoSrcTrailer,
     },
     isCardActive,
     onCardClick,
@@ -35,7 +35,7 @@ const FilmCard = (props) => {
                 <VideoPlayerHOC
                   isCardPreview={true}
                   previewImg={previewImg}
-                  videoSrc={videoSrc}
+                  videoSrc={videoSrcTrailer}
                   delay={1000}
                 />
           }

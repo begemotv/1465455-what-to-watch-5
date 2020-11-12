@@ -20,11 +20,12 @@ const findReviews = (reviews, filmName) => {
 const FilmScreen = (props) => {
   const {
     film: {
+      backgroundColor,
+      backgroundImage,
       genre,
       id,
       name,
       poster,
-      previewImg,
       releaseYear
     },
     film,
@@ -37,10 +38,13 @@ const FilmScreen = (props) => {
 
   return (
     <React.Fragment>
-      <section className="movie-card movie-card--full">
+      <section
+        className="movie-card movie-card--full"
+        style={{background: `${backgroundColor}`}}
+      >
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={previewImg} alt={name} />
+            <img src={backgroundImage} alt={name} />
           </div>
           <h1 className="visually-hidden">WTW</h1>
 
