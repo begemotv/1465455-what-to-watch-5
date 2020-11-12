@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {connect} from "react-redux";
 
 import {filmPropTypes, reviewPropTypes} from "../../prop-types";
 import MainScreen from "../main-screen/main-screen";
@@ -10,6 +11,7 @@ import MyListScreen from "../my-list-screen/my-list-screen";
 import PlayerScreen from "../player-screen/player-screen";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
 import withVideo from "../../hocs/with-video/with-video";
+import {getFilms, getReviews} from "../../store/selectors";
 
 const PlayerScreenHOC = withVideo(PlayerScreen);
 
@@ -91,4 +93,10 @@ App.propTypes = {
   ).isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  films: getFilms(state),
+  reviews: getReviews(state),
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

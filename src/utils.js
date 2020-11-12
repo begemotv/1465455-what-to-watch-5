@@ -51,3 +51,17 @@ export const getTimeElapsed = (duration, progress) => {
   const timeElapsed = new Date(delta * 1000).toISOString().substr(11, 8);
   return timeElapsed;
 };
+
+export const convertRunTime = (minutes) => {
+  let runTime = ``;
+
+  if (runTime < 60) {
+    runTime = `${minutes}m`;
+  } else {
+    const runTimeHours = Math.floor(minutes / 60);
+    const runTimeMinutes = minutes % 60;
+    runTime = `${runTimeHours}h ${runTimeMinutes}m`;
+  }
+
+  return runTime;
+};

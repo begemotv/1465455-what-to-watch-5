@@ -5,12 +5,15 @@ import {connect} from "react-redux";
 import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
 import LoadMoreButton from "../load-more-button/load-more-button";
+import {changeActiveFilmId, changeActiveFilmIdGenre} from "../../store/action";
+import {getFilmsByGenre} from "../../store/selectors";
 
 const FilmList = (props) => {
   const {
     activeItem,
     filmsByGenre,
     moviesShownOverall,
+    changeActiveFilmAction,
     onItemInteraction,
     onItemInteractionEnd,
     onShowMoreButtonClick
@@ -24,6 +27,7 @@ const FilmList = (props) => {
               <FilmCard
                 key={film.id}
                 film={film}
+                onCardClick={() => changeActiveFilmAction(film.id, film.genre)}
                 onItemInteraction={onItemInteraction}
                 onItemInteractionEnd={onItemInteractionEnd}
                 isCardActive={film.id === activeItem}
@@ -37,6 +41,7 @@ const FilmList = (props) => {
 
 FilmList.propTypes = {
   activeItem: PropTypes.number.isRequired,
+  changeActiveFilmAction: PropTypes.func.isRequired,
   filmsByGenre: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
@@ -47,8 +52,16 @@ FilmList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filmsByGenre: state.filmsByGenre,
+  filmsByGenre: getFilmsByGenre(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  changeActiveFilmAction(id, genre) {
+    dispatch(changeActiveFilmId(id));
+    dispatch(changeActiveFilmIdGenre(genre));
+  },
+});
+
+
 export {FilmList};
-export default connect(mapStateToProps)(FilmList);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmList);

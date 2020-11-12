@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
 import {filmPropTypes, reviewPropTypes} from "../../prop-types";
-import {filterFilmsByGenre} from "../../core";
 import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
 import TabBar from "../tab-bar/tab-bar";
@@ -21,11 +20,12 @@ const findReviews = (reviews, filmName) => {
 const FilmScreen = (props) => {
   const {
     film: {
+      backgroundColor,
+      backgroundImage,
       genre,
       id,
       name,
       poster,
-      previewImg,
       releaseYear
     },
     film,
@@ -35,14 +35,16 @@ const FilmScreen = (props) => {
   } = props;
 
   const reviewsFilm = findReviews(reviews, name);
-  const genreFilms = filterFilmsByGenre(genre, id);
 
   return (
     <React.Fragment>
-      <section className="movie-card movie-card--full">
+      <section
+        className="movie-card movie-card--full"
+        style={{background: `${backgroundColor}`}}
+      >
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={previewImg} alt={name} />
+            <img src={backgroundImage} alt={name} />
           </div>
           <h1 className="visually-hidden">WTW</h1>
 
@@ -107,7 +109,7 @@ const FilmScreen = (props) => {
 
 
       <div className="page-content">
-        <MoreLikeThisFilmsHOC genreFilms={genreFilms}/>
+        <MoreLikeThisFilmsHOC />
 
         <footer className="page-footer">
           <Logo linkClassName={`logo__link logo__link--light`}/>

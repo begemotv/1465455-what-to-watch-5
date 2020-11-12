@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
 import {filmPropTypes} from "../../prop-types";
-import {ActionCreator} from "../../store/action";
+import {changeTabGenre} from "../../store/action";
 
 const GenreList = (props) => {
   const {
@@ -51,15 +51,14 @@ GenreList.propTypes = {
   id: PropTypes.number.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  activeGenre: state.activeGenre,
-  filmsAll: state.filmsAll
+const mapStateToProps = ({DATA, OPERATIONS}) => ({
+  activeGenre: OPERATIONS.activeGenre,
+  filmsAll: DATA.filmsAll
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleGenreTabClick(genre, id) {
-    dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.filterByGenre(genre, id));
+  handleGenreTabClick(genre) {
+    dispatch(changeTabGenre(genre));
   },
 });
 

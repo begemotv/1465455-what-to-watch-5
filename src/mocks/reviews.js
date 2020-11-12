@@ -1,6 +1,6 @@
 export default [
   {
-    name: `Whiplash`,
+    name: `Bronson`,
     reviews: [
       {
         text: `Beat the drums for a Simmons Oscar, and add a cymbal crash for Whiplash. It's electrifying.`,
@@ -29,7 +29,7 @@ export default [
     ]
   },
   {
-    name: `Climax`,
+    name: `Pulp Fiction`,
     reviews: [
       {
         text: `It's a dance party set in an upper-circle tier of hell. It's a great approximation of a very, very bad trip.`,
@@ -52,7 +52,7 @@ export default [
     ]
   },
   {
-    name: `The Room`,
+    name: `Midnight Special`,
     reviews: [
       {
         text: `The Room, has been maligned as one of the most inept movies ever made when in fact it is a sardonic comedy about sexual politics in the age of terror.`,
@@ -81,7 +81,7 @@ export default [
     ]
   },
   {
-    name: `Total Recall`,
+    name: `Matrix`,
     reviews: [
       {
         text: `Earthman dreams of parallel life on Mars. Vigorous sci-fi with better-than-average premise.`,
@@ -110,7 +110,7 @@ export default [
     ]
   },
   {
-    name: `The Big Lebowski`,
+    name: `Legend`,
     reviews: [
       {
         text: `For those of you who forgot how good Bridges was in The Fisher King, here is a reminder. As the gung-ho Nam veteran, Goodman's tenacious, tightly coiled demeanor is smartly explosive and very funny.`,
@@ -139,7 +139,7 @@ export default [
     ]
   },
   {
-    name: `Monty Python and the Holy Grail`,
+    name: `Gangs of new york`,
     reviews: [
       {
         text: `Some sketches are amusing, others are funny, and a rare few are altogether side-splitting.`,
@@ -168,7 +168,7 @@ export default [
     ]
   },
   {
-    name: `Lost in Translation`,
+    name: `A Star Is Born`,
     reviews: [
       {
         text: `Very much a mood piece, the film's deft balance of humor and poignancy makes it both a pleasurable and melancholy experience.`,
@@ -197,7 +197,7 @@ export default [
     ]
   },
   {
-    name: `Twin Peaks: Fire Walk with Me`,
+    name: `Beach`,
     reviews: [
       {
         text: `At its best, it's a dream within a dream, a nightmare in endlessly reflecting pop mirrors, a screen full of TV-movie sex and horror kitsch blowing up right in our faces.`,
@@ -226,7 +226,7 @@ export default [
     ]
   },
   {
-    name: `Whiplash 2`,
+    name: `Aviator`,
     reviews: [
       {
         text: `Beat the drums for a Simmons Oscar, and add a cymbal crash for Whiplash. It's electrifying.`,
@@ -255,7 +255,7 @@ export default [
     ]
   },
   {
-    name: `Climax 2`,
+    name: `Johnny English`,
     reviews: [
       {
         text: `It's a dance party set in an upper-circle tier of hell. It's a great approximation of a very, very bad trip.`,
@@ -278,7 +278,7 @@ export default [
     ]
   },
   {
-    name: `Climax 3`,
+    name: `Dardjeeling Limited`,
     reviews: [
       {
         text: `It's a dance party set in an upper-circle tier of hell. It's a great approximation of a very, very bad trip.`,
@@ -301,7 +301,7 @@ export default [
     ]
   },
   {
-    name: `Climax 4`,
+    name: `Macbeth`,
     reviews: [
       {
         text: `It's a dance party set in an upper-circle tier of hell. It's a great approximation of a very, very bad trip.`,
@@ -324,7 +324,7 @@ export default [
     ]
   },
   {
-    name: `Total Recall 2`,
+    name: `Snatch`,
     reviews: [
       {
         text: `Earthman dreams of parallel life on Mars. Vigorous sci-fi with better-than-average premise.`,
@@ -353,7 +353,7 @@ export default [
     ]
   },
   {
-    name: `Total Recall 3`,
+    name: `No Country for Old Men`,
     reviews: [
       {
         text: `Earthman dreams of parallel life on Mars. Vigorous sci-fi with better-than-average premise.`,
@@ -382,7 +382,7 @@ export default [
     ]
   },
   {
-    name: `Total Recall 4`,
+    name: `The Revenant`,
     reviews: [
       {
         text: `Earthman dreams of parallel life on Mars. Vigorous sci-fi with better-than-average premise.`,
@@ -411,7 +411,7 @@ export default [
     ]
   },
   {
-    name: `The Big Lebowski 2`,
+    name: `Once Upon a Time in America`,
     reviews: [
       {
         text: `For those of you who forgot how good Bridges was in The Fisher King, here is a reminder. As the gung-ho Nam veteran, Goodman's tenacious, tightly coiled demeanor is smartly explosive and very funny.`,
@@ -440,7 +440,7 @@ export default [
     ]
   },
   {
-    name: `Monty Python and the Holy Grail 2`,
+    name: `Fantastic Beasts: The Crimes of Grindelwald`,
     reviews: [
       {
         text: `Some sketches are amusing, others are funny, and a rare few are altogether side-splitting.`,
@@ -469,7 +469,7 @@ export default [
     ]
   },
   {
-    name: `Twin Peaks: Fire Walk with Me 2`,
+    name: `Moonrise Kingdom`,
     reviews: [
       {
         text: `At its best, it's a dream within a dream, a nightmare in endlessly reflecting pop mirrors, a screen full of TV-movie sex and horror kitsch blowing up right in our faces.`,
@@ -498,7 +498,7 @@ export default [
     ]
   },
   {
-    name: `Twin Peaks: Fire Walk with Me 3`,
+    name: `War of the Worlds`,
     reviews: [
       {
         text: `At its best, it's a dream within a dream, a nightmare in endlessly reflecting pop mirrors, a screen full of TV-movie sex and horror kitsch blowing up right in our faces.`,
@@ -527,7 +527,7 @@ export default [
     ]
   },
   {
-    name: `Twin Peaks: Fire Walk with Me 4`,
+    name: `Seven Years in Tibet`,
     reviews: [
       {
         text: `At its best, it's a dream within a dream, a nightmare in endlessly reflecting pop mirrors, a screen full of TV-movie sex and horror kitsch blowing up right in our faces.`,
@@ -556,7 +556,7 @@ export default [
     ]
   },
   {
-    name: `Twin Peaks: Fire Walk with Me 5`,
+    name: `Shutter Island`,
     reviews: [
       {
         text: `At its best, it's a dream within a dream, a nightmare in endlessly reflecting pop mirrors, a screen full of TV-movie sex and horror kitsch blowing up right in our faces.`,
@@ -585,7 +585,7 @@ export default [
     ]
   },
   {
-    name: `The Big Lebowski 3`,
+    name: `We need to talk about Kevin`,
     reviews: [
       {
         text: `For those of you who forgot how good Bridges was in The Fisher King, here is a reminder. As the gung-ho Nam veteran, Goodman's tenacious, tightly coiled demeanor is smartly explosive and very funny.`,
@@ -614,7 +614,7 @@ export default [
     ]
   },
   {
-    name: `Total Recall 5`,
+    name: `Orlando`,
     reviews: [
       {
         text: `Earthman dreams of parallel life on Mars. Vigorous sci-fi with better-than-average premise.`,
@@ -643,7 +643,7 @@ export default [
     ]
   },
   {
-    name: `Climax 5`,
+    name: `What We Do in the Shadows`,
     reviews: [
       {
         text: `It's a dance party set in an upper-circle tier of hell. It's a great approximation of a very, very bad trip.`,
@@ -666,7 +666,7 @@ export default [
     ]
   },
   {
-    name: `Lost in Translation 2`,
+    name: `Bohemian Rhapsody`,
     reviews: [
       {
         text: `Very much a mood piece, the film's deft balance of humor and poignancy makes it both a pleasurable and melancholy experience.`,

@@ -14,11 +14,11 @@ const FilmListHOC = withActiveItem(withShowMoreButtonCount(FilmList));
 const MainScreen = (props) => {
   const {
     film: {
+      backgroundImage,
       genre,
       id,
       name,
       poster,
-      previewImg,
       releaseYear
     },
     films,
@@ -29,7 +29,7 @@ const MainScreen = (props) => {
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src={previewImg} alt={name} />
+        <img src={backgroundImage} alt={name} />
       </div>
       <h1 className="visually-hidden">WTW</h1>
 
