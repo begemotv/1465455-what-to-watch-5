@@ -40,7 +40,7 @@ const FilmScreen = (props) => {
     <React.Fragment>
       <section
         className="movie-card movie-card--full"
-        style={{background: `${backgroundColor}`}}
+        style={{backgroundColor: `${backgroundColor}`}}
       >
         <div className="movie-card__hero">
           <div className="movie-card__bg">

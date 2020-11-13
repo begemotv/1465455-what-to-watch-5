@@ -2,7 +2,7 @@ import {createSelector} from "reselect";
 import {NameSpace} from "../store/reducers";
 
 export const getFilms = (state) => {
-  return state[NameSpace.DATA].filmsAll;
+  return state[NameSpace.DATA].films;
 };
 
 export const getReviews = (state) => {
@@ -21,8 +21,8 @@ const getActiveFilmIdGenre = (state) => {
   return state[NameSpace.OPERATIONS].activeFilmIdGenre;
 };
 
-export const getFilmsByGenre = createSelector(getFilms, getActiveGenre, getActiveFilmId, (filmsAll, activeGenre, activeFilmId) => {
-  let genreFilms = filmsAll.filter((item) => item.id !== activeFilmId);
+export const getFilmsByGenre = createSelector(getFilms, getActiveGenre, getActiveFilmId, (films, activeGenre, activeFilmId) => {
+  let genreFilms = films.filter((item) => item.id !== activeFilmId);
 
   if (activeGenre !== `All genres`) {
     genreFilms = genreFilms
@@ -32,8 +32,8 @@ export const getFilmsByGenre = createSelector(getFilms, getActiveGenre, getActiv
   return genreFilms;
 });
 
-export const getMoreLikeFilms = createSelector(getFilms, getActiveFilmId, getActiveFilmIdGenre, (filmsAll, activeFilmId, activeFilmIdGenre) => {
-  return filmsAll
+export const getMoreLikeFilms = createSelector(getFilms, getActiveFilmId, getActiveFilmIdGenre, (films, activeFilmId, activeFilmIdGenre) => {
+  return films
     .filter((item) => item.id !== activeFilmId)
     .filter((item) => activeFilmIdGenre.includes(item.genre))
     .slice(0, 4);

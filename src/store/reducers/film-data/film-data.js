@@ -3,7 +3,7 @@ import {extend} from "../../../utils";
 import {ActionType} from "../../action";
 
 const initialState = {
-  filmsAll: [],
+  films: [],
   reviewsAll: reviews,
 };
 
@@ -11,7 +11,7 @@ export const filmData = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_FILMS:
       return extend(state, {
-        filmsAll: action.payload,
+        films: action.payload,
       });
     case ActionType.LOAD_REVIEWS:
       return extend(state, {

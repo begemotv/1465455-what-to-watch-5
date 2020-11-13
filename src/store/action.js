@@ -3,6 +3,7 @@ export const ActionType = {
   CHANGE_ACTIVE_FILM_GENRE: `CHANGE_ACTIVE_FILM_GENRE`,
   CHANGE_TAB_GENRE: `CHANGE_TAB_GENRE`,
   LOAD_FILMS: `LOAD_FILMS`,
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
 };
 
 export const changeActiveFilmId = (id) => ({
@@ -24,4 +25,10 @@ export const loadFilms = (films) => ({
   type: ActionType.LOAD_FILMS,
   payload: films,
 });
+
+export const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: status,
+});
+
 
