@@ -55,7 +55,7 @@ export const getTimeElapsed = (duration, progress) => {
 export const convertRunTime = (minutes) => {
   let runTime = ``;
 
-  if (runTime < 60) {
+  if (minutes < 60) {
     runTime = `${minutes}m`;
   } else {
     const runTimeHours = Math.floor(minutes / 60);

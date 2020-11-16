@@ -9,12 +9,12 @@ import {changeTabGenre} from "../../store/action";
 const GenreList = (props) => {
   const {
     activeGenre,
-    filmsAll,
+    films,
     handleGenreTabClick,
     id
   } = props;
 
-  let genreList = filmsAll
+  let genreList = films
     .map((item) => item.genre)
     .filter((item, index, arr) => arr.indexOf(item) === index)
     .slice(0, 9);
@@ -44,7 +44,7 @@ const GenreList = (props) => {
 
 GenreList.propTypes = {
   activeGenre: PropTypes.string.isRequired,
-  filmsAll: PropTypes.arrayOf(
+  films: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
   handleGenreTabClick: PropTypes.func.isRequired,
@@ -53,7 +53,7 @@ GenreList.propTypes = {
 
 const mapStateToProps = ({DATA, OPERATIONS}) => ({
   activeGenre: OPERATIONS.activeGenre,
-  filmsAll: DATA.filmsAll
+  films: DATA.films
 });
 
 const mapDispatchToProps = (dispatch) => ({
