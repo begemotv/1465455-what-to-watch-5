@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import {filmPropTypes} from "../../prop-types";
 import FilmList from "../film-list/film-list";
 import Logo from "../logo/logo";
-import Avatar from "../avatar/avatar";
+import Footer from "../footer/footer";
+import AvatarOrSignIn from "../avatar-or-sign-in/avatar-or-sign-in";
 import GenreList from "../genre-list/genre-list";
 import withShowMoreButtonCount from "../../hocs/with-show-more-button-count/with-show-more-button-count";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
@@ -35,7 +36,7 @@ const MainScreen = (props) => {
 
       <header className="page-header movie-card__head">
         <Logo linkClassName={`logo__link`}/>
-        <Avatar />
+        <AvatarOrSignIn />
       </header>
 
       <div className="movie-card__wrap">
@@ -87,13 +88,7 @@ const MainScreen = (props) => {
         <GenreList id={id}/>
         <FilmListHOC films={films} />
       </section>
-
-      <footer className="page-footer">
-        <Logo linkClassName={`logo__link logo__link--light`}/>
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   </React.Fragment>;
 };

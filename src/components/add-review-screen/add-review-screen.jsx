@@ -5,8 +5,9 @@ import {Link} from 'react-router-dom';
 import {filmPropTypes} from "../../prop-types";
 import AddComment from "../add-comment/add-comment";
 import Logo from "../logo/logo";
-import Avatar from "../avatar/avatar";
+import AvatarOrSignIn from "../avatar-or-sign-in/avatar-or-sign-in";
 import withComment from "../../hocs/with-comment/with-comment";
+import {AppRoute} from "../../const";
 
 const AddCommentHOC = withComment(AddComment);
 
@@ -34,14 +35,14 @@ const AddReviewScreen = (props) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">{name}</Link>
+                <Link to={AppRoute.FILMS + id} className="breadcrumbs__link">{name}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id}/review`} className="breadcrumbs__link">Add review</Link>
+                <Link to={AppRoute.FILMS + id + AppRoute.REVIEW} className="breadcrumbs__link">Add review</Link>
               </li>
             </ul>
           </nav>
-          <Avatar />
+          <AvatarOrSignIn />
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">

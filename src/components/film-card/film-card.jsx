@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {filmPropTypes} from "../../prop-types";
 import VideoPlayer from "../video-player/video-player";
 import withVideo from "../../hocs/with-video/with-video";
+import {AppRoute} from "../../const";
 
 const VideoPlayerHOC = withVideo(VideoPlayer);
 
@@ -29,7 +30,7 @@ const FilmCard = (props) => {
       onMouseEnter={() => onItemInteraction(id)}
       onMouseLeave={onItemInteractionEnd}
     >
-      <Link to={`/films/${id}`} className="small-movie-card__link">
+      <Link to={AppRoute.FILMS + id} className="small-movie-card__link">
         <div className="small-movie-card__image">
           {isCardActive &&
                 <VideoPlayerHOC

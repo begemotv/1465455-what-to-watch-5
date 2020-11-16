@@ -4,6 +4,7 @@ export const ActionType = {
   CHANGE_TAB_GENRE: `CHANGE_TAB_GENRE`,
   LOAD_FILMS: `LOAD_FILMS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
 
 export const changeActiveFilmId = (id) => ({
@@ -31,4 +32,7 @@ export const requireAuthorization = (status) => ({
   payload: status,
 });
 
-
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
+});

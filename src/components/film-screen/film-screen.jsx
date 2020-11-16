@@ -4,10 +4,12 @@ import PropTypes from "prop-types";
 
 import {filmPropTypes, reviewPropTypes} from "../../prop-types";
 import Logo from "../logo/logo";
-import Avatar from "../avatar/avatar";
+import Footer from "../footer/footer";
+import AvatarOrSignIn from "../avatar-or-sign-in/avatar-or-sign-in";
 import TabBar from "../tab-bar/tab-bar";
 import MoreLikeThisFilms from "../more-like-this-films/more-like-this-films";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import {AppRoute} from "../../const";
 
 const TabBarHOC = withActiveItem(TabBar);
 const MoreLikeThisFilmsHOC = withActiveItem(MoreLikeThisFilms);
@@ -50,7 +52,7 @@ const FilmScreen = (props) => {
 
           <header className="page-header movie-card__head">
             <Logo linkClassName={`logo__link`}/>
-            <Avatar />
+            <AvatarOrSignIn />
           </header>
 
           <div className="movie-card__wrap">
@@ -85,7 +87,7 @@ const FilmScreen = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                <Link to={AppRoute.FILMS + id + AppRoute.REVIEW} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -110,13 +112,7 @@ const FilmScreen = (props) => {
 
       <div className="page-content">
         <MoreLikeThisFilmsHOC />
-
-        <footer className="page-footer">
-          <Logo linkClassName={`logo__link logo__link--light`}/>
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </React.Fragment>
   );

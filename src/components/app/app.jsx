@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router as BrowserRouter, Switch, Route} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {filmPropTypes, reviewPropTypes} from "../../prop-types";
@@ -10,8 +10,11 @@ import FilmScreen from "../film-screen/film-screen";
 import MyListScreen from "../my-list-screen/my-list-screen";
 import PlayerScreen from "../player-screen/player-screen";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
+import PrivateRoute from "../private-route/private-route";
 import withVideo from "../../hocs/with-video/with-video";
 import {getFilms, getReviews} from "../../store/selectors";
+import {AppRoute} from "../../const";
+import browserHistory from "../../browser-history";
 
 const PlayerScreenHOC = withVideo(PlayerScreen);
 
@@ -19,59 +22,59 @@ const App = (props) => {
   const {films, reviews} = props;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route
           exact
-          path="/"
+          path={AppRoute.ROOT}
           render={({history}) => (
             <MainScreen
               film={films[0]}
               films={films}
-              handlePlayBtnClick={(id) => history.push(`/player/${id}`)}
-              handleMyListBtnClick={() => history.push(`/mylist`)}
+              handlePlayBtnClick={(id) => history.push(AppRoute.PLAYER + id)}
+              handleMyListBtnClick={() => history.push(AppRoute.MYLIST)}
             />
           )}>
         </Route>
-        <Route exact path="/login">
+        <Route exact path={AppRoute.LOGIN}>
           <SignInScreen />
         </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.MYLIST}
+          render={() => {
+            return (
+              <MyListScreen films={films} />
+            );
+          }}
+        />
         <Route
           exact
-          path="/mylist"
-        >
-          <MyListScreen
-            films={films}
-          />
-        </Route>
-        <Route
-          exact
-          path="/films/:id"
+          path={AppRoute.FILMS_ID}
           render={({history, match}) => (
             <FilmScreen
               films={films}
               film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
-              handlePlayBtnClick={(id) => history.push(`/player/${id}`)}
-              handleMyListBtnClick={() => history.push(`/mylist`)}
+              handlePlayBtnClick={(id) => history.push(AppRoute.PLAYER + id)}
+              handleMyListBtnClick={() => history.push(AppRoute.MYLIST)}
               reviews={reviews}
             />
           )}
         >
         </Route>
-        <Route
+        <PrivateRoute
           exact
-          path="/films/:id/review"
+          path={AppRoute.FILMS_ID_REVIEW}
           render={({match}) => (
             <AddReviewScreen
               film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
               onCommentAdd={() => {}}
             />
           )}
-        >
-        </Route>
+        />
         <Route
           exact
-          path="/player/:id"
+          path={AppRoute.PLAYER_ID}
           render={({match}) => (
             <PlayerScreenHOC
               film={films[films.findIndex((film) => match.params.id === film.id.toString())]}

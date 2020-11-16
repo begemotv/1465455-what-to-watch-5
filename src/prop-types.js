@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 
 export const filmPropTypes = {
+  backgroundColor: PropTypes.string.isRequired,
+  backgroundImage: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   previewImg: PropTypes.string.isRequired,
@@ -16,6 +19,7 @@ export const filmPropTypes = {
       PropTypes.string.isRequired
   ).isRequired,
   videoSrc: PropTypes.string.isRequired,
+  videoSrcTrailer: PropTypes.string.isRequired,
   voteCount: PropTypes.number.isRequired
 };
 
