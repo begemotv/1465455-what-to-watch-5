@@ -6,6 +6,7 @@ import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
 import LoadMoreButton from "../load-more-button/load-more-button";
 import {changeActiveFilmId, changeActiveFilmIdGenre} from "../../store/action";
+import {fetchFilm, fetchFilmReviews} from "../../store/api-actions/api-actions";
 import {getFilmsByGenre} from "../../store/selectors";
 
 const FilmList = (props) => {
@@ -59,9 +60,10 @@ const mapDispatchToProps = (dispatch) => ({
   changeActiveFilmAction(id, genre) {
     dispatch(changeActiveFilmId(id));
     dispatch(changeActiveFilmIdGenre(genre));
+    // dispatch(fetchFilm(id));
+    dispatch(fetchFilmReviews(id));
   },
 });
-
 
 export {FilmList};
 export default connect(mapStateToProps, mapDispatchToProps)(FilmList);

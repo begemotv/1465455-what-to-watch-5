@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import {filmPropTypes, reviewPropTypes} from "../../prop-types";
 import Logo from "../logo/logo";
@@ -31,12 +32,16 @@ const FilmScreen = (props) => {
       releaseYear
     },
     film,
+    filmAPI,
     handleMyListBtnClick,
     handlePlayBtnClick,
-    reviews
+    reviews,
+    reviewsAPI
   } = props;
 
   const reviewsFilm = findReviews(reviews, name);
+  console.log(filmAPI)
+  console.log(reviewsAPI)
 
   return (
     <React.Fragment>
@@ -120,11 +125,19 @@ const FilmScreen = (props) => {
 
 FilmScreen.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
+  filmAPI: PropTypes.object,
   handlePlayBtnClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewPropTypes)
   ).isRequired,
+  reviewsAPI: PropTypes.array,
 };
 
-export default FilmScreen;
+const mapStateToProps = ({DATA}) => ({
+  filmAPI: DATA.activeFilmDetails,
+  reviewsAPI: DATA.activeFilmReviews,
+});
+
+export {FilmScreen};
+export default connect(mapStateToProps)(FilmScreen);

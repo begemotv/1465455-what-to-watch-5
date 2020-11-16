@@ -3,6 +3,8 @@ export const ActionType = {
   CHANGE_ACTIVE_FILM_GENRE: `CHANGE_ACTIVE_FILM_GENRE`,
   CHANGE_TAB_GENRE: `CHANGE_TAB_GENRE`,
   LOAD_FILMS: `LOAD_FILMS`,
+  LOAD_ACTIVE_FILM_DETAILS: `LOAD_ACTIVE_FILM_DETAILS`,
+  LOAD_ACTIVE_FILM_REVIEWS: `LOAD_ACTIVE_FILM_REVIEWS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
@@ -35,4 +37,14 @@ export const requireAuthorization = (status) => ({
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
+});
+
+export const loadActiveFilmDetails = (film) => ({
+  type: ActionType.LOAD_ACTIVE_FILM_DETAILS,
+  payload: film,
+});
+
+export const loadActiveFilmReviews = (reviews) => ({
+  type: ActionType.LOAD_ACTIVE_FILM_REVIEWS,
+  payload: reviews,
 });

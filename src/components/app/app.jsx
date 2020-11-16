@@ -15,11 +15,12 @@ import withVideo from "../../hocs/with-video/with-video";
 import {getFilms, getReviews} from "../../store/selectors";
 import {AppRoute} from "../../const";
 import browserHistory from "../../browser-history";
+import {fetchFilm} from "../../store/api-actions/api-actions";
 
 const PlayerScreenHOC = withVideo(PlayerScreen);
 
 const App = (props) => {
-  const {films, reviews} = props;
+  const {getActiveFilm, films, reviews} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -54,7 +55,8 @@ const App = (props) => {
           render={({history, match}) => (
             <FilmScreen
               films={films}
-              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+              film={getActiveFilm(match.params.id)}
+              // film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
               handlePlayBtnClick={(id) => history.push(AppRoute.PLAYER + id)}
               handleMyListBtnClick={() => history.push(AppRoute.MYLIST)}
               reviews={reviews}
@@ -88,6 +90,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
+  getActiveFilm: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
@@ -101,5 +104,11 @@ const mapStateToProps = (state) => ({
   reviews: getReviews(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  getActiveFilm(id) {
+    dispatch(fetchFilm(id));
+  },
+});
+
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
