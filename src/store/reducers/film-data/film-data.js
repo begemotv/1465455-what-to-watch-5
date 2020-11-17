@@ -7,6 +7,7 @@ const initialState = {
   activeFilmReviews: [],
   films: [],
   reviewsAll: reviews,
+  isFetching: true,
 };
 
 export const filmData = (state = initialState, action) => {

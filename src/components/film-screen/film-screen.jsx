@@ -8,6 +8,7 @@ import Logo from "../logo/logo";
 import Footer from "../footer/footer";
 import AvatarOrSignIn from "../avatar-or-sign-in/avatar-or-sign-in";
 import TabBar from "../tab-bar/tab-bar";
+import Preloader from "../preloader/preloader";
 import MoreLikeThisFilms from "../more-like-this-films/more-like-this-films";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {AppRoute} from "../../const";
@@ -33,6 +34,7 @@ const FilmScreen = (props) => {
     },
     film,
     filmAPI,
+    isFetching,
     handleMyListBtnClick,
     handlePlayBtnClick,
     reviews,
@@ -58,6 +60,7 @@ const FilmScreen = (props) => {
           <header className="page-header movie-card__head">
             <Logo linkClassName={`logo__link`}/>
             <AvatarOrSignIn />
+            {isFetching ? <Preloader /> : null}
           </header>
 
           <div className="movie-card__wrap">
@@ -126,6 +129,7 @@ const FilmScreen = (props) => {
 FilmScreen.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
   filmAPI: PropTypes.object,
+  isFetching: PropTypes.bool.isRequired,
   handlePlayBtnClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(
@@ -137,6 +141,7 @@ FilmScreen.propTypes = {
 const mapStateToProps = ({DATA}) => ({
   filmAPI: DATA.activeFilmDetails,
   reviewsAPI: DATA.activeFilmReviews,
+  isFetching: DATA.isFetching,
 });
 
 export {FilmScreen};

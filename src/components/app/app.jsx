@@ -55,8 +55,8 @@ const App = (props) => {
           render={({history, match}) => (
             <FilmScreen
               films={films}
-              film={getActiveFilm(match.params.id)}
-              // film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+              // film={getActiveFilm(match.params.id)}
+              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
               handlePlayBtnClick={(id) => history.push(AppRoute.PLAYER + id)}
               handleMyListBtnClick={() => history.push(AppRoute.MYLIST)}
               reviews={reviews}
