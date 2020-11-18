@@ -5,7 +5,7 @@ import {reviewPropTypes} from "../../prop-types";
 import {convertDate} from "../../utils";
 
 const TabReviews = (props) => {
-  const {reviews} = props.reviewsFilm;
+  const {reviews} = props;
 
   return (
     <div className="movie-card__reviews movie-card__row">
@@ -31,7 +31,9 @@ const TabReviews = (props) => {
 };
 
 TabReviews.propTypes = {
-  reviewsFilm: PropTypes.shape(reviewPropTypes).isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape(reviewPropTypes)
+  ),
 };
 
 export default TabReviews;

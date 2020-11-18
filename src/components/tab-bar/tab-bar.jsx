@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-import {filmPropTypes, reviewPropTypes} from "../../prop-types";
+import {filmPropTypes} from "../../prop-types";
 import TabOverview from "../tab-overview/tab-overview";
 import TabDetails from "../tab-details/tab-details";
 import TabReviews from "../tab-reviews/tab-reviews";
+import withReviewsLoaded from "../../hocs/with-reviews-loaded/with-reviews-loaded";
+
+const TabReviewsHOC = withReviewsLoaded(TabReviews);
 
 const TAB_NAMES = [`Overview`, `Details`, `Reviews`];
 
@@ -14,7 +17,6 @@ const TabBar = (props) => {
     activeItem,
     film,
     onItemInteraction,
-    reviewsFilm
   } = props;
 
   return (
@@ -45,7 +47,7 @@ const TabBar = (props) => {
             <TabDetails film={film}/>
         }
         {activeItem === 2 &&
-            <TabReviews reviewsFilm={reviewsFilm}/>
+            <TabReviewsHOC id={film.id}/>
         }
       </div>
     </React.Fragment>
@@ -56,7 +58,6 @@ TabBar.propTypes = {
   activeItem: PropTypes.number.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
   onItemInteraction: PropTypes.func.isRequired,
-  reviewsFilm: PropTypes.shape(reviewPropTypes).isRequired
 };
 
 export default TabBar;

@@ -21,3 +21,20 @@ export const adaptFilmToClient = (film) => ({
   voteCount: film.scores_count,
 });
 
+export const adaptReviewToClient = (review) => ({
+  id: review.id,
+  rating: review.rating,
+  text: review.comment,
+  timeStamp: review.date,
+  user: {
+    id: review.user.id,
+    name: review.user.name
+  },
+});
+
+export const adaptUserToClient = (user) => ({
+  avatar: user.avatar_url,
+  email: user.email,
+  id: user.id,
+  name: user.name,
+});

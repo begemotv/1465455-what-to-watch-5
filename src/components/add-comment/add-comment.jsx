@@ -5,10 +5,11 @@ const RATING_STARS = [1, 2, 3, 4, 5];
 
 const AddComment = (props) => {
   const {
+    isDisabled,
     onFormSubmit,
     onRatingChange,
-    onTextChange,
-    text
+    onCommentChange,
+    comment
   } = props;
 
   return (
@@ -36,19 +37,23 @@ const AddComment = (props) => {
           </div>
         </div>
 
-        <div className="add-review__text">
+        <div
+          className="add-review__text"
+          style={{backgroundColor: `rgba(255,255,255, 0.3)`}}
+        >
           <textarea
             className="add-review__textarea"
             name="review-text"
             id="review-text"
-            placeholder="Review text"
-            onChange={onTextChange}
-            value={text}
+            placeholder="Please write in the range from 50 to 400 characters"
+            onChange={onCommentChange}
+            value={comment}
           />
           <div className="add-review__submit">
             <button
               className="add-review__btn"
               type="submit"
+              disabled={isDisabled}
             >Post</button>
           </div>
         </div>
@@ -58,10 +63,12 @@ const AddComment = (props) => {
 };
 
 AddComment.propTypes = {
+  backgroundColor: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
-  onTextChange: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired
+  onCommentChange: PropTypes.func.isRequired,
+  comment: PropTypes.string.isRequired,
 };
 
 export default AddComment;

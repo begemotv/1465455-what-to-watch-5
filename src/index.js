@@ -8,7 +8,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import App from "./components/app/app";
 import rootReducer from "./store/reducers";
 import {requireAuthorization} from "./store/action";
-import {fetchFilmList, checkAuth} from "./store/api-actions/api-actions";
+import {fetchFilmList, checkAuth, fetchFilmReviews} from "./store/api-actions/api-actions";
 import {AuthorizationStatus} from "./const";
 import {createAPI} from "./services/api";
 import {redirect} from "./store/middlewares/redirect";
@@ -25,11 +25,11 @@ const store = createStore(
     )
 );
 
-store.dispatch(checkAuth());
+store.dispatch(fetchFilmReviews(4));
 
 Promise.all([
   store.dispatch(fetchFilmList()),
-  store.dispatch(checkAuth())
+  store.dispatch(checkAuth()),
 ])
   .then(() => {
     ReactDOM.render(

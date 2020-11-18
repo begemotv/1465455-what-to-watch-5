@@ -30,7 +30,7 @@ const FilmCard = (props) => {
       onMouseEnter={() => onItemInteraction(id)}
       onMouseLeave={onItemInteractionEnd}
     >
-      <Link to={AppRoute.FILMS + id} className="small-movie-card__link">
+      <Link to={`${AppRoute.FILMS}${id}`} className="small-movie-card__link">
         <div className="small-movie-card__image">
           {isCardActive &&
                 <VideoPlayerHOC

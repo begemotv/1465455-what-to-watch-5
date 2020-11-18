@@ -3,26 +3,22 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {filmPropTypes, reviewPropTypes} from "../../prop-types";
+import {filmPropTypes} from "../../prop-types";
 import Logo from "../logo/logo";
 import Footer from "../footer/footer";
-import AvatarOrSignIn from "../avatar-or-sign-in/avatar-or-sign-in";
+import Avatar from "../avatar/avatar";
+import SignInLink from "../sign-in-link/sign-in-link";
 import TabBar from "../tab-bar/tab-bar";
-import Preloader from "../preloader/preloader";
 import MoreLikeThisFilms from "../more-like-this-films/more-like-this-films";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
-import {AppRoute} from "../../const";
+import {AppRoute, AuthorizationStatus} from "../../const";
 
 const TabBarHOC = withActiveItem(TabBar);
 const MoreLikeThisFilmsHOC = withActiveItem(MoreLikeThisFilms);
 
-const findReviews = (reviews, filmName) => {
-  const reviewsFilm = reviews.find((value) => value.name === filmName);
-  return reviewsFilm;
-};
-
 const FilmScreen = (props) => {
   const {
+    authorizationStatus,
     film: {
       backgroundColor,
       backgroundImage,
@@ -33,17 +29,9 @@ const FilmScreen = (props) => {
       releaseYear
     },
     film,
-    filmAPI,
-    isFetching,
     handleMyListBtnClick,
     handlePlayBtnClick,
-    reviews,
-    reviewsAPI
   } = props;
-
-  const reviewsFilm = findReviews(reviews, name);
-  console.log(filmAPI)
-  console.log(reviewsAPI)
 
   return (
     <React.Fragment>
@@ -59,8 +47,8 @@ const FilmScreen = (props) => {
 
           <header className="page-header movie-card__head">
             <Logo linkClassName={`logo__link`}/>
-            <AvatarOrSignIn />
-            {isFetching ? <Preloader /> : null}
+            {authorizationStatus === AuthorizationStatus.AUTH
+              ? <Avatar /> : <SignInLink />}
           </header>
 
           <div className="movie-card__wrap">
@@ -95,7 +83,11 @@ const FilmScreen = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={AppRoute.FILMS + id + AppRoute.REVIEW} className="btn movie-card__button">Add review</Link>
+                {
+                  authorizationStatus === AuthorizationStatus.AUTH
+                    ? <Link to={`${AppRoute.FILMS}${id}${AppRoute.REVIEW}`} className="btn movie-card__button">Add review</Link>
+                    : ``
+                }
               </div>
             </div>
           </div>
@@ -111,7 +103,7 @@ const FilmScreen = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <TabBarHOC film={film} reviewsFilm={reviewsFilm}/>
+              <TabBarHOC film={film} />
             </div>
           </div>
         </div>
@@ -127,21 +119,14 @@ const FilmScreen = (props) => {
 };
 
 FilmScreen.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
-  filmAPI: PropTypes.object,
-  isFetching: PropTypes.bool.isRequired,
   handlePlayBtnClick: PropTypes.func.isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewPropTypes)
-  ).isRequired,
-  reviewsAPI: PropTypes.array,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  filmAPI: DATA.activeFilmDetails,
-  reviewsAPI: DATA.activeFilmReviews,
-  isFetching: DATA.isFetching,
+const mapStateToProps = ({USER}) => ({
+  authorizationStatus: USER.authorizationStatus,
 });
 
 export {FilmScreen};

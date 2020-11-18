@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Router as BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router as BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {filmPropTypes, reviewPropTypes} from "../../prop-types";
@@ -12,15 +12,19 @@ import PlayerScreen from "../player-screen/player-screen";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
 import PrivateRoute from "../private-route/private-route";
 import withVideo from "../../hocs/with-video/with-video";
-import {getFilms, getReviews} from "../../store/selectors";
-import {AppRoute} from "../../const";
+import withFilmLoaded from "../../hocs/with-film-loaded/with-film-loaded";
+import {getFilms} from "../../store/selectors";
+import {AppRoute, AuthorizationStatus} from "../../const";
 import browserHistory from "../../browser-history";
-import {fetchFilm} from "../../store/api-actions/api-actions";
+import {NameSpace} from "../../store/reducers";
 
-const PlayerScreenHOC = withVideo(PlayerScreen);
+const PlayerScreenHOC = withFilmLoaded(withVideo(PlayerScreen));
+const FilmScreenHOC = withFilmLoaded(FilmScreen);
+const MainScreenHOC = withFilmLoaded(MainScreen);
+const AddReviewScreenHOC = withFilmLoaded(AddReviewScreen);
 
 const App = (props) => {
-  const {getActiveFilm, films, reviews} = props;
+  const {authorizationStatus, films} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -29,16 +33,17 @@ const App = (props) => {
           exact
           path={AppRoute.ROOT}
           render={({history}) => (
-            <MainScreen
-              film={films[0]}
-              films={films}
-              handlePlayBtnClick={(id) => history.push(AppRoute.PLAYER + id)}
+            <MainScreenHOC
+              handlePlayBtnClick={(id) => history.push(`${AppRoute.PLAYER}${id}`)}
               handleMyListBtnClick={() => history.push(AppRoute.MYLIST)}
             />
           )}>
         </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <SignInScreen />
+        <Route
+          exact
+          path={AppRoute.LOGIN}>
+          {authorizationStatus === AuthorizationStatus.AUTH
+            ? <Redirect to={AppRoute.ROOT} /> : <SignInScreen />}
         </Route>
         <PrivateRoute
           exact
@@ -53,13 +58,10 @@ const App = (props) => {
           exact
           path={AppRoute.FILMS_ID}
           render={({history, match}) => (
-            <FilmScreen
-              films={films}
-              // film={getActiveFilm(match.params.id)}
-              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
-              handlePlayBtnClick={(id) => history.push(AppRoute.PLAYER + id)}
+            <FilmScreenHOC
+              id={match.params.id}
+              handlePlayBtnClick={(id) => history.push(`${AppRoute.PLAYER}${id}`)}
               handleMyListBtnClick={() => history.push(AppRoute.MYLIST)}
-              reviews={reviews}
             />
           )}
         >
@@ -68,8 +70,8 @@ const App = (props) => {
           exact
           path={AppRoute.FILMS_ID_REVIEW}
           render={({match}) => (
-            <AddReviewScreen
-              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+            <AddReviewScreenHOC
+              id={match.params.id}
               onCommentAdd={() => {}}
             />
           )}
@@ -79,7 +81,7 @@ const App = (props) => {
           path={AppRoute.PLAYER_ID}
           render={({match}) => (
             <PlayerScreenHOC
-              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
+              id={match.params.id}
             />
           )}
         >
@@ -90,25 +92,16 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  getActiveFilm: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewPropTypes)
-  ).isRequired
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: state[NameSpace.USER].authorizationStatus,
   films: getFilms(state),
-  reviews: getReviews(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getActiveFilm(id) {
-    dispatch(fetchFilm(id));
-  },
 });
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

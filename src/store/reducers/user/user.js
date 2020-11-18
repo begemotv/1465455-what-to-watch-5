@@ -4,6 +4,12 @@ import {ActionType} from "../../action";
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  activeUser: {
+    avatar: `img/avatar.jpg`,
+    email: ``,
+    id: 0,
+    name: ``,
+  },
 };
 
 const user = (state = initialState, action) => {
@@ -12,9 +18,13 @@ const user = (state = initialState, action) => {
       return extend(state, {
         authorizationStatus: action.payload,
       });
+    case ActionType.CHANGE_ACTIVE_USER_DATA:
+      return extend(state, {
+        activeUser: action.payload,
+      });
+    default:
+      return state;
   }
-
-  return state;
 };
 
 export {user};

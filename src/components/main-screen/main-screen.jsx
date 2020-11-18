@@ -1,19 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import {filmPropTypes} from "../../prop-types";
 import FilmList from "../film-list/film-list";
 import Logo from "../logo/logo";
 import Footer from "../footer/footer";
-import AvatarOrSignIn from "../avatar-or-sign-in/avatar-or-sign-in";
+import Avatar from "../avatar/avatar";
+import SignInLink from "../sign-in-link/sign-in-link";
 import GenreList from "../genre-list/genre-list";
 import withShowMoreButtonCount from "../../hocs/with-show-more-button-count/with-show-more-button-count";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import {AuthorizationStatus} from "../../const";
 
 const FilmListHOC = withActiveItem(withShowMoreButtonCount(FilmList));
 
 const MainScreen = (props) => {
   const {
+    authorizationStatus,
     film: {
       backgroundImage,
       genre,
@@ -22,7 +26,6 @@ const MainScreen = (props) => {
       poster,
       releaseYear
     },
-    films,
     handleMyListBtnClick,
     handlePlayBtnClick
   } = props;
@@ -36,7 +39,8 @@ const MainScreen = (props) => {
 
       <header className="page-header movie-card__head">
         <Logo linkClassName={`logo__link`}/>
-        <AvatarOrSignIn />
+        {authorizationStatus === AuthorizationStatus.AUTH
+          ? <Avatar /> : <SignInLink />}
       </header>
 
       <div className="movie-card__wrap">
@@ -86,7 +90,7 @@ const MainScreen = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenreList id={id}/>
-        <FilmListHOC films={films} />
+        <FilmListHOC />
       </section>
       <Footer />
     </div>
@@ -94,12 +98,15 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape(filmPropTypes)
-  ).isRequired,
   handleMyListBtnClick: PropTypes.func.isRequired,
   handlePlayBtnClick: PropTypes.func.isRequired
 };
 
-export default MainScreen;
+const mapStateToProps = ({USER}) => ({
+  authorizationStatus: USER.authorizationStatus,
+});
+
+export {MainScreen};
+export default connect(mapStateToProps)(MainScreen);

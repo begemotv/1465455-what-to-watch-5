@@ -19,4 +19,5 @@ export const APIRoute = {
   COMMENTS: `/comments/`,
   FILMS: `/films/`,
   LOGIN: `/login`,
+  PROMO: `/films/promo`,
 };

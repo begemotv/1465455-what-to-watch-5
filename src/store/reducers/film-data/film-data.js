@@ -3,7 +3,8 @@ import {extend} from "../../../utils";
 import {ActionType} from "../../action";
 
 const initialState = {
-  activeFilmDetails: {},
+  activeFilmDetails: null,
+  activeFilmDetailsPromo: null,
   activeFilmReviews: [],
   films: [],
   reviewsAll: reviews,
@@ -23,6 +24,10 @@ export const filmData = (state = initialState, action) => {
     case ActionType.LOAD_ACTIVE_FILM_DETAILS:
       return extend(state, {
         activeFilmDetails: action.payload,
+      });
+    case ActionType.LOAD_ACTIVE_FILM_DETAILS_PROMO:
+      return extend(state, {
+        activeFilmDetailsPromo: action.payload,
       });
     case ActionType.LOAD_ACTIVE_FILM_REVIEWS:
       return extend(state, {

@@ -1,5 +1,9 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+import {postFilmReview} from "../../store/api-actions/api-actions";
+import {convertRatingStarsToNumber} from "../../utils";
 
 const RATING_STARS_COUNT = 5;
 
@@ -9,53 +13,91 @@ const withComment = (Component) => {
       super(props);
 
       this.state = {
+        comment: ``,
+        rating: null,
         ratingStars: RATING_STARS_COUNT,
-        text: ``
+        isDisabled: true,
+        isFormBlocked: false,
       };
 
       this.handleRatingChange = this._handleRatingChange.bind(this);
-      this.handleTextChange = this._handleTextChange.bind(this);
-      this.handleCommentAdd = this._handleCommentAdd.bind(this);
+      this.handleCommentChange = this._handleCommentChange.bind(this);
+      this.handleReviewAdd = this._handleReviewAdd.bind(this);
     }
 
     _handleRatingChange(evt) {
       const value = evt.target.value;
       this.setState(() => ({
-        ratingStars: value
+        ratingStars: value,
+        rating: convertRatingStarsToNumber(value)
       }));
     }
 
-    _handleTextChange(evt) {
+    _handleCommentChange(evt) {
       const value = evt.target.value;
       this.setState(() => ({
-        text: value
+        comment: value
+      }));
+      this._handleValidationCheck();
+    }
+
+    _handleReviewAdd(evt) {
+      evt.preventDefault();
+      const {id, onReviewAdd} = this.props;
+      const {rating, comment} = this.state;
+      onReviewAdd(id, comment, rating);
+      this.setState(() => ({
+        isDisabled: true
       }));
     }
 
-    _handleCommentAdd(evt) {
-      evt.preventDefault();
-      const {onCommentAdd} = this.props;
-      const {ratingStars, text} = this.state;
-      onCommentAdd(text, ratingStars);
+    _handleValidationCheck() {
+      if (this.state.comment.length < 50 && this.state.comment.length > 400) {
+        this.setState(() => ({
+          isDisabled: true
+        }));
+      } else {
+        this.setState(() => ({
+          isDisabled: false
+        }));
+      }
     }
 
     render() {
       return (
         <Component
-          onFormSubmit={this.handleCommentAdd}
+          onFormSubmit={this.handleReviewAdd}
           onRatingChange={this.handleRatingChange}
-          onTextChange={this.handleTextChange}
-          text={this.state.text}
+          onCommentChange={this.handleCommentChange}
+          comment={this.state.comment}
+          isDisabled={this.state.isDisabled}
+          {...this.props}
         />
       );
     }
   }
 
   WithComment.propTypes = {
-    onCommentAdd: PropTypes.func.isRequired
+    id: PropTypes.number.isRequired,
+    onReviewAdd: PropTypes.func.isRequired,
   };
 
-  return WithComment;
+  const mapStateToProps = ({DATA}) => ({
+    activeFilmReviews: DATA.activeFilmReviews,
+  });
+
+  const mapDispatchToProps = (dispatch) => ({
+    onReviewAdd(id, comment, rating) {
+      dispatch(postFilmReview(id, comment, rating));
+    },
+  });
+
+  return connect(mapStateToProps, mapDispatchToProps)(WithComment);
 };
 
 export default withComment;
+
+// {
+//   "rating": 8,
+//   "comment": "Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years."
+// }
