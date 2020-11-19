@@ -5,6 +5,10 @@ export const getFilms = (state) => {
   return state[NameSpace.DATA].films;
 };
 
+export const getFilmsFavorite = (state) => {
+  return state[NameSpace.USER].filmsFavorite;
+};
+
 export const getReviews = (state) => {
   return state[NameSpace.DATA].reviewsAll;
 };
@@ -13,7 +17,7 @@ const getActiveGenre = (state) => {
   return state[NameSpace.OPERATIONS].activeGenre;
 };
 
-const getActiveFilmId = (state) => {
+export const getActiveFilmId = (state) => {
   return state[NameSpace.OPERATIONS].activeFilmId;
 };
 
@@ -39,3 +43,6 @@ export const getMoreLikeFilms = createSelector(getFilms, getActiveFilmId, getAct
     .slice(0, 4);
 });
 
+export const checkFilmFavorite = createSelector(getFilmsFavorite, getActiveFilmId, (filmsFavorite, activeFilmId) => {
+  return filmsFavorite.some((film) => film.id === activeFilmId);
+});

@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
 import LoadMoreButton from "../load-more-button/load-more-button";
 import {changeActiveFilmId, changeActiveFilmIdGenre} from "../../store/action";
 import {getFilmsByGenre} from "../../store/selectors";
+import {filmPropTypes} from "../../prop-types";
 
 const FilmList = (props) => {
   const {
@@ -34,7 +34,7 @@ const FilmList = (props) => {
               />)}
       </div>
       {moviesShownOverall <= filmsByGenre.length &&
-        <LoadMoreButton onShowMoreButtonClick={onShowMoreButtonClick}/>}
+            <LoadMoreButton onShowMoreButtonClick={onShowMoreButtonClick}/>}
     </React.Fragment>
   );
 };

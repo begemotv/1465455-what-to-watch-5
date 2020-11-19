@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import {filmPropTypes} from "../../prop-types";
-import AddComment from "../add-comment/add-comment";
+import AddReview from "../add-review/add-review";
 import Logo from "../logo/logo";
 import AvatarOrSignIn from "../avatar/avatar";
-import withComment from "../../hocs/with-comment/with-comment";
+import withReview from "../../hocs/with-review/with-review";
+import {filmPropTypes} from "../../prop-types";
 import {AppRoute} from "../../const";
 
-const AddCommentHOC = withComment(AddComment);
+const AddReviewHOC = withReview(AddReview);
 
 const AddReviewScreen = (props) => {
   const {
@@ -55,14 +55,13 @@ const AddReviewScreen = (props) => {
             width="218" height="327" />
         </div>
       </div>
-      <AddCommentHOC id={id} backgroundColor={backgroundColor}/>
+      <AddReviewHOC id={id} backgroundColor={backgroundColor}/>
     </section>
   );
 };
 
 AddReviewScreen.propTypes = {
-  onCommentAdd: PropTypes.func.isRequired,
-  film: PropTypes.shape(filmPropTypes).isRequired
+  film: PropTypes.shape(filmPropTypes).isRequired,
 };
 
 export default AddReviewScreen;

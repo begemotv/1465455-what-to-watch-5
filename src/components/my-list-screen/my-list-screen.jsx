@@ -2,20 +2,19 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
-import {filmPropTypes} from "../../prop-types";
-import FilmList from "../film-list/film-list";
+import MyListFilms from "../my-list-films/my-list-films";
 import Logo from "../logo/logo";
 import Footer from "../footer/footer";
 import Avatar from "../avatar/avatar";
 import SignInLink from "../sign-in-link/sign-in-link";
-import withShowMoreButtonCount from "../../hocs/with-show-more-button-count/with-show-more-button-count";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {AuthorizationStatus} from "../../const";
+import {filmPropTypes} from "../../prop-types";
 
-const FilmListHOC = withActiveItem(withShowMoreButtonCount(FilmList));
+const MyListFilmsHOC = withActiveItem(MyListFilms);
 
 const MyListScreen = (props) => {
-  const {authorizationStatus, films} = props;
+  const {authorizationStatus, filmsFavorite} = props;
 
   return (
     <div className="user-page">
@@ -28,7 +27,7 @@ const MyListScreen = (props) => {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmListHOC films={films}/>
+        <MyListFilmsHOC films={filmsFavorite}/>
       </section>
       <Footer />
     </div>
@@ -37,13 +36,14 @@ const MyListScreen = (props) => {
 
 MyListScreen.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(
+  filmsFavorite: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired
 };
 
 const mapStateToProps = ({USER}) => ({
   authorizationStatus: USER.authorizationStatus,
+  filmsFavorite: USER.filmsFavorite,
 });
 
 export {MyListScreen};

@@ -17,7 +17,20 @@ export const AppRoute = {
 
 export const APIRoute = {
   COMMENTS: `/comments/`,
+  FAVORITE: `/favorite/`,
   FILMS: `/films/`,
   LOGIN: `/login`,
   PROMO: `/films/promo`,
+};
+
+export const ReviewLength = {
+  MIN: 50,
+  MAX: 400,
+};
+
+export const HttpCode = {
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404,
+  SERVER_ERROR: 500,
 };

@@ -2,11 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {filmPropTypes} from "../../prop-types";
 import FilmCard from "../film-card/film-card";
 import {changeActiveFilmId, changeActiveFilmIdGenre} from "../../store/action";
-import {fetchFilm, fetchFilmReviews} from "../../store/api-actions/api-actions";
 import {getMoreLikeFilms} from "../../store/selectors";
+import {filmPropTypes} from "../../prop-types";
 
 const MoreLikeThisFilms = (props) => {
   const {
@@ -53,8 +52,6 @@ const mapDispatchToProps = (dispatch) => ({
   changeActiveFilmAction(id, genre) {
     dispatch(changeActiveFilmId(id));
     dispatch(changeActiveFilmIdGenre(genre));
-    dispatch(fetchFilm(id));
-    dispatch(fetchFilmReviews(id));
   },
 });
 

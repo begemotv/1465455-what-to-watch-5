@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
 
-import {filmPropTypes} from "../../prop-types";
 import VideoPlayer from "../video-player/video-player";
 import withVideo from "../../hocs/with-video/with-video";
 import {AppRoute} from "../../const";
+import {filmPropTypes} from "../../prop-types";
 
 const VideoPlayerHOC = withVideo(VideoPlayer);
 

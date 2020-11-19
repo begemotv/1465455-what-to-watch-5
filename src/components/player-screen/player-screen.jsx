@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {createBrowserHistory} from 'history';
 
-import {filmPropTypes} from "../../prop-types";
 import VideoPlayer from "../video-player/video-player";
+import {filmPropTypes} from "../../prop-types";
 
 const PlayerScreen = (props) => {
   const {

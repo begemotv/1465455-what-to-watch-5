@@ -4,12 +4,8 @@ import {ActionType} from "../../action";
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  activeUser: {
-    avatar: `img/avatar.jpg`,
-    email: ``,
-    id: 0,
-    name: ``,
-  },
+  activeUser: null,
+  filmsFavorite: [],
 };
 
 const user = (state = initialState, action) => {
@@ -21,6 +17,10 @@ const user = (state = initialState, action) => {
     case ActionType.CHANGE_ACTIVE_USER_DATA:
       return extend(state, {
         activeUser: action.payload,
+      });
+    case ActionType.LOAD_FILMS_FAVORITE:
+      return extend(state, {
+        filmsFavorite: action.payload,
       });
     default:
       return state;

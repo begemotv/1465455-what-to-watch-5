@@ -1,15 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RATING_STARS = [1, 2, 3, 4, 5];
+const RATING_STARS = [`1`, `2`, `3`, `4`, `5`];
+const WHITE_TRANSPARENT_BACKGROUND = `rgba(255,255,255, 0.3)`;
 
-const AddComment = (props) => {
+const AddReview = (props) => {
   const {
-    isDisabled,
+    comment,
+    isReviewFormBlocked,
+    isReviewValid,
     onFormSubmit,
     onRatingChange,
     onCommentChange,
-    comment
+    ratingStars,
   } = props;
 
   return (
@@ -17,7 +20,7 @@ const AddComment = (props) => {
       <form
         action="#"
         className="add-review__form"
-        onSubmit={onFormSubmit}
+        onSubmit={(evt) => onFormSubmit(evt)}
       >
         <div className="rating">
           <div className="rating__stars">
@@ -30,6 +33,8 @@ const AddComment = (props) => {
                   name="rating"
                   value={star}
                   onChange={onRatingChange}
+                  checked={ratingStars === star}
+                  disabled={isReviewFormBlocked}
                 />
                 <label className="rating__label" htmlFor={`star-${star}`}>Rating {star}</label>
               </React.Fragment>
@@ -39,7 +44,7 @@ const AddComment = (props) => {
 
         <div
           className="add-review__text"
-          style={{backgroundColor: `rgba(255,255,255, 0.3)`}}
+          style={{backgroundColor: WHITE_TRANSPARENT_BACKGROUND}}
         >
           <textarea
             className="add-review__textarea"
@@ -48,12 +53,13 @@ const AddComment = (props) => {
             placeholder="Please write in the range from 50 to 400 characters"
             onChange={onCommentChange}
             value={comment}
+            disabled={isReviewFormBlocked}
           />
           <div className="add-review__submit">
             <button
               className="add-review__btn"
               type="submit"
-              disabled={isDisabled}
+              disabled={!isReviewValid || isReviewFormBlocked}
             >Post</button>
           </div>
         </div>
@@ -62,13 +68,14 @@ const AddComment = (props) => {
   );
 };
 
-AddComment.propTypes = {
-  backgroundColor: PropTypes.string.isRequired,
-  isDisabled: PropTypes.bool.isRequired,
+AddReview.propTypes = {
+  comment: PropTypes.string.isRequired,
+  isReviewFormBlocked: PropTypes.bool.isRequired,
+  isReviewValid: PropTypes.bool.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   onCommentChange: PropTypes.func.isRequired,
-  comment: PropTypes.string.isRequired,
+  ratingStars: PropTypes.string.isRequired,
 };
 
-export default AddComment;
+export default AddReview;

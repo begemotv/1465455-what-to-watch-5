@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-import {filmPropTypes} from "../../prop-types";
 import TabOverview from "../tab-overview/tab-overview";
 import TabDetails from "../tab-details/tab-details";
 import TabReviews from "../tab-reviews/tab-reviews";
 import withReviewsLoaded from "../../hocs/with-reviews-loaded/with-reviews-loaded";
+import {filmPropTypes} from "../../prop-types";
 
 const TabReviewsHOC = withReviewsLoaded(TabReviews);
 

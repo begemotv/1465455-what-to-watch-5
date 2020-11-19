@@ -3,7 +3,9 @@ export const ActionType = {
   CHANGE_ACTIVE_FILM_GENRE: `CHANGE_ACTIVE_FILM_GENRE`,
   CHANGE_TAB_GENRE: `CHANGE_TAB_GENRE`,
   CHANGE_ACTIVE_USER_DATA: `CHANGE_ACTIVE_USER_DATA`,
+  CHANGE_REVIEW_FORM_STATUS: `CHANGE_REVIEW_FORM_STATUS`,
   LOAD_FILMS: `LOAD_FILMS`,
+  LOAD_FILMS_FAVORITE: `LOAD_FILMS_FAVORITE`,
   LOAD_ACTIVE_FILM_DETAILS: `LOAD_ACTIVE_FILM_DETAILS`,
   LOAD_ACTIVE_FILM_DETAILS_PROMO: `LOAD_ACTIVE_FILM_DETAILS_PROMO`,
   LOAD_ACTIVE_FILM_REVIEWS: `LOAD_ACTIVE_FILM_REVIEWS`,
@@ -31,8 +33,18 @@ export const changeActiveUserData = (data) => ({
   payload: data
 });
 
+export const changeReviewFormStatus = (status) => ({
+  type: ActionType.CHANGE_REVIEW_FORM_STATUS,
+  payload: status
+});
+
 export const loadFilms = (films) => ({
   type: ActionType.LOAD_FILMS,
+  payload: films,
+});
+
+export const loadFilmsFavorite = (films) => ({
+  type: ActionType.LOAD_FILMS_FAVORITE,
   payload: films,
 });
 
