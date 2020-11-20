@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import {reviewPropTypes} from "../../prop-types";
 import {convertDate} from "../../utils";
+import {getReviews} from "../../store/selectors";
 
 const TabReviews = (props) => {
   const {reviews} = props;
@@ -17,7 +19,7 @@ const TabReviews = (props) => {
               <p className="review__text">{item.text}</p>
 
               <footer className="review__details">
-                <cite className="review__author">{item.username}</cite>
+                <cite className="review__author">{item.user.name}</cite>
                 <time className="review__date" dateTime={item.timeStamp}>{convertDate(item.timeStamp)}</time>
               </footer>
             </blockquote>
@@ -36,4 +38,12 @@ TabReviews.propTypes = {
   ),
 };
 
-export default TabReviews;
+const mapStateToProps = (state, ownProps) => {
+  const {id} = ownProps;
+  return ({
+    reviews: getReviews(state, id),
+  });
+};
+
+export {TabReviews};
+export default connect(mapStateToProps)(TabReviews);

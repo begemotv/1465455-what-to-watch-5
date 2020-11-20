@@ -6,6 +6,7 @@ import {AppRoute} from "../../const";
 
 const Logo = (props) => {
   const {linkClassName} = props;
+
   return (
     <div className="logo">
       <Link to={AppRoute.ROOT} className={linkClassName}>

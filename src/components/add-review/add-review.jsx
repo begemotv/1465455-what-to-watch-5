@@ -1,5 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+import {postFilmReview} from "../../store/api-actions/api-actions";
+import {changeReviewFormStatus} from "../../store/action";
 
 const RATING_STARS = [`1`, `2`, `3`, `4`, `5`];
 const WHITE_TRANSPARENT_BACKGROUND = `rgba(255,255,255, 0.3)`;
@@ -78,4 +82,16 @@ AddReview.propTypes = {
   ratingStars: PropTypes.string.isRequired,
 };
 
-export default AddReview;
+const mapStateToProps = ({DATA}) => ({
+  isReviewFormBlocked: DATA.isReviewFormBlocked,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onReviewAdd(id, comment, rating) {
+    dispatch(changeReviewFormStatus(true));
+    dispatch(postFilmReview(id, comment, rating));
+  },
+});
+
+export {AddReview};
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

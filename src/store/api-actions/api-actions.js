@@ -1,50 +1,46 @@
-import {loadFilms, loadFilmsFavorite, requireAuthorization, redirectToRoute, loadActiveFilmDetails, loadActiveFilmReviews, loadActiveFilmDetailsPromo, changeActiveUserData, changeActiveFilmId, changeReviewFormStatus} from "../action";
+import {loadFilms, loadFilmsFavorite, requireAuthorization, redirectToRoute, loadfilmReviews, loadfilmPromo, changeActiveUserData, changeActiveFilmId, changeReviewFormStatus, throwErrorGetFavorites} from "../action";
 import {adaptFilmToClient, adaptReviewToClient, adaptUserToClient} from "../../services/adapter";
-import {APIRoute, AppRoute, AuthorizationStatus} from "../../const";
+import {ApiRoute, AppRoute, AuthorizationStatus} from "../../const";
 
 export const fetchFilmList = () => (dispatch, _getState, api) => (
-  api.get(APIRoute.FILMS)
+  api.get(ApiRoute.FILMS)
     .then(({data}) => {
       const adaptedFilms = data.map((film) => adaptFilmToClient(film));
       dispatch(loadFilms(adaptedFilms));
     })
 );
 
-export const fetchFilm = (id) => (dispatch, _getState, api) => (
-  api.get(`${APIRoute.FILMS}${id}`)
-    .then(({data}) => {
-      const adaptedFilm = adaptFilmToClient(data);
-      dispatch(loadActiveFilmDetails(adaptedFilm));
-    })
-);
-
 export const fetchFilmReviews = (id) => (dispatch, _getState, api) => (
-  api.get(`${APIRoute.COMMENTS}${id}`)
+  api.get(`${ApiRoute.COMMENTS}${id}`)
     .then(({data}) => {
       const adaptedReviews = data.map((review) => adaptReviewToClient(review));
-      dispatch(loadActiveFilmReviews(adaptedReviews));
+      dispatch(loadfilmReviews(adaptedReviews));
     })
 );
 
 export const fetchPromoFilm = () => (dispatch, _getState, api) => (
-  api.get(APIRoute.PROMO)
+  api.get(ApiRoute.PROMO)
     .then(({data}) => {
       const adaptedPromoFilm = adaptFilmToClient(data);
-      dispatch(loadActiveFilmDetailsPromo(adaptedPromoFilm));
+      dispatch(loadfilmPromo(adaptedPromoFilm));
       dispatch(changeActiveFilmId(adaptedPromoFilm.id));
     })
 );
 
 export const fetchFavoriteFilmList = () => (dispatch, _getState, api) => (
-  api.get(APIRoute.FAVORITE)
+  api.get(ApiRoute.FAVORITE)
     .then(({data}) => {
       const adaptedFilmsFavorite = data.map((film) => adaptFilmToClient(film));
       dispatch(loadFilmsFavorite(adaptedFilmsFavorite));
     })
+    .catch((err) => {
+      dispatch(throwErrorGetFavorites(true));
+      throw err;
+    })
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
-  api.get(APIRoute.LOGIN)
+  api.get(ApiRoute.LOGIN)
     .then(({data}) => {
       const adaptedUser = adaptUserToClient(data);
       dispatch(changeActiveUserData(adaptedUser));
@@ -55,18 +51,18 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
-  api.post(APIRoute.LOGIN, {email, password})
+  api.post(ApiRoute.LOGIN, {email, password})
     .then(() => dispatch(checkAuth()))
     .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
 );
 
 export const postFilmReview = (id, comment, rating) => (dispatch, _getState, api) => (
-  api.post(`${APIRoute.COMMENTS}${id}`, {rating, comment})
+  api.post(`${ApiRoute.COMMENTS}${id}`, {rating, comment})
    .then(() => dispatch(changeReviewFormStatus(false)))
-   .then(() => dispatch(redirectToRoute(`${APIRoute.FILMS}${id}`)))
+   .then(() => dispatch(redirectToRoute(`${ApiRoute.FILMS}${id}`)))
 );
 
 export const addToFavorites = (id, status) => (dispatch, _getState, api) => (
-  api.post(`${APIRoute.FAVORITE}${id}/${status}`)
+  api.post(`${ApiRoute.FAVORITE}${id}/${status}`)
    .then(() => dispatch(fetchFavoriteFilmList()))
 );

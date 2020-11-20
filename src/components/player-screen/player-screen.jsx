@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {createBrowserHistory} from 'history';
+import {connect} from "react-redux";
 
 import VideoPlayer from "../video-player/video-player";
 import {filmPropTypes} from "../../prop-types";
+import {getFilm} from "../../store/selectors";
 
 const PlayerScreen = (props) => {
   const {
@@ -93,4 +95,12 @@ PlayerScreen.propTypes = {
   timeElapsed: PropTypes.string.isRequired
 };
 
-export default PlayerScreen;
+const mapStateToProps = (state, ownProps) => {
+  const {id} = ownProps;
+  return ({
+    film: getFilm(state, +id),
+  });
+};
+
+export {PlayerScreen};
+export default connect(mapStateToProps)(PlayerScreen);

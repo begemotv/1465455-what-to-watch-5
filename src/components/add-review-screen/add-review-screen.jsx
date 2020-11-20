@@ -1,13 +1,17 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {connect} from "react-redux";
 
 import AddReview from "../add-review/add-review";
 import Logo from "../logo/logo";
-import AvatarOrSignIn from "../avatar/avatar";
+import Avatar from "../avatar/avatar";
 import withReview from "../../hocs/with-review/with-review";
 import {filmPropTypes} from "../../prop-types";
 import {AppRoute} from "../../const";
+import {getFilm} from "../../store/selectors";
+import {postFilmReview} from "../../store/api-actions/api-actions";
+import {changeReviewFormStatus} from "../../store/action";
 
 const AddReviewHOC = withReview(AddReview);
 
@@ -20,6 +24,7 @@ const AddReviewScreen = (props) => {
       name,
       poster,
     },
+    onReviewAdd,
   } = props;
 
   return (
@@ -45,7 +50,7 @@ const AddReviewScreen = (props) => {
               </li>
             </ul>
           </nav>
-          <AvatarOrSignIn />
+          <Avatar />
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
@@ -55,13 +60,29 @@ const AddReviewScreen = (props) => {
             width="218" height="327" />
         </div>
       </div>
-      <AddReviewHOC id={id} backgroundColor={backgroundColor}/>
+      <AddReviewHOC id={id} backgroundColor={backgroundColor} onReviewAdd={onReviewAdd} />
     </section>
   );
 };
 
 AddReviewScreen.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
+  onReviewAdd: PropTypes.func.isRequired,
 };
 
-export default AddReviewScreen;
+const mapStateToProps = (state, ownProps) => {
+  const {id} = ownProps;
+  return ({
+    film: getFilm(state, +id),
+  });
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onReviewAdd(id, comment, rating) {
+    dispatch(changeReviewFormStatus(true));
+    dispatch(postFilmReview(id, comment, rating));
+  },
+});
+
+export {AddReviewScreen};
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewScreen);

@@ -1,13 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
 
-import {postFilmReview} from "../../store/api-actions/api-actions";
-import {changeReviewFormStatus} from "../../store/action";
 import {convertRatingStarsToNumber} from "../../utils";
 import {ReviewLength} from "../../const";
 
-const RATING_STARS_COUNT_DEFAULT = `2`;
+const RATING_STARS_COUNT_DEFAULT = `5`;
 const {MIN, MAX} = ReviewLength;
 
 const withReview = (Component) => {
@@ -66,7 +63,6 @@ const withReview = (Component) => {
 
     render() {
       const {comment, isReviewValid, ratingStars} = this.state;
-      const {isReviewFormBlocked} = this.props;
 
       return (
         <Component
@@ -75,9 +71,7 @@ const withReview = (Component) => {
           onCommentChange={this.handleCommentChange}
           comment={comment}
           isReviewValid={isReviewValid}
-          isReviewFormBlocked={isReviewFormBlocked}
           ratingStars={ratingStars}
-          {...this.props}
         />
       );
     }
@@ -85,24 +79,10 @@ const withReview = (Component) => {
 
   WithReview.propTypes = {
     id: PropTypes.number.isRequired,
-    isReviewFormBlocked: PropTypes.bool.isRequired,
     onReviewAdd: PropTypes.func.isRequired,
   };
 
-  const mapStateToProps = ({DATA}) => ({
-    activeFilmReviews: DATA.activeFilmReviews,
-    isReviewFormBlocked: DATA.isReviewFormBlocked,
-
-  });
-
-  const mapDispatchToProps = (dispatch) => ({
-    onReviewAdd(id, comment, rating) {
-      dispatch(changeReviewFormStatus(true));
-      dispatch(postFilmReview(id, comment, rating));
-    },
-  });
-
-  return connect(mapStateToProps, mapDispatchToProps)(WithReview);
+  return WithReview;
 };
 
 export default withReview;

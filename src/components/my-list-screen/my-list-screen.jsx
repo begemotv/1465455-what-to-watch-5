@@ -2,32 +2,29 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
-import MyListFilms from "../my-list-films/my-list-films";
+import FilmList from "../film-list/film-list";
 import Logo from "../logo/logo";
 import Footer from "../footer/footer";
 import Avatar from "../avatar/avatar";
-import SignInLink from "../sign-in-link/sign-in-link";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
-import {AuthorizationStatus} from "../../const";
 import {filmPropTypes} from "../../prop-types";
 
-const MyListFilmsHOC = withActiveItem(MyListFilms);
+const FilmListHOC = withActiveItem(FilmList);
 
 const MyListScreen = (props) => {
-  const {authorizationStatus, filmsFavorite} = props;
+  const {filmsFavorite} = props;
 
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <Logo linkClassName={`logo__link`}/>
         <h1 className="page-title user-page__title">My list</h1>
-        {authorizationStatus === AuthorizationStatus.AUTH
-          ? <Avatar /> : <SignInLink />}
+        <Avatar />
       </header>
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MyListFilmsHOC films={filmsFavorite}/>
+        <FilmListHOC films={filmsFavorite}/>
       </section>
       <Footer />
     </div>
@@ -35,14 +32,12 @@ const MyListScreen = (props) => {
 };
 
 MyListScreen.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
   filmsFavorite: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired
 };
 
 const mapStateToProps = ({USER}) => ({
-  authorizationStatus: USER.authorizationStatus,
   filmsFavorite: USER.filmsFavorite,
 });
 

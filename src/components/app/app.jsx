@@ -12,19 +12,13 @@ import PrivateRoute from "../private-route/private-route";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
 import browserHistory from "../../browser-history";
 import withVideo from "../../hocs/with-video/with-video";
-import withFilmLoaded from "../../hocs/with-film-loaded/with-film-loaded";
-import withError from "../../hocs/with-error/with-error";
 import {AppRoute, AuthorizationStatus} from "../../const";
-import {NameSpace} from "../../store/reducers";
+import {filmPropTypes} from "../../prop-types";
 
-const AddReviewScreenHOC = withFilmLoaded(AddReviewScreen);
-const FilmScreenHOC = withFilmLoaded(FilmScreen);
-const MainScreenHOC = withFilmLoaded(MainScreen);
-const PlayerScreenHOC = withFilmLoaded(withVideo(PlayerScreen));
-const SignInScreenHOC = withError(SignInScreen);
+const PlayerScreenHOC = withVideo(PlayerScreen);
 
 const App = (props) => {
-  const {authorizationStatus} = props;
+  const {authorizationStatus, promoFilm} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -33,7 +27,8 @@ const App = (props) => {
           exact
           path={AppRoute.ROOT}
           render={({history}) => (
-            <MainScreenHOC
+            <MainScreen
+              film={promoFilm}
               handlePlayButtonClick={(id) => history.push(`${AppRoute.PLAYER}${id}`)}
             />
           )}>
@@ -42,7 +37,8 @@ const App = (props) => {
           exact
           path={AppRoute.LOGIN}>
           {authorizationStatus === AuthorizationStatus.AUTH
-            ? <Redirect to={AppRoute.ROOT} /> : <SignInScreenHOC />}
+            ? <Redirect to={AppRoute.ROOT} />
+            : <SignInScreen />}
         </Route>
         <PrivateRoute
           exact
@@ -55,7 +51,7 @@ const App = (props) => {
           exact
           path={AppRoute.FILMS_ID}
           render={({history, match}) => (
-            <FilmScreenHOC
+            <FilmScreen
               id={match.params.id}
               handlePlayButtonClick={(id) => history.push(`${AppRoute.PLAYER}${id}`)}
             />
@@ -66,18 +62,14 @@ const App = (props) => {
           exact
           path={AppRoute.FILMS_ID_REVIEW}
           render={({match}) => (
-            <AddReviewScreenHOC
-              id={match.params.id}
-            />
+            <AddReviewScreen id={match.params.id}/>
           )}>
         </PrivateRoute>
         <Route
           exact
           path={AppRoute.PLAYER_ID}
           render={({match}) => (
-            <PlayerScreenHOC
-              id={match.params.id}
-            />
+            <PlayerScreenHOC id={match.params.id} />
           )}
         >
         </Route>
@@ -88,10 +80,12 @@ const App = (props) => {
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
+  promoFilm: PropTypes.shape(filmPropTypes).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: state[NameSpace.USER].authorizationStatus,
+const mapStateToProps = ({DATA, USER}) => ({
+  authorizationStatus: USER.authorizationStatus,
+  promoFilm: DATA.filmPromo,
 });
 
 export {App};

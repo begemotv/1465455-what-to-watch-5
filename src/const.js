@@ -15,7 +15,7 @@ export const AppRoute = {
   ROOT: `/`,
 };
 
-export const APIRoute = {
+export const ApiRoute = {
   COMMENTS: `/comments/`,
   FAVORITE: `/favorite/`,
   FILMS: `/films/`,
@@ -34,3 +34,5 @@ export const HttpCode = {
   NOT_FOUND: 404,
   SERVER_ERROR: 500,
 };
+
+export const MOVIES_INCREMENT_COUNT = 8;

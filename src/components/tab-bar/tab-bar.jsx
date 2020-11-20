@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 import TabOverview from "../tab-overview/tab-overview";
 import TabDetails from "../tab-details/tab-details";
 import TabReviews from "../tab-reviews/tab-reviews";
-import withReviewsLoaded from "../../hocs/with-reviews-loaded/with-reviews-loaded";
 import {filmPropTypes} from "../../prop-types";
+import {fetchFilmReviews} from "../../store/api-actions/api-actions";
 
-const TabReviewsHOC = withReviewsLoaded(TabReviews);
 
 const TAB_NAMES = [`Overview`, `Details`, `Reviews`];
 
@@ -16,6 +16,7 @@ const TabBar = (props) => {
   const {
     activeItem,
     film,
+    getActiveReviews,
     onItemInteraction,
   } = props;
 
@@ -26,13 +27,14 @@ const TabBar = (props) => {
           {TAB_NAMES.map((tab, i) => (
             <li
               key={i}
-              className={`movie-nav__item ${i === activeItem ? `movie-nav__item--active` : ``}`}>
+              className={`movie-nav__item ${i === activeItem && `movie-nav__item--active`}`}>
               <Link
                 to="#"
                 className="movie-nav__link"
                 onClick={(evt) => {
                   evt.preventDefault();
                   onItemInteraction(i);
+                  getActiveReviews(film.id);
                 }}
               >{tab}</Link>
             </li>
@@ -47,7 +49,7 @@ const TabBar = (props) => {
             <TabDetails film={film}/>
         }
         {activeItem === 2 &&
-            <TabReviewsHOC id={film.id}/>
+            <TabReviews id={film.id}/>
         }
       </div>
     </React.Fragment>
@@ -58,7 +60,14 @@ TabBar.propTypes = {
   activeItem: PropTypes.number.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
   onItemInteraction: PropTypes.func.isRequired,
+  getActiveReviews: PropTypes.func.isRequired,
 };
 
-export default TabBar;
+const mapDispatchToProps = (dispatch) => ({
+  getActiveReviews(id) {
+    dispatch(fetchFilmReviews(id));
+  },
+});
 
+export {TabBar};
+export default connect(null, mapDispatchToProps)(TabBar);

@@ -3,20 +3,20 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import Logo from "../logo/logo";
+import FilmList from "../film-list/film-list";
 import Footer from "../footer/footer";
-import Avatar from "../avatar/avatar";
-import SignInLink from "../sign-in-link/sign-in-link";
-import TabBar from "../tab-bar/tab-bar";
-import MoreLikeThisFilms from "../more-like-this-films/more-like-this-films";
+import Header from "../header/header";
 import MyListButton from "../my-list-button/my-list-button";
 import PlayButton from "../play-button/play-button";
+import TabBar from "../tab-bar/tab-bar";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {AppRoute, AuthorizationStatus} from "../../const";
 import {filmPropTypes} from "../../prop-types";
+import {getMoreLikeFilms, getFilm} from "../../store/selectors";
+import {NameSpace} from "../../store/reducers";
 
+const FilmListHOC = withActiveItem(FilmList);
 const TabBarHOC = withActiveItem(TabBar);
-const MoreLikeThisFilmsHOC = withActiveItem(MoreLikeThisFilms);
 
 const FilmScreen = (props) => {
   const {
@@ -32,8 +32,7 @@ const FilmScreen = (props) => {
     },
     film,
     handlePlayButtonClick,
-    isFavorite,
-    onButtonClick,
+    moreLikeFilms,
   } = props;
 
   return (
@@ -47,13 +46,7 @@ const FilmScreen = (props) => {
             <img src={backgroundImage} alt={name} />
           </div>
           <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header movie-card__head">
-            <Logo linkClassName={`logo__link`}/>
-            {authorizationStatus === AuthorizationStatus.AUTH
-              ? <Avatar /> : <SignInLink />}
-          </header>
-
+          <Header />
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{name}</h2>
@@ -64,11 +57,10 @@ const FilmScreen = (props) => {
 
               <div className="movie-card__buttons">
                 <PlayButton id={id} onPlayButtonClick={handlePlayButtonClick} />
-                <MyListButton id={id} isFavorite={isFavorite} onFavoritesButtonClick={onButtonClick} />
+                <MyListButton id={id} />
                 {
                   authorizationStatus === AuthorizationStatus.AUTH
-                    ? <Link to={`${AppRoute.FILMS}${id}${AppRoute.REVIEW}`} className="btn movie-card__button">Add review</Link>
-                    : ``
+                    && <Link to={`${AppRoute.FILMS}${id}${AppRoute.REVIEW}`} className="btn movie-card__button">Add review</Link>
                 }
               </div>
             </div>
@@ -91,9 +83,8 @@ const FilmScreen = (props) => {
         </div>
       </section>
 
-
       <div className="page-content">
-        <MoreLikeThisFilmsHOC />
+        <FilmListHOC films={moreLikeFilms}/>
         <Footer />
       </div>
     </React.Fragment>
@@ -104,13 +95,19 @@ FilmScreen.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
   handlePlayButtonClick: PropTypes.func.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  onButtonClick: PropTypes.func.isRequired,
+  moreLikeFilms: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ),
 };
 
-const mapStateToProps = ({USER}) => ({
-  authorizationStatus: USER.authorizationStatus,
-});
+const mapStateToProps = (state, ownProps) => {
+  const {id} = ownProps;
+  return ({
+    authorizationStatus: state[NameSpace.USER].authorizationStatus,
+    film: getFilm(state, +id),
+    moreLikeFilms: getMoreLikeFilms(state),
+  });
+};
 
 export {FilmScreen};
 export default connect(mapStateToProps)(FilmScreen);

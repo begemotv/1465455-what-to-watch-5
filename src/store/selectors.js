@@ -5,12 +5,20 @@ export const getFilms = (state) => {
   return state[NameSpace.DATA].films;
 };
 
+export const getFilm = (state, id) => {
+  return state[NameSpace.DATA].films.find((item) => item.id === id);
+};
+
 export const getFilmsFavorite = (state) => {
   return state[NameSpace.USER].filmsFavorite;
 };
 
+export const getFavoriteStatus = (state, id) => {
+  return state[NameSpace.USER].filmsFavorite.some((item) => item.id === id);
+};
+
 export const getReviews = (state) => {
-  return state[NameSpace.DATA].reviewsAll;
+  return state[NameSpace.DATA].filmReviews;
 };
 
 const getActiveGenre = (state) => {
@@ -45,4 +53,15 @@ export const getMoreLikeFilms = createSelector(getFilms, getActiveFilmId, getAct
 
 export const checkFilmFavorite = createSelector(getFilmsFavorite, getActiveFilmId, (filmsFavorite, activeFilmId) => {
   return filmsFavorite.some((film) => film.id === activeFilmId);
+});
+
+export const getGenreList = createSelector(getFilms, (films) => {
+  let genreList = films
+    .map((item) => item.genre)
+    .filter((item, index, arr) => arr.indexOf(item) === index)
+    .slice(0, 9);
+
+  genreList.unshift(`All genres`);
+
+  return genreList;
 });
