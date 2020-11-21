@@ -4,6 +4,8 @@ import {Router as BrowserRouter, Switch, Route, Redirect} from "react-router-dom
 import {connect} from "react-redux";
 
 import AddReviewScreen from "../add-review-screen/add-review-screen";
+import ErrorServer from "../error-server/error-server";
+import ErrorNotFound from "../error-not-found/error-not-found";
 import FilmScreen from "../film-screen/film-screen";
 import MainScreen from "../main-screen/main-screen";
 import MyListScreen from "../my-list-screen/my-list-screen";
@@ -73,6 +75,12 @@ const App = (props) => {
           )}
         >
         </Route>
+        <Route
+          exact
+          path={AppRoute.SERVER_ERROR}>
+          <ErrorServer />
+        </Route>
+        <Route component={ErrorNotFound} />
       </Switch>
     </BrowserRouter>
   );

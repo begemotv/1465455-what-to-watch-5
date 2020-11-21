@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import ErrorPopup from "../error-popup/error-popup";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import MainCatalog from "../main-catalog/main-catalog";
@@ -54,6 +55,7 @@ const MainScreen = (props) => {
       <MainCatalog />
       <Footer />
     </div>
+    <ErrorPopup />
   </React.Fragment>;
 };
 

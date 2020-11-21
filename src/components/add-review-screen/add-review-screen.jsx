@@ -4,8 +4,9 @@ import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import AddReview from "../add-review/add-review";
-import Logo from "../logo/logo";
 import Avatar from "../avatar/avatar";
+import ErrorPopup from "../error-popup/error-popup";
+import Logo from "../logo/logo";
 import withReview from "../../hocs/with-review/with-review";
 import {filmPropTypes} from "../../prop-types";
 import {AppRoute} from "../../const";
@@ -61,6 +62,7 @@ const AddReviewScreen = (props) => {
         </div>
       </div>
       <AddReviewHOC id={id} backgroundColor={backgroundColor} onReviewAdd={onReviewAdd} />
+      <ErrorPopup />
     </section>
   );
 };

@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
+import ErrorPopup from "../error-popup/error-popup";
 import FilmList from "../film-list/film-list";
 import Footer from "../footer/footer";
 import Header from "../header/header";
@@ -16,7 +17,6 @@ import {getMoreLikeFilms, getFilm} from "../../store/selectors";
 import {NameSpace} from "../../store/reducers";
 
 const FilmListHOC = withActiveItem(FilmList);
-const TabBarHOC = withActiveItem(TabBar);
 
 const FilmScreen = (props) => {
   const {
@@ -77,16 +77,20 @@ const FilmScreen = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <TabBarHOC film={film} />
+              <TabBar film={film} />
             </div>
           </div>
         </div>
       </section>
 
       <div className="page-content">
-        <FilmListHOC films={moreLikeFilms}/>
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
+          <FilmListHOC films={moreLikeFilms}/>
+        </section>
         <Footer />
       </div>
+      <ErrorPopup />
     </React.Fragment>
   );
 };

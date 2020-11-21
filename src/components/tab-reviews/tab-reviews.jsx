@@ -2,15 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
+import Preloader from "../preloader/preloader";
 import {reviewPropTypes} from "../../prop-types";
 import {convertDate} from "../../utils";
 import {getReviews} from "../../store/selectors";
+import {NameSpace} from "../../store/reducers";
 
 const TabReviews = (props) => {
-  const {reviews} = props;
+  const {isFetching, reviews} = props;
 
-  return (
-    <div className="movie-card__reviews movie-card__row">
+  return isFetching
+    ? <Preloader />
+    : (<div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
 
         {reviews.map((item, i) => (
@@ -28,11 +31,11 @@ const TabReviews = (props) => {
           </div>
         ))}
       </div>
-    </div>
-  );
+    </div>);
 };
 
 TabReviews.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewPropTypes)
   ),
@@ -42,6 +45,7 @@ const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps;
   return ({
     reviews: getReviews(state, id),
+    isFetching: state[NameSpace.DATA].isFetching,
   });
 };
 

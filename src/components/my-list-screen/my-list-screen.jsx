@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
+import ErrorPopup from "../error-popup/error-popup";
 import FilmList from "../film-list/film-list";
 import Logo from "../logo/logo";
 import Footer from "../footer/footer";
@@ -27,6 +28,7 @@ const MyListScreen = (props) => {
         <FilmListHOC films={filmsFavorite}/>
       </section>
       <Footer />
+      <ErrorPopup />
     </div>
   );
 };

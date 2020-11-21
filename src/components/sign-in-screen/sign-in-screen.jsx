@@ -2,6 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
+import ErrorPopup from "../error-popup/error-popup";
 import Logo from "../logo/logo";
 import Footer from "../footer/footer";
 import {login} from "../../store/api-actions/api-actions";
@@ -75,6 +76,7 @@ class SignInScreen extends PureComponent {
           </form>
         </div>
         <Footer />
+        <ErrorPopup />
       </div>
     );
   }

@@ -1,20 +1,13 @@
-import {MOVIES_INCREMENT_COUNT} from "../const";
+import {MOVIES_INCREMENT_COUNT, DEFAULT_ID} from "../const";
 
 export const ActionType = {
   CHANGE_ACTIVE_FILM_ID: `CHANGE_ACTIVE_FILM_ID`,
   CHANGE_ACTIVE_FILM_GENRE: `CHANGE_ACTIVE_FILM_GENRE`,
   CHANGE_TAB_GENRE: `CHANGE_TAB_GENRE`,
   CHANGE_ACTIVE_USER_DATA: `CHANGE_ACTIVE_USER_DATA`,
+  CHANGE_ACTIVE_TAB: `CHANGE_ACTIVE_TAB`,
   CHANGE_REVIEW_FORM_STATUS: `CHANGE_REVIEW_FORM_STATUS`,
   CHANGE_FETCHING_STATUS: `CHANGE_FETCHING_STATUS`,
-  ERROR_GET_FILM_LIST: `ERROR_GET_FILM_LIST`,
-  ERROR_GET_FILM_REVIEWS: `ERROR_GET_FILM_REVIEWS`,
-  ERROR_GET_FILM_PROMO: `ERROR_GET_FILM_PROMO`,
-  ERROR_GET_FILM_FAVORITES: `ERROR_GET_FILM_FAVORITES`,
-  ERROR_GET_FILM_AUTHORIZATION: `ERROR_GET_FILM_AUTHORIZATION`,
-  ERROR_POST_LOGIN: `ERROR_POST_LOGIN`,
-  ERROR_POST_FILM_REVIEW: `ERROR_POST_FILM_REVIEW`,
-  ERROR_POST_TO_FAVORITES: `ERROR_POST_TO_FAVORITES`,
   INCREMENT_MOVIE_CARDS_SHOWN_COUNT: `INCREMENT_MOVIE_CARDS_SHOWN_COUNT`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_FILMS_FAVORITE: `LOAD_FILMS_FAVORITE`,
@@ -23,6 +16,7 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   RESET_MOVIE_CARDS_SHOWN_COUNT: `RESET_MOVIE_CARDS_SHOWN_COUNT`,
+  RESET_ACTIVE_TAB: `RESET_ACTIVE_TAB`,
 };
 
 export const changeActiveFilmId = (id) => ({
@@ -33,6 +27,11 @@ export const changeActiveFilmId = (id) => ({
 export const changeActiveFilmIdGenre = (genre) => ({
   type: ActionType.CHANGE_ACTIVE_FILM_GENRE,
   payload: genre
+});
+
+export const changeActiveTab = (activeTabNumber) => ({
+  type: ActionType.CHANGE_ACTIVE_TAB,
+  payload: activeTabNumber
 });
 
 export const changeTabGenre = (genre) => ({
@@ -95,42 +94,7 @@ export const resetMovieCardsShownCount = () => ({
   payload: MOVIES_INCREMENT_COUNT,
 });
 
-export const throwErrorGetFilmList = (status) => ({
-  type: ActionType.ERROR_GET_FILM_LIST,
-  payload: status,
-});
-
-export const throwErrorGetFilmReviews = (status) => ({
-  type: ActionType.ERROR_GET_FILM_REVIEWS,
-  payload: status,
-});
-
-export const throwErrorGetFilmPromo = (status) => ({
-  type: ActionType.ERROR_GET_FILM_PROMO,
-  payload: status,
-});
-
-export const throwErrorGetFavorites = (status) => ({
-  type: ActionType.ERROR_GET_FILM_FAVORITES,
-  payload: status,
-});
-
-export const throwErrorGetAuthorization = (status) => ({
-  type: ActionType.ERROR_GET_FILM_AUTHORIZATION,
-  payload: status,
-});
-
-export const throwErrorPostLogin = (status) => ({
-  type: ActionType.ERROR_POST_LOGIN,
-  payload: status,
-});
-
-export const throwErrorPostFilmReview = (status) => ({
-  type: ActionType.ERROR_POST_FILM_REVIEW,
-  payload: status,
-});
-
-export const throwErrorPostToFavorites = (status) => ({
-  type: ActionType.ERROR_POST_TO_FAVORITES,
-  payload: status,
+export const resetActiveTab = () => ({
+  type: ActionType.RESET_ACTIVE_TAB,
+  payload: DEFAULT_ID
 });
