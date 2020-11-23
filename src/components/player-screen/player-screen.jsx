@@ -97,10 +97,10 @@ PlayerScreen.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps;
+  const idInteger = parseInt(id, 10);
   return ({
-    film: getFilm(state, +id),
+    film: getFilm(state, idInteger),
   });
 };
 
-export {PlayerScreen};
 export default connect(mapStateToProps)(PlayerScreen);

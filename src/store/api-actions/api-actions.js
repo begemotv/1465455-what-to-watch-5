@@ -73,7 +73,6 @@ export const postFilmReview = (id, comment, rating) => (dispatch, _getState, api
    .then(() => dispatch(redirectToRoute(`${ApiRoute.FILMS}${id}`)))
    .catch(() => {
      toast.error(ErrorMessage.POST_REVIEW_ERROR);
-     dispatch(redirectToRoute(`${ApiRoute.FILMS}${id}`));
    })
 );
 

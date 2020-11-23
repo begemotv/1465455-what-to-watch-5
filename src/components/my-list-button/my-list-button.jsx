@@ -37,9 +37,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onAddToFavorites(id, status) {
-    dispatch(addToFavorites(id, +status));
+    const statusInt = status ? 1 : 0;
+    dispatch(addToFavorites(id, statusInt));
   },
 });
 
-export {MyListButton};
 export default connect(mapStateToProps, mapDispatchToProps)(MyListButton);

@@ -33,6 +33,10 @@ const getActiveFilmIdGenre = (state) => {
   return state[NameSpace.OPERATIONS].activeFilmIdGenre;
 };
 
+const getFilmCardsShownCount = (state) => {
+  return state[NameSpace.OPERATIONS].filmCardsShownCount;
+};
+
 export const getFilmsByGenre = createSelector(getFilms, getActiveGenre, getActiveFilmId, (films, activeGenre, activeFilmId) => {
   let genreFilms = films.filter((item) => item.id !== activeFilmId);
 
@@ -64,4 +68,12 @@ export const getGenreList = createSelector(getFilms, (films) => {
   genreList.unshift(`All genres`);
 
   return genreList;
+});
+
+export const getFilmsToShow = createSelector(getFilmsByGenre, getFilmCardsShownCount, (filteredFilms, countToShow) => {
+  return filteredFilms.slice(0, countToShow);
+});
+
+export const getHasMoreFilmsStatus = createSelector(getFilmsByGenre, getFilmCardsShownCount, (filteredFilms, countToShow) => {
+  return filteredFilms.length > countToShow;
 });

@@ -36,7 +36,7 @@ export const HttpCode = {
   SERVER_ERROR: 500,
 };
 
-export const MOVIES_INCREMENT_COUNT = 8;
+export const FILMS_INCREMENT_COUNT = 8;
 
 export const DEFAULT_ID = 0;
 

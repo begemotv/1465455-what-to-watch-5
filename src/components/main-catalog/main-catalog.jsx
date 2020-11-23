@@ -5,24 +5,23 @@ import {connect} from "react-redux";
 import GenreList from "../genre-list/genre-list";
 import FilmList from "../film-list/film-list";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
-import {getFilmsByGenre} from "../../store/selectors";
+import {getFilmsToShow, getHasMoreFilmsStatus} from "../../store/selectors";
 import LoadMoreButton from "../load-more-button/load-more-button";
-import {incrementMovieCardsShownCount} from "../../store/action";
+import {incrementfilmCardsShownCount} from "../../store/action";
 import {filmPropTypes} from "../../prop-types";
 
 const FilmListHOC = withActiveItem(FilmList);
 
 const MainCatalog = (props) => {
-  const {filteredFilms, incrementCardCount, movieCardsShownCount} = props;
-  const shownFilms = filteredFilms.slice(0, movieCardsShownCount);
+  const {filmsToShow, hasMoreFilms, incrementCardCount} = props;
 
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
       <GenreList />
-      <FilmListHOC films={shownFilms} />
+      <FilmListHOC films={filmsToShow} />
       {
-        movieCardsShownCount <= filteredFilms.length
+        hasMoreFilms
           && <LoadMoreButton onShowMoreButtonClick={incrementCardCount} />
       }
     </section>
@@ -30,23 +29,22 @@ const MainCatalog = (props) => {
 };
 
 MainCatalog.propTypes = {
-  filteredFilms: PropTypes.arrayOf(
+  filmsToShow: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
+  hasMoreFilms: PropTypes.bool.isRequired,
   incrementCardCount: PropTypes.func.isRequired,
-  movieCardsShownCount: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = (state, {OPERATIONS} = state) => ({
-  filteredFilms: getFilmsByGenre(state),
-  movieCardsShownCount: OPERATIONS.movieCardsShownCount,
+const mapStateToProps = (state) => ({
+  filmsToShow: getFilmsToShow(state),
+  hasMoreFilms: getHasMoreFilmsStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   incrementCardCount() {
-    dispatch(incrementMovieCardsShownCount());
+    dispatch(incrementfilmCardsShownCount());
   },
 });
 
-export {MainCatalog};
 export default connect(mapStateToProps, mapDispatchToProps)(MainCatalog);

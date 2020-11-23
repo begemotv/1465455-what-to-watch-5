@@ -1,4 +1,4 @@
-import {MOVIES_INCREMENT_COUNT, DEFAULT_ID} from "../const";
+import {FILMS_INCREMENT_COUNT, DEFAULT_ID} from "../const";
 
 export const ActionType = {
   CHANGE_ACTIVE_FILM_ID: `CHANGE_ACTIVE_FILM_ID`,
@@ -8,14 +8,14 @@ export const ActionType = {
   CHANGE_ACTIVE_TAB: `CHANGE_ACTIVE_TAB`,
   CHANGE_REVIEW_FORM_STATUS: `CHANGE_REVIEW_FORM_STATUS`,
   CHANGE_FETCHING_STATUS: `CHANGE_FETCHING_STATUS`,
-  INCREMENT_MOVIE_CARDS_SHOWN_COUNT: `INCREMENT_MOVIE_CARDS_SHOWN_COUNT`,
+  INCREMENT_FILM_CARDS_SHOWN_COUNT: `INCREMENT_FILM_CARDS_SHOWN_COUNT`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_FILMS_FAVORITE: `LOAD_FILMS_FAVORITE`,
   LOAD_ACTIVE_FILM_DETAILS_PROMO: `LOAD_ACTIVE_FILM_DETAILS_PROMO`,
   LOAD_ACTIVE_FILM_REVIEWS: `LOAD_ACTIVE_FILM_REVIEWS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  RESET_MOVIE_CARDS_SHOWN_COUNT: `RESET_MOVIE_CARDS_SHOWN_COUNT`,
+  RESET_FILM_CARDS_SHOWN_COUNT: `RESET_FILM_CARDS_SHOWN_COUNT`,
   RESET_ACTIVE_TAB: `RESET_ACTIVE_TAB`,
 };
 
@@ -54,9 +54,9 @@ export const changeFetchingStatus = (status) => ({
   payload: status
 });
 
-export const incrementMovieCardsShownCount = () => ({
-  type: ActionType.INCREMENT_MOVIE_CARDS_SHOWN_COUNT,
-  payload: MOVIES_INCREMENT_COUNT
+export const incrementfilmCardsShownCount = () => ({
+  type: ActionType.INCREMENT_FILM_CARDS_SHOWN_COUNT,
+  payload: FILMS_INCREMENT_COUNT
 });
 
 export const loadFilms = (films) => ({
@@ -89,9 +89,9 @@ export const loadfilmPromo = (film) => ({
   payload: film,
 });
 
-export const resetMovieCardsShownCount = () => ({
-  type: ActionType.RESET_MOVIE_CARDS_SHOWN_COUNT,
-  payload: MOVIES_INCREMENT_COUNT,
+export const resetfilmCardsShownCount = () => ({
+  type: ActionType.RESET_FILM_CARDS_SHOWN_COUNT,
+  payload: FILMS_INCREMENT_COUNT,
 });
 
 export const resetActiveTab = () => ({

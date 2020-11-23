@@ -28,5 +28,4 @@ const mapStateToProps = ({USER}) => ({
   user: USER.activeUser,
 });
 
-export {Avatar};
 export default connect(mapStateToProps)(Avatar);

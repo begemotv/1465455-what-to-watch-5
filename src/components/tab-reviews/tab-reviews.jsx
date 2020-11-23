@@ -41,13 +41,9 @@ TabReviews.propTypes = {
   ),
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const {id} = ownProps;
-  return ({
-    reviews: getReviews(state, id),
-    isFetching: state[NameSpace.DATA].isFetching,
-  });
-};
+const mapStateToProps = (state) => ({
+  reviews: getReviews(state),
+  isFetching: state[NameSpace.DATA].isFetching,
+});
 
-export {TabReviews};
 export default connect(mapStateToProps)(TabReviews);

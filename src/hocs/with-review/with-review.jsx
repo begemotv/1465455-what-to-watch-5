@@ -26,9 +26,10 @@ const withReview = (Component) => {
 
     _handleRatingChange(evt) {
       const value = evt.target.value;
+      const valueInteger = parseInt(value, 10);
       this.setState(() => ({
         ratingStars: value,
-        rating: convertRatingStarsToNumber(+value)
+        rating: convertRatingStarsToNumber(valueInteger)
       }));
       this._handleValidationCheck();
     }

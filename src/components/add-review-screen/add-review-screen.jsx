@@ -74,8 +74,9 @@ AddReviewScreen.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps;
+  const idInteger = parseInt(id, 10);
   return ({
-    film: getFilm(state, +id),
+    film: getFilm(state, idInteger),
   });
 };
 
@@ -86,5 +87,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {AddReviewScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(AddReviewScreen);

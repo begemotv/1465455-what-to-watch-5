@@ -106,12 +106,13 @@ FilmScreen.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps;
+  const idInteger = parseInt(id, 10);
+
   return ({
     authorizationStatus: state[NameSpace.USER].authorizationStatus,
-    film: getFilm(state, +id),
+    film: getFilm(state, idInteger),
     moreLikeFilms: getMoreLikeFilms(state),
   });
 };
 
-export {FilmScreen};
 export default connect(mapStateToProps)(FilmScreen);

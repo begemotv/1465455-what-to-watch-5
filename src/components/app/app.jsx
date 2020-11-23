@@ -20,7 +20,7 @@ import {filmPropTypes} from "../../prop-types";
 const PlayerScreenHOC = withVideo(PlayerScreen);
 
 const App = (props) => {
-  const {authorizationStatus, promoFilm} = props;
+  const {authorizationStatus, films, promoFilm} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -55,6 +55,7 @@ const App = (props) => {
           render={({history, match}) => (
             <FilmScreen
               id={match.params.id}
+              film={films[match.params.id]}
               handlePlayButtonClick={(id) => history.push(`${AppRoute.PLAYER}${id}`)}
             />
           )}
@@ -89,12 +90,15 @@ const App = (props) => {
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   promoFilm: PropTypes.shape(filmPropTypes).isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ),
 };
 
 const mapStateToProps = ({DATA, USER}) => ({
   authorizationStatus: USER.authorizationStatus,
   promoFilm: DATA.filmPromo,
+  films: DATA.films,
 });
 
-export {App};
 export default connect(mapStateToProps)(App);

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import FilmCard from "../film-card/film-card";
-import {changeActiveFilmId, changeActiveFilmIdGenre, resetActiveTab} from "../../store/action";
+import {changeActiveFilmId, changeActiveFilmIdGenre, resetActiveTab, resetfilmCardsShownCount} from "../../store/action";
 import {filmPropTypes} from "../../prop-types";
 
 const FilmList = (props) => {
@@ -47,8 +47,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeActiveFilmId(id));
     dispatch(changeActiveFilmIdGenre(genre));
     dispatch(resetActiveTab());
+    dispatch(resetfilmCardsShownCount());
   },
 });
 
-export {FilmList};
 export default connect(null, mapDispatchToProps)(FilmList);

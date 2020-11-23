@@ -43,5 +43,4 @@ const mapStateToProps = ({USER}) => ({
   filmsFavorite: USER.filmsFavorite,
 });
 
-export {MyListScreen};
 export default connect(mapStateToProps)(MyListScreen);

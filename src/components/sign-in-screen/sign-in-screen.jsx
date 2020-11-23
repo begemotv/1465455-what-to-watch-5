@@ -14,10 +14,6 @@ class SignInScreen extends PureComponent {
     this.loginRef = createRef();
     this.passwordRef = createRef();
 
-    this.state = {
-      isValid: true,
-    };
-
     this.handleSubmit = this._handleSubmit.bind(this);
   }
 
@@ -25,7 +21,6 @@ class SignInScreen extends PureComponent {
     const {onSubmit} = this.props;
     evt.preventDefault();
 
-    this.setState({isValid: true});
     onSubmit({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,

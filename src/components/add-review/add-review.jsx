@@ -93,5 +93,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {AddReview};
 export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
