@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 
 import App from "./components/app/app";
+import ErrorServer from "../src/components/error-server/error-server";
 import rootReducer from "./store/reducers";
 import {requireAuthorization} from "./store/action";
 import {fetchFilmList, fetchPromoFilm, checkAuth} from "./store/api-actions/api-actions";
@@ -35,6 +36,12 @@ Promise.all([
         <Provider store={store}>
           <App />
         </Provider>,
+        document.querySelector(`#root`)
+    );
+  })
+  .catch(() => {
+    ReactDOM.render(
+        <ErrorServer />,
         document.querySelector(`#root`)
     );
   });

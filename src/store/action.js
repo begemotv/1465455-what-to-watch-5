@@ -24,7 +24,7 @@ export const changeActiveFilmId = (id) => ({
   payload: id,
 });
 
-export const changeActiveFilmIdGenre = (genre) => ({
+export const changeActiveFilmGenre = (genre) => ({
   type: ActionType.CHANGE_ACTIVE_FILM_GENRE,
   payload: genre
 });

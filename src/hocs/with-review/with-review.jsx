@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import {convertRatingStarsToNumber} from "../../utils";
 import {ReviewLength} from "../../const";
 
-const RATING_STARS_COUNT_DEFAULT = `5`;
 const {MIN, MAX} = ReviewLength;
 
 const withReview = (Component) => {
@@ -15,8 +14,7 @@ const withReview = (Component) => {
       this.state = {
         comment: ``,
         rating: null,
-        ratingStars: RATING_STARS_COUNT_DEFAULT,
-        isReviewValid: false,
+        ratingStars: ``,
       };
 
       this.handleRatingChange = this._handleRatingChange.bind(this);
@@ -31,7 +29,6 @@ const withReview = (Component) => {
         ratingStars: value,
         rating: convertRatingStarsToNumber(valueInteger)
       }));
-      this._handleValidationCheck();
     }
 
     _handleCommentChange(evt) {
@@ -39,7 +36,6 @@ const withReview = (Component) => {
       this.setState(() => ({
         comment: value
       }));
-      this._handleValidationCheck();
     }
 
     _handleReviewAdd(evt) {
@@ -49,21 +45,9 @@ const withReview = (Component) => {
       onReviewAdd(id, comment, rating);
     }
 
-    _handleValidationCheck() {
-      const {comment, rating} = this.state;
-      if ((comment.length > MIN && comment.length < MAX) && rating) {
-        this.setState(() => ({
-          isReviewValid: true
-        }));
-      } else {
-        this.setState(() => ({
-          isReviewValid: false
-        }));
-      }
-    }
-
     render() {
-      const {comment, isReviewValid, ratingStars} = this.state;
+      const {comment, ratingStars} = this.state;
+      const isReviewValid = (comment.length > MIN && comment.length < MAX) && ratingStars;
 
       return (
         <Component

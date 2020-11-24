@@ -19,6 +19,8 @@ const AddReview = (props) => {
     ratingStars,
   } = props;
 
+  console.log(ratingStars)
+
   return (
     <div className="add-review">
       <form
@@ -36,11 +38,11 @@ const AddReview = (props) => {
                   type="radio"
                   name="rating"
                   value={star}
-                  onChange={onRatingChange}
+                  onChange={(evt) => onRatingChange(evt)}
                   checked={ratingStars === star}
                   disabled={isReviewFormBlocked}
                 />
-                <label className="rating__label" htmlFor={`star-${star}`}>Rating {star}</label>
+                <label className="rating__label" htmlFor={`star-${star}`}>{`Rating ${star} stars`}</label>
               </React.Fragment>
             ))}
           </div>
@@ -55,7 +57,7 @@ const AddReview = (props) => {
             name="review-text"
             id="review-text"
             placeholder="Please write in the range from 50 to 400 characters"
-            onChange={onCommentChange}
+            onChange={(evt) => onCommentChange(evt)}
             value={comment}
             disabled={isReviewFormBlocked}
           />
