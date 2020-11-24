@@ -19,8 +19,6 @@ const AddReview = (props) => {
     ratingStars,
   } = props;
 
-  console.log(ratingStars)
-
   return (
     <div className="add-review">
       <form
