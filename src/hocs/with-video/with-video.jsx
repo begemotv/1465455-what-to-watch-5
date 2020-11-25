@@ -104,16 +104,18 @@ const withVideo = (Component) => {
     }
 
     render() {
+      const {duration, isLoading, isPlaying, progress, timeElapsed} = this.state;
+
       return (
         <Component
           {...this.props}
-          duration={this.state.duration}
-          isLoading={this.state.isLoading}
-          isPlaying={this.state.isPlaying}
+          duration={duration}
+          isLoading={isLoading}
+          isPlaying={isPlaying}
           onVideoStatusChange={this.handleVideoStatusChange}
           onScreenModeChange={this.handleScreenModeChange}
-          progress={this.state.progress}
-          timeElapsed={this.state.timeElapsed}
+          progress={progress}
+          timeElapsed={timeElapsed}
           videoRef={this._videoRef}
         />
       );

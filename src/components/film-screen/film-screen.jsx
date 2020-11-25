@@ -1,130 +1,140 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
-import {filmPropTypes, reviewPropTypes} from "../../prop-types";
-import Logo from "../logo/logo";
+import ErrorPopup from "../error-popup/error-popup";
+import FilmList from "../film-list/film-list";
 import Footer from "../footer/footer";
-import AvatarOrSignIn from "../avatar-or-sign-in/avatar-or-sign-in";
+import Header from "../header/header";
+import MyListButton from "../my-list-button/my-list-button";
+import PlayButton from "../play-button/play-button";
 import TabBar from "../tab-bar/tab-bar";
-import MoreLikeThisFilms from "../more-like-this-films/more-like-this-films";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
-import {AppRoute} from "../../const";
+import {AppRoute, AuthorizationStatus} from "../../const";
+import {filmPropTypes} from "../../prop-types";
+import {getMoreLikeFilms, getFilm} from "../../store/selectors";
+import {NameSpace} from "../../store/reducers";
+import {changeActiveFilmId, changeActiveFilmGenre} from "../../store/action";
 
-const TabBarHOC = withActiveItem(TabBar);
-const MoreLikeThisFilmsHOC = withActiveItem(MoreLikeThisFilms);
+const FilmListHOC = withActiveItem(FilmList);
 
-const findReviews = (reviews, filmName) => {
-  const reviewsFilm = reviews.find((value) => value.name === filmName);
-  return reviewsFilm;
-};
+class FilmScreen extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-const FilmScreen = (props) => {
-  const {
-    film: {
-      backgroundColor,
-      backgroundImage,
-      genre,
-      id,
-      name,
-      poster,
-      releaseYear
-    },
-    film,
-    handleMyListBtnClick,
-    handlePlayBtnClick,
-    reviews
-  } = props;
+  componentDidMount() {
+    if (this.props.moreLikeFilms.length === 0) {
+      const {changeActiveFilmAction, film: {genre, id}} = this.props;
+      changeActiveFilmAction(id, genre);
+    }
+  }
 
-  const reviewsFilm = findReviews(reviews, name);
+  render() {
+    const {
+      authorizationStatus,
+      film: {
+        backgroundColor,
+        backgroundImage,
+        genre,
+        id,
+        name,
+        poster,
+        releaseYear
+      },
+      film,
+      handlePlayButtonClick,
+      moreLikeFilms,
+    } = this.props;
 
-  return (
-    <React.Fragment>
-      <section
-        className="movie-card movie-card--full"
-        style={{backgroundColor: `${backgroundColor}`}}
-      >
-        <div className="movie-card__hero">
-          <div className="movie-card__bg">
-            <img src={backgroundImage} alt={name} />
-          </div>
-          <h1 className="visually-hidden">WTW</h1>
+    return (
+      <React.Fragment>
+        <section
+          className="movie-card movie-card--full"
+          style={{backgroundColor: `${backgroundColor}`}}
+        >
+          <div className="movie-card__hero">
+            <div className="movie-card__bg">
+              <img src={backgroundImage} alt={name} />
+            </div>
+            <h1 className="visually-hidden">WTW</h1>
+            <Header />
+            <div className="movie-card__wrap">
+              <div className="movie-card__desc">
+                <h2 className="movie-card__title">{name}</h2>
+                <p className="movie-card__meta">
+                  <span className="movie-card__genre">{genre}</span>
+                  <span className="movie-card__year">{releaseYear}</span>
+                </p>
 
-          <header className="page-header movie-card__head">
-            <Logo linkClassName={`logo__link`}/>
-            <AvatarOrSignIn />
-          </header>
-
-          <div className="movie-card__wrap">
-            <div className="movie-card__desc">
-              <h2 className="movie-card__title">{name}</h2>
-              <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{releaseYear}</span>
-              </p>
-
-              <div className="movie-card__buttons">
-                <button
-                  className="btn btn--play movie-card__button"
-                  type="button"
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    handlePlayBtnClick(id);
-                  }}
-                >
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button
-                  className="btn btn--list movie-card__button"
-                  type="button"
-                  onClick={handleMyListBtnClick}
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <Link to={AppRoute.FILMS + id + AppRoute.REVIEW} className="btn movie-card__button">Add review</Link>
+                <div className="movie-card__buttons">
+                  <PlayButton id={id} onPlayButtonClick={handlePlayButtonClick} />
+                  <MyListButton id={id} />
+                  {
+                    authorizationStatus === AuthorizationStatus.AUTH
+                      && <Link to={`${AppRoute.FILMS}${id}${AppRoute.REVIEW}`} className="btn movie-card__button">Add review</Link>
+                  }
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="movie-card__wrap movie-card__translate-top">
-          <div className="movie-card__info">
-            <div className="movie-card__poster movie-card__poster--big">
-              <img
-                src={poster}
-                alt={`${name} poster`}
-                width="218" height="327" />
-            </div>
+          <div className="movie-card__wrap movie-card__translate-top">
+            <div className="movie-card__info">
+              <div className="movie-card__poster movie-card__poster--big">
+                <img
+                  src={poster}
+                  alt={`${name} poster`}
+                  width="218" height="327" />
+              </div>
 
-            <div className="movie-card__desc">
-              <TabBarHOC film={film} reviewsFilm={reviewsFilm}/>
+              <div className="movie-card__desc">
+                <TabBar film={film} />
+              </div>
             </div>
           </div>
+        </section>
+
+        <div className="page-content">
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
+            <FilmListHOC films={moreLikeFilms}/>
+          </section>
+          <Footer />
         </div>
-      </section>
-
-
-      <div className="page-content">
-        <MoreLikeThisFilmsHOC />
-        <Footer />
-      </div>
-    </React.Fragment>
-  );
-};
+        <ErrorPopup />
+      </React.Fragment>
+    );
+  }
+}
 
 FilmScreen.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  changeActiveFilmAction: PropTypes.func.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
-  handlePlayBtnClick: PropTypes.func.isRequired,
-  handleMyListBtnClick: PropTypes.func.isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewPropTypes)
-  ).isRequired,
+  handlePlayButtonClick: PropTypes.func.isRequired,
+  moreLikeFilms: PropTypes.arrayOf(
+      PropTypes.shape(filmPropTypes)
+  ),
 };
 
-export default FilmScreen;
+const mapStateToProps = (state, ownProps) => {
+  const {id} = ownProps;
+  const idInteger = Number.parseInt(id, 10);
+
+  return ({
+    authorizationStatus: state[NameSpace.USER].authorizationStatus,
+    film: getFilm(state, idInteger),
+    moreLikeFilms: getMoreLikeFilms(state),
+  });
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  changeActiveFilmAction(id, genre) {
+    dispatch(changeActiveFilmId(id));
+    dispatch(changeActiveFilmGenre(genre));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilmScreen);

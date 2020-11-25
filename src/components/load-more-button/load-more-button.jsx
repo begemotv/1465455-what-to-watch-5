@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const LoadMoreButton = (props) => {
   const {onShowMoreButtonClick} = props;
+
   return (
     <div className="catalog__more">
       <button

@@ -20,11 +20,15 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                 },
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
             }
         ],
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', `.css`]
     },
     devtool: 'source-map',
 };

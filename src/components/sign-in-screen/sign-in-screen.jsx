@@ -1,6 +1,8 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+
+import ErrorPopup from "../error-popup/error-popup";
 import Logo from "../logo/logo";
 import Footer from "../footer/footer";
 import {login} from "../../store/api-actions/api-actions";
@@ -17,7 +19,6 @@ class SignInScreen extends PureComponent {
 
   _handleSubmit(evt) {
     const {onSubmit} = this.props;
-
     evt.preventDefault();
 
     onSubmit({
@@ -70,9 +71,11 @@ class SignInScreen extends PureComponent {
           </form>
         </div>
         <Footer />
+        <ErrorPopup />
       </div>
     );
   }
+
 }
 
 SignInScreen.propTypes = {
@@ -85,5 +88,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export {SignInScreen};
 export default connect(null, mapDispatchToProps)(SignInScreen);

@@ -1,25 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Router as BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router as BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
-import {filmPropTypes, reviewPropTypes} from "../../prop-types";
-import MainScreen from "../main-screen/main-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
+import ErrorServer from "../error-server/error-server";
+import ErrorNotFound from "../error-not-found/error-not-found";
 import FilmScreen from "../film-screen/film-screen";
+import MainScreen from "../main-screen/main-screen";
 import MyListScreen from "../my-list-screen/my-list-screen";
 import PlayerScreen from "../player-screen/player-screen";
-import SignInScreen from "../sign-in-screen/sign-in-screen";
 import PrivateRoute from "../private-route/private-route";
-import withVideo from "../../hocs/with-video/with-video";
-import {getFilms, getReviews} from "../../store/selectors";
-import {AppRoute} from "../../const";
+import SignInScreen from "../sign-in-screen/sign-in-screen";
 import browserHistory from "../../browser-history";
+import withVideo from "../../hocs/with-video/with-video";
+import {AppRoute, AuthorizationStatus} from "../../const";
+import {filmPropTypes} from "../../prop-types";
 
 const PlayerScreenHOC = withVideo(PlayerScreen);
 
 const App = (props) => {
-  const {films, reviews} = props;
+  const {authorizationStatus, films, promoFilm} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -29,35 +30,33 @@ const App = (props) => {
           path={AppRoute.ROOT}
           render={({history}) => (
             <MainScreen
-              film={films[0]}
-              films={films}
-              handlePlayBtnClick={(id) => history.push(AppRoute.PLAYER + id)}
-              handleMyListBtnClick={() => history.push(AppRoute.MYLIST)}
+              film={promoFilm}
+              handlePlayButtonClick={(id) => history.push(`${AppRoute.PLAYER}${id}`)}
             />
           )}>
         </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <SignInScreen />
+        <Route
+          exact
+          path={AppRoute.LOGIN}>
+          {authorizationStatus === AuthorizationStatus.AUTH
+            ? <Redirect to={AppRoute.ROOT} />
+            : <SignInScreen />}
         </Route>
         <PrivateRoute
           exact
           path={AppRoute.MYLIST}
-          render={() => {
-            return (
-              <MyListScreen films={films} />
-            );
-          }}
-        />
+          render={() => (
+            <MyListScreen />
+          )}>
+        </PrivateRoute>
         <Route
           exact
           path={AppRoute.FILMS_ID}
           render={({history, match}) => (
             <FilmScreen
-              films={films}
-              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
-              handlePlayBtnClick={(id) => history.push(AppRoute.PLAYER + id)}
-              handleMyListBtnClick={() => history.push(AppRoute.MYLIST)}
-              reviews={reviews}
+              id={match.params.id}
+              film={films[match.params.id]}
+              handlePlayButtonClick={(id) => history.push(`${AppRoute.PLAYER}${id}`)}
             />
           )}
         >
@@ -66,40 +65,40 @@ const App = (props) => {
           exact
           path={AppRoute.FILMS_ID_REVIEW}
           render={({match}) => (
-            <AddReviewScreen
-              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
-              onCommentAdd={() => {}}
-            />
-          )}
-        />
+            <AddReviewScreen id={match.params.id}/>
+          )}>
+        </PrivateRoute>
         <Route
           exact
           path={AppRoute.PLAYER_ID}
           render={({match}) => (
-            <PlayerScreenHOC
-              film={films[films.findIndex((film) => match.params.id === film.id.toString())]}
-            />
+            <PlayerScreenHOC id={match.params.id} />
           )}
         >
         </Route>
+        <Route
+          exact
+          path={AppRoute.SERVER_ERROR}>
+          <ErrorServer />
+        </Route>
+        <Route component={ErrorNotFound} />
       </Switch>
     </BrowserRouter>
   );
 };
 
 App.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  promoFilm: PropTypes.shape(filmPropTypes).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
-  ).isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewPropTypes)
-  ).isRequired
+  ),
 };
 
-const mapStateToProps = (state) => ({
-  films: getFilms(state),
-  reviews: getReviews(state),
+const mapStateToProps = ({DATA, USER}) => ({
+  authorizationStatus: USER.authorizationStatus,
+  promoFilm: DATA.filmPromo,
+  films: DATA.films,
 });
 
-export {App};
 export default connect(mapStateToProps)(App);

@@ -1,20 +1,24 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
-import {filmPropTypes, reviewPropTypes} from "../../prop-types";
 import TabOverview from "../tab-overview/tab-overview";
 import TabDetails from "../tab-details/tab-details";
 import TabReviews from "../tab-reviews/tab-reviews";
+import {filmPropTypes} from "../../prop-types";
+import {fetchFilmReviews} from "../../store/api-actions/api-actions";
+import {changeActiveTab} from "../../store/action";
+
 
 const TAB_NAMES = [`Overview`, `Details`, `Reviews`];
 
 const TabBar = (props) => {
   const {
-    activeItem,
+    activeTab,
     film,
-    onItemInteraction,
-    reviewsFilm
+    getActiveReviews,
+    changeActiveTabAction,
   } = props;
 
   return (
@@ -24,13 +28,14 @@ const TabBar = (props) => {
           {TAB_NAMES.map((tab, i) => (
             <li
               key={i}
-              className={`movie-nav__item ${i === activeItem ? `movie-nav__item--active` : ``}`}>
+              className={`movie-nav__item ${i === activeTab && `movie-nav__item--active`}`}>
               <Link
                 to="#"
                 className="movie-nav__link"
                 onClick={(evt) => {
                   evt.preventDefault();
-                  onItemInteraction(i);
+                  changeActiveTabAction(i);
+                  getActiveReviews(film.id);
                 }}
               >{tab}</Link>
             </li>
@@ -38,14 +43,14 @@ const TabBar = (props) => {
         </ul>
       </nav>
       <div>
-        {activeItem === 0 &&
+        {activeTab === 0 &&
             <TabOverview film={film}/>
         }
-        {activeItem === 1 &&
+        {activeTab === 1 &&
             <TabDetails film={film}/>
         }
-        {activeItem === 2 &&
-            <TabReviews reviewsFilm={reviewsFilm}/>
+        {activeTab === 2 &&
+            <TabReviews id={film.id}/>
         }
       </div>
     </React.Fragment>
@@ -53,11 +58,23 @@ const TabBar = (props) => {
 };
 
 TabBar.propTypes = {
-  activeItem: PropTypes.number.isRequired,
+  activeTab: PropTypes.number.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
-  onItemInteraction: PropTypes.func.isRequired,
-  reviewsFilm: PropTypes.shape(reviewPropTypes).isRequired
+  changeActiveTabAction: PropTypes.func.isRequired,
+  getActiveReviews: PropTypes.func.isRequired,
 };
 
-export default TabBar;
+const mapStateToProps = ({OPERATIONS}) => ({
+  activeTab: OPERATIONS.activeTab,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  getActiveReviews(id) {
+    dispatch(fetchFilmReviews(id));
+  },
+  changeActiveTabAction(i) {
+    dispatch(changeActiveTab(i));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TabBar);
