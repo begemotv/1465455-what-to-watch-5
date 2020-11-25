@@ -70,9 +70,11 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 export const postFilmReview = (id, comment, rating) => (dispatch, _getState, api) => (
   api.post(`${ApiRoute.COMMENTS}${id}`, {rating, comment})
    .then(() => dispatch(changeReviewFormStatus(false)))
+   .then(() => dispatch(fetchFilmReviews(id)))
    .then(() => dispatch(redirectToRoute(`${ApiRoute.FILMS}${id}`)))
    .catch(() => {
      toast.error(ErrorMessage.POST_REVIEW_ERROR);
+     dispatch(changeReviewFormStatus(false));
    })
 );
 

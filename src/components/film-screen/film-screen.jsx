@@ -121,7 +121,7 @@ FilmScreen.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps;
-  const idInteger = parseInt(id, 10);
+  const idInteger = Number.parseInt(id, 10);
 
   return ({
     authorizationStatus: state[NameSpace.USER].authorizationStatus,
