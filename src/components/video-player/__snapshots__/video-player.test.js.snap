@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayer renders correctly 1`] = `
+<video
+  className="player__video"
+  loop={true}
+  muted={true}
+  poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
+  src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
+/>
+`;

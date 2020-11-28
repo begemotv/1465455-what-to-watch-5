@@ -46,4 +46,5 @@ const mapStateToProps = (state) => ({
   isFetching: state[NameSpace.DATA].isFetching,
 });
 
+export {TabReviews};
 export default connect(mapStateToProps)(TabReviews);

@@ -88,4 +88,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {SignInScreen};
 export default connect(null, mapDispatchToProps)(SignInScreen);

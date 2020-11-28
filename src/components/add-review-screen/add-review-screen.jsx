@@ -87,4 +87,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {AddReviewScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(AddReviewScreen);

@@ -69,3 +69,5 @@ export const convertRunTime = (minutes) => {
 export const convertRatingStarsToNumber = (ratingStars) => {
   return ratingStars * 2;
 };
+
+export const noop = () => {};

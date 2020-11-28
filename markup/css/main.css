@@ -1095,32 +1095,38 @@ main {
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 15px; }
+          justify-content: row-reverse;
+  margin-bottom: 15px;
+}
 
 .rating__input {
-  display: none; }
-  .rating__input:checked ~ .rating__label::after {
-    color: rgba(56, 44, 42, 0.36); }
-  .rating__input:checked + .rating__label::after {
-    color: rgba(56, 44, 42, 0.7); }
+  display: none;
+}
+
+.rating__input:checked ~ .rating__label::after,
+.rating__input:focus ~ .rating__label::after,
+.rating__input:hover .rating__label::after,
+.rating__input:hover ~ .rating__label::after {
+  color: rgba(56, 44, 42, 0.7);
+}
 
 .rating__label {
   font-size: 0;
   line-height: 0;
   display: block;
   padding-right: 10px;
-  cursor: pointer; }
-  .rating__label:last-child {
-    padding-right: 0; }
-  .rating__label::after {
-    content: '★';
-    display: block;
-    font-size: 32px;
-    line-height: 36px;
-    color: rgba(56, 44, 42, 0.7);
-    -webkit-transition: color 0.2s;
-    transition: color 0.2s; }
+  cursor: pointer;
+}
+
+.rating__label::after {
+  content: '★';
+  display: block;
+  font-size: 32px;
+  line-height: 36px;
+  color: rgba(56, 44, 42, 0.36);
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+}
 
 .review {
   border-bottom: 2px solid #E8C3C4;
