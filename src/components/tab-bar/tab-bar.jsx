@@ -76,4 +76,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {TabBar};
 export default connect(mapStateToProps, mapDispatchToProps)(TabBar);

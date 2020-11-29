@@ -13,6 +13,17 @@ Array [
         href="/"
         onClick={[Function]}
       >
+        All genres
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+    >
+      <a
+        className="catalog__genres-link"
+        href="/"
+        onClick={[Function]}
+      >
         Action
       </a>
     </li>

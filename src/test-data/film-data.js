@@ -1,3 +1,5 @@
+import React from "react";
+
 export const filmMock = {
   backgroundColor: `#73B39A`,
   backgroundImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg`,
@@ -273,3 +275,19 @@ export const reviewsMock = [
       name: `Max`},
   }
 ];
+
+export const commentMock = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor nisl eros, hendrerit auctor quam lobortis ut. Praesent magna odio, iaculis et mauris vel, tincidunt vulputate magna.`;
+
+export const ratingMock = `3`;
+
+export const activeGenreMock = `All genres`;
+
+export const genreListMock = [`All genres`, `Action`, `Drama`, `Comedy`, `Thriller`, `Horror`];
+
+export const durationMock = 65;
+
+export const progressMock = 35;
+
+export const timeElapsedMock = `00:01:09`;
+
+export const refMock = React.createRef();

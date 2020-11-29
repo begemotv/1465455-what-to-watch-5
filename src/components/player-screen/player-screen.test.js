@@ -2,13 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import {PlayerScreen} from "./player-screen";
-import {filmMock} from "../../test-data/film-data";
+import {filmMock, durationMock, progressMock, timeElapsedMock, refMock} from "../../test-data/film-data";
 import {noop} from "../../utils";
-
-const durationMock = 65;
-const progressMock = 35;
-const timeElapsedMock = `00:01:09`;
-const refMock = React.createRef();
 
 describe(`PlayerScreen renders correctly`, () => {
   it(`renders when playing`, () => {

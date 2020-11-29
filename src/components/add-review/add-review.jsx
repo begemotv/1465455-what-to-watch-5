@@ -13,9 +13,9 @@ const AddReview = (props) => {
     comment,
     isReviewFormBlocked,
     isReviewValid,
+    onCommentChange,
     onFormSubmit,
     onRatingChange,
-    onCommentChange,
     ratingStars,
   } = props;
 
@@ -93,4 +93,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {AddReview};
 export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

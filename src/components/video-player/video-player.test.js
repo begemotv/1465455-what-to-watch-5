@@ -2,9 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import VideoPlayer from "./video-player";
-import {filmMock} from "../../test-data/film-data";
-
-const refMock = React.createRef();
+import {filmMock, refMock} from "../../test-data/film-data";
 
 test(`VideoPlayer renders correctly`, () => {
   const tree = renderer

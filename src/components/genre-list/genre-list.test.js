@@ -4,9 +4,7 @@ import {MemoryRouter} from "react-router-dom";
 
 import {GenreList} from "./genre-list";
 import {noop} from "../../utils";
-
-const activeGenreMock = `Action`;
-const genreListMock = [`Action`, `Drama`, `Comedy`, `Thriller`, `Horror`];
+import {activeGenreMock, genreListMock} from "../../test-data/film-data";
 
 test(`GenreList renders correctly`, () => {
   const tree = renderer
