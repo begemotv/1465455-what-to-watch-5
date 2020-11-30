@@ -40,3 +40,10 @@ export const userPropTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
 };
+
+export const hocChildrenPropTypesMock = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+};

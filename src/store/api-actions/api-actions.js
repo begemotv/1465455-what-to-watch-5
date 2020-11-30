@@ -7,7 +7,7 @@ import {ApiRoute, AppRoute, AuthorizationStatus, ErrorMessage} from "../../const
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(ApiRoute.FILMS)
     .then(({data}) => {
-      const adaptedFilms = data.map((film) => adaptFilmToClient(film));
+      const adaptedFilms = data.map(adaptFilmToClient);
       dispatch(loadFilms(adaptedFilms));
     })
     .catch(() => dispatch(redirectToRoute(AppRoute.SERVER_ERROR)))
@@ -20,7 +20,7 @@ export const fetchFilmReviews = (id) => (dispatch, _getState, api) => (
       return data;
     })
     .then(({data}) => {
-      const adaptedReviews = data.map((review) => adaptReviewToClient(review));
+      const adaptedReviews = data.map(adaptReviewToClient);
       dispatch(loadfilmReviews(adaptedReviews));
     })
     .then(() => dispatch(changeFetchingStatus(false)))
@@ -43,7 +43,7 @@ export const fetchPromoFilm = () => (dispatch, _getState, api) => (
 export const fetchFavoriteFilmList = () => (dispatch, _getState, api) => (
   api.get(ApiRoute.FAVORITE)
     .then(({data}) => {
-      const adaptedFilmsFavorite = data.map((film) => adaptFilmToClient(film));
+      const adaptedFilmsFavorite = data.map(adaptFilmToClient);
       dispatch(loadFilmsFavorite(adaptedFilmsFavorite));
     })
     .catch(() => dispatch(redirectToRoute(AppRoute.SERVER_ERROR)))

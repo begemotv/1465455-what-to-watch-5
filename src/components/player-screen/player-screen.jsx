@@ -103,4 +103,5 @@ const mapStateToProps = (state, ownProps) => {
   });
 };
 
+export {PlayerScreen};
 export default connect(mapStateToProps)(PlayerScreen);

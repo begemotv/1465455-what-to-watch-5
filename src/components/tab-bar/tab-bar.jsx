@@ -10,7 +10,6 @@ import {filmPropTypes} from "../../prop-types";
 import {fetchFilmReviews} from "../../store/api-actions/api-actions";
 import {changeActiveTab} from "../../store/action";
 
-
 const TAB_NAMES = [`Overview`, `Details`, `Reviews`];
 
 const TabBar = (props) => {
@@ -77,4 +76,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {TabBar};
 export default connect(mapStateToProps, mapDispatchToProps)(TabBar);

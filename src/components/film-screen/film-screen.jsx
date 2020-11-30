@@ -137,4 +137,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {FilmScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(FilmScreen);
