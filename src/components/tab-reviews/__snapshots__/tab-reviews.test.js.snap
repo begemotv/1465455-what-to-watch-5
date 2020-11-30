@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabReviews renders correctly renders when fetched 1`] = `
+exports[`TabReviews renders when fetched 1`] = `
 <div
   className="movie-card__reviews movie-card__row"
 >
@@ -110,7 +110,7 @@ exports[`TabReviews renders correctly renders when fetched 1`] = `
 </div>
 `;
 
-exports[`TabReviews renders correctly renders when fetching 1`] = `
+exports[`TabReviews renders when fetching 1`] = `
 <div
   style={
     Object {

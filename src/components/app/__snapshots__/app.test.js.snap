@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders correctly renders with authorization 1`] = `
+exports[`App renders with authorization 1`] = `
 Array [
   <section
     className="movie-card"
@@ -496,7 +496,7 @@ Array [
 ]
 `;
 
-exports[`App renders correctly renders without authorization 1`] = `
+exports[`App renders without authorization 1`] = `
 Array [
   <section
     className="movie-card"

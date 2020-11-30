@@ -13,11 +13,8 @@ import PlayerScreen from "../player-screen/player-screen";
 import PrivateRoute from "../private-route/private-route";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
 import browserHistory from "../../browser-history";
-import withVideo from "../../hocs/with-video/with-video";
 import {AppRoute, AuthorizationStatus} from "../../const";
 import {filmPropTypes} from "../../prop-types";
-
-const PlayerScreenHOC = withVideo(PlayerScreen);
 
 const App = (props) => {
   const {authorizationStatus, films, promoFilm} = props;
@@ -72,7 +69,7 @@ const App = (props) => {
           exact
           path={AppRoute.PLAYER_ID}
           render={({match}) => (
-            <PlayerScreenHOC id={match.params.id} />
+            <PlayerScreen id={match.params.id} />
           )}
         >
         </Route>

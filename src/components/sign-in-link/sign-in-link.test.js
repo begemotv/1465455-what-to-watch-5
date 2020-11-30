@@ -4,7 +4,7 @@ import {MemoryRouter} from "react-router-dom";
 
 import SignInLink from "./sign-in-link";
 
-test(`Avatar renders correctly`, () => {
+test(`SignInLink renders correctly`, () => {
   const tree = renderer
     .create(
         <MemoryRouter >

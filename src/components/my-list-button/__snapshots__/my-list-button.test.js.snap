@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MyListButton renders correctly renders with added to favourites 1`] = `
+exports[`MyListButton renders with added to favourites 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}
@@ -21,7 +21,7 @@ exports[`MyListButton renders correctly renders with added to favourites 1`] = `
 </button>
 `;
 
-exports[`MyListButton renders correctly renders without added to favourites 1`] = `
+exports[`MyListButton renders without added to favourites 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}

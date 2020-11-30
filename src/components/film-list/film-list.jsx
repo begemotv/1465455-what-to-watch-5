@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
@@ -7,12 +7,19 @@ import {changeActiveFilmId, changeActiveFilmGenre, resetActiveTab, resetfilmCard
 import {filmPropTypes} from "../../prop-types";
 
 const FilmList = (props) => {
+  const [activeItem, setActiveItem] = useState(0);
+
+  const handleActiveItemChange = (id) => {
+    setActiveItem(id);
+  };
+
+  const handleActiveItemRemove = () => {
+    setActiveItem(0);
+  };
+
   const {
-    activeItem,
     films,
     changeActiveFilmAction,
-    onItemInteraction,
-    onItemInteractionEnd
   } = props;
 
   return (
@@ -23,8 +30,8 @@ const FilmList = (props) => {
             key={film.id}
             film={film}
             onCardClick={() => changeActiveFilmAction(film.id, film.genre)}
-            onItemInteraction={onItemInteraction}
-            onItemInteractionEnd={onItemInteractionEnd}
+            onItemInteraction={handleActiveItemChange}
+            onItemInteractionEnd={handleActiveItemRemove}
             isCardActive={film.id === activeItem}
           />)}
       </div>
@@ -33,13 +40,10 @@ const FilmList = (props) => {
 };
 
 FilmList.propTypes = {
-  activeItem: PropTypes.number.isRequired,
   changeActiveFilmAction: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired,
-  onItemInteraction: PropTypes.func.isRequired,
-  onItemInteractionEnd: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

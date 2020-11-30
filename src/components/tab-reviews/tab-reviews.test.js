@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 import {TabReviews} from "./tab-reviews";
 import {reviewsMock} from "../../test-data/film-data";
 
-describe(`TabReviews renders correctly`, () => {
+describe(`TabReviews`, () => {
   it(`renders when fetching`, () => {
     const tree = renderer
     .create(

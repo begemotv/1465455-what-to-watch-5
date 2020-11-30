@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header renders correctly renders with authorization 1`] = `
+exports[`Header renders with authorization 1`] = `
 <header
   className="page-header movie-card__head"
 >
@@ -51,7 +51,7 @@ exports[`Header renders correctly renders with authorization 1`] = `
 </header>
 `;
 
-exports[`Header renders correctly renders without authorization 1`] = `
+exports[`Header renders without authorization 1`] = `
 <header
   className="page-header movie-card__head"
 >

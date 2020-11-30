@@ -16,8 +16,8 @@ test(`FilmList renders correctly`, () => {
             activeItem={activeItemMock}
             films={filmsMock}
             changeActiveFilmAction={noop}
-            onItemInteraction={noop}
-            onItemInteractionEnd={noop}
+            handleActiveItemChange={noop}
+            handleActiveItemRemove={noop}
           />
         </MemoryRouter>
         , {

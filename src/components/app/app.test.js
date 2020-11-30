@@ -7,7 +7,7 @@ import App from "./app";
 import {storeMock} from "../../test-data/store";
 import {AuthorizationStatus} from "../../const";
 
-describe(`App renders correctly`, () => {
+describe(`App`, () => {
   it(`renders with authorization`, () => {
     const tree = renderer
     .create(

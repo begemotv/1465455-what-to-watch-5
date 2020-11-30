@@ -7,7 +7,7 @@ import Header from "./header";
 import {AuthorizationStatus} from "../../const";
 import {storeMock} from "../../test-data/store";
 
-describe(`Header renders correctly`, () => {
+describe(`Header`, () => {
   it(`renders with authorization`, () => {
     const tree = renderer
     .create(
