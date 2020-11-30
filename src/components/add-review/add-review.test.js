@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import AddReview from "./add-review";
 import {noop} from "../../utils";
 import {storeMock} from "../../test-data/store";
+import {DEFAULT_ID} from "../../const";
 
 describe(`AddReview`, () => {
   it(`renders empty form correctly`, () => {
@@ -12,6 +13,7 @@ describe(`AddReview`, () => {
     .create(
         <Provider store={storeMock}>
           <AddReview
+            id={DEFAULT_ID}
             isReviewFormBlocked={false}
             onReviewAdd={noop}
           />
@@ -27,6 +29,7 @@ describe(`AddReview`, () => {
     .create(
         <Provider store={storeMock}>
           <AddReview
+            id={DEFAULT_ID}
             isReviewFormBlocked={true}
             onReviewAdd={noop}
           />
