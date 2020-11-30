@@ -18,12 +18,9 @@ exports[`FilmList renders correctly 1`] = `
       <div
         className="small-movie-card__image"
       >
-        <video
-          className="player__video"
-          loop={true}
-          muted={true}
-          poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
-          src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        <img
+          alt="Bronson"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
         />
       </div>
       <h3

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FilmCard renders correctly renders when card is active 1`] = `
+exports[`FilmCard renders when card is active 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -32,7 +32,7 @@ exports[`FilmCard renders correctly renders when card is active 1`] = `
 </article>
 `;
 
-exports[`FilmCard renders correctly renders when card is not active 1`] = `
+exports[`FilmCard renders when card is not active 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}

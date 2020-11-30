@@ -11,7 +11,7 @@ import {storeMock} from "../../test-data/store";
 
 const moreLikeFilmsMock = filmsMock.slice(0, 4);
 
-describe(`FilmScreen renders correctly`, () => {
+describe(`FilmScreen`, () => {
   it(`renders with authorization`, () => {
     const tree = renderer
     .create(

@@ -3,11 +3,8 @@ import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
 
 import VideoPlayer from "../video-player/video-player";
-import withVideo from "../../hocs/with-video/with-video";
 import {AppRoute} from "../../const";
 import {filmPropTypes} from "../../prop-types";
-
-const VideoPlayerHOC = withVideo(VideoPlayer);
 
 const FilmCard = (props) => {
   const {
@@ -33,11 +30,10 @@ const FilmCard = (props) => {
       <Link to={`${AppRoute.FILMS}${id}`} className="small-movie-card__link">
         <div className="small-movie-card__image">
           {isCardActive &&
-                <VideoPlayerHOC
+                <VideoPlayer
                   isCardPreview={true}
                   previewImg={previewImg}
                   videoSrc={videoSrcTrailer}
-                  delay={1000}
                 />
           }
           {!isCardActive &&

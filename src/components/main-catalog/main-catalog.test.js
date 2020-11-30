@@ -10,7 +10,7 @@ import {storeMock} from "../../test-data/store";
 
 const filmsEightMock = filmsMock.slice(0, 8);
 
-describe(`MainCatalog renders correctly`, () => {
+describe(`MainCatalog`, () => {
   it(`renders with more films`, () => {
     const tree = renderer
     .create(

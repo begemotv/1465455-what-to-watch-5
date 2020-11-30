@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainCatalog renders correctly renders with more films 1`] = `
+exports[`MainCatalog renders with more films 1`] = `
 <section
   className="catalog"
 >
@@ -305,7 +305,7 @@ exports[`MainCatalog renders correctly renders with more films 1`] = `
 </section>
 `;
 
-exports[`MainCatalog renders correctly renders without more films 1`] = `
+exports[`MainCatalog renders without more films 1`] = `
 <section
   className="catalog"
 >

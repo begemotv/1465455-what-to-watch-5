@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PlayerScreen renders correctly renders when playing 1`] = `
+exports[`PlayerScreen renders when playing 1`] = `
 <div
   className="player"
 >
   <video
     className="player__video"
-    loop={false}
-    muted={false}
     poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
     src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
   />
@@ -29,14 +27,14 @@ exports[`PlayerScreen renders correctly renders when playing 1`] = `
       >
         <progress
           className="player__progress"
-          max={65}
-          value={35}
+          max={0}
+          value={0}
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "53.84615384615385%",
+              "left": "NaN%",
             }
           }
         >
@@ -46,7 +44,7 @@ exports[`PlayerScreen renders correctly renders when playing 1`] = `
       <div
         className="player__time-value"
       >
-        00:01:09
+        
       </div>
     </div>
     <div
@@ -63,11 +61,11 @@ exports[`PlayerScreen renders correctly renders when playing 1`] = `
           width="19"
         >
           <use
-            xlinkHref="#pause"
+            xlinkHref="#play-s"
           />
         </svg>
         <span>
-          Pause
+          Play
         </span>
       </button>
       <div
@@ -98,14 +96,12 @@ exports[`PlayerScreen renders correctly renders when playing 1`] = `
 </div>
 `;
 
-exports[`PlayerScreen renders correctly renders when stopped 1`] = `
+exports[`PlayerScreen renders when stopped 1`] = `
 <div
   className="player"
 >
   <video
     className="player__video"
-    loop={false}
-    muted={false}
     poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
     src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
   />
@@ -127,14 +123,14 @@ exports[`PlayerScreen renders correctly renders when stopped 1`] = `
       >
         <progress
           className="player__progress"
-          max={65}
-          value={35}
+          max={0}
+          value={0}
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "53.84615384615385%",
+              "left": "NaN%",
             }
           }
         >
@@ -144,7 +140,7 @@ exports[`PlayerScreen renders correctly renders when stopped 1`] = `
       <div
         className="player__time-value"
       >
-        00:01:09
+        
       </div>
     </div>
     <div

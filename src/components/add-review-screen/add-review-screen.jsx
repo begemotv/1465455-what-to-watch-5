@@ -7,14 +7,11 @@ import AddReview from "../add-review/add-review";
 import Avatar from "../avatar/avatar";
 import ErrorPopup from "../error-popup/error-popup";
 import Logo from "../logo/logo";
-import withReview from "../../hocs/with-review/with-review";
 import {filmPropTypes} from "../../prop-types";
 import {AppRoute} from "../../const";
 import {getFilm} from "../../store/selectors";
 import {postFilmReview} from "../../store/api-actions/api-actions";
 import {changeReviewFormStatus} from "../../store/action";
-
-const AddReviewHOC = withReview(AddReview);
 
 const AddReviewScreen = (props) => {
   const {
@@ -61,7 +58,7 @@ const AddReviewScreen = (props) => {
             width="218" height="327" />
         </div>
       </div>
-      <AddReviewHOC id={id} backgroundColor={backgroundColor} onReviewAdd={onReviewAdd} />
+      <AddReview id={id} backgroundColor={backgroundColor} onReviewAdd={onReviewAdd} />
       <ErrorPopup />
     </section>
   );

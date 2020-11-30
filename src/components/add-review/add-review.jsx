@@ -1,22 +1,43 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import {postFilmReview} from "../../store/api-actions/api-actions";
 import {changeReviewFormStatus} from "../../store/action";
+import {convertRatingStarsToNumber} from "../../utils";
+import {ReviewLength} from "../../const";
 
 const RATING_STARS = [`1`, `2`, `3`, `4`, `5`];
 const WHITE_TRANSPARENT_BACKGROUND = `rgba(255,255,255, 0.3)`;
+const {MIN, MAX} = ReviewLength;
 
 const AddReview = (props) => {
+  const [comment, setComment] = useState(``);
+  const [ratingStars, setRatingStars] = useState(``);
+  const [rating, setRating] = useState(null);
+
+  const handleCommentChange = (evt) => {
+    const value = evt.target.value;
+    setComment(value);
+  };
+
+  const handleRatingChange = (evt) => {
+    const value = evt.target.value;
+    const valueInteger = Number.parseInt(value, 10);
+    setRatingStars(value);
+    setRating(convertRatingStarsToNumber(valueInteger));
+  };
+
+  const handleReviewAdd = (evt) => {
+    evt.preventDefault();
+    const {id, onReviewAdd} = props;
+    onReviewAdd(id, comment, rating);
+  };
+
+  const isReviewValid = (comment.length > MIN && comment.length < MAX) && ratingStars;
+
   const {
-    comment,
     isReviewFormBlocked,
-    isReviewValid,
-    onCommentChange,
-    onFormSubmit,
-    onRatingChange,
-    ratingStars,
   } = props;
 
   return (
@@ -24,7 +45,7 @@ const AddReview = (props) => {
       <form
         action="#"
         className="add-review__form"
-        onSubmit={(evt) => onFormSubmit(evt)}
+        onSubmit={(evt) => handleReviewAdd(evt)}
       >
         <div className="rating">
           <div className="rating__stars">
@@ -36,7 +57,7 @@ const AddReview = (props) => {
                   type="radio"
                   name="rating"
                   value={star}
-                  onChange={(evt) => onRatingChange(evt)}
+                  onChange={(evt) => handleRatingChange(evt)}
                   checked={ratingStars === star}
                   disabled={isReviewFormBlocked}
                 />
@@ -55,7 +76,7 @@ const AddReview = (props) => {
             name="review-text"
             id="review-text"
             placeholder="Please write in the range from 50 to 400 characters"
-            onChange={(evt) => onCommentChange(evt)}
+            onChange={(evt) => handleCommentChange(evt)}
             value={comment}
             disabled={isReviewFormBlocked}
           />
@@ -73,13 +94,9 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
-  comment: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   isReviewFormBlocked: PropTypes.bool.isRequired,
-  isReviewValid: PropTypes.bool.isRequired,
-  onFormSubmit: PropTypes.func.isRequired,
-  onRatingChange: PropTypes.func.isRequired,
-  onCommentChange: PropTypes.func.isRequired,
-  ratingStars: PropTypes.string.isRequired,
+  onReviewAdd: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({DATA}) => ({

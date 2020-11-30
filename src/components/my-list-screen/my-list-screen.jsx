@@ -7,10 +7,7 @@ import FilmList from "../film-list/film-list";
 import Logo from "../logo/logo";
 import Footer from "../footer/footer";
 import Avatar from "../avatar/avatar";
-import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {filmPropTypes} from "../../prop-types";
-
-const FilmListHOC = withActiveItem(FilmList);
 
 const MyListScreen = (props) => {
   const {filmsFavorite} = props;
@@ -25,7 +22,7 @@ const MyListScreen = (props) => {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmListHOC films={filmsFavorite}/>
+        <FilmList films={filmsFavorite}/>
       </section>
       <Footer />
       <ErrorPopup />

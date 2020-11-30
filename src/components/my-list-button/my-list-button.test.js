@@ -5,7 +5,7 @@ import {MyListButton} from "./my-list-button";
 import {noop} from "../../utils";
 import {filmMock} from "../../test-data/film-data";
 
-describe(`MyListButton renders correctly`, () => {
+describe(`MyListButton`, () => {
   it(`renders with added to favourites`, () => {
     const tree = renderer
     .create(

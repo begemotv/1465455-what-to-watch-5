@@ -2,22 +2,15 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import {PlayerScreen} from "./player-screen";
-import {filmMock, durationMock, progressMock, timeElapsedMock, refMock} from "../../test-data/film-data";
-import {noop} from "../../utils";
+import {filmMock} from "../../test-data/film-data";
 
-describe(`PlayerScreen renders correctly`, () => {
+describe(`PlayerScreen`, () => {
   it(`renders when playing`, () => {
     const tree = renderer
     .create(
         <PlayerScreen
           film={filmMock}
-          duration={durationMock}
           isPlaying={true}
-          onVideoStatusChange={noop}
-          onScreenModeChange={noop}
-          videoRef={refMock}
-          progress={progressMock}
-          timeElapsed={timeElapsedMock}
         />
         , {
           createNodeMock: () => {
@@ -35,13 +28,7 @@ describe(`PlayerScreen renders correctly`, () => {
     .create(
         <PlayerScreen
           film={filmMock}
-          duration={durationMock}
           isPlaying={false}
-          onVideoStatusChange={noop}
-          onScreenModeChange={noop}
-          videoRef={refMock}
-          progress={progressMock}
-          timeElapsed={timeElapsedMock}
         />
         , {
           createNodeMock: () => {
