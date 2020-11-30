@@ -1,14 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
+import Preloader from "../preloader/preloader";
 import {reviewPropTypes} from "../../prop-types";
 import {convertDate} from "../../utils";
+import {getReviews} from "../../store/selectors";
+import {NameSpace} from "../../store/reducers";
 
 const TabReviews = (props) => {
-  const {reviewsFilm: {reviews}} = props;
+  const {isFetching, reviews} = props;
 
-  return (
-    <div className="movie-card__reviews movie-card__row">
+  return isFetching
+    ? <Preloader />
+    : (<div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
 
         {reviews.map((item, i) => (
@@ -17,7 +22,7 @@ const TabReviews = (props) => {
               <p className="review__text">{item.text}</p>
 
               <footer className="review__details">
-                <cite className="review__author">{item.username}</cite>
+                <cite className="review__author">{item.user.name}</cite>
                 <time className="review__date" dateTime={item.timeStamp}>{convertDate(item.timeStamp)}</time>
               </footer>
             </blockquote>
@@ -26,12 +31,20 @@ const TabReviews = (props) => {
           </div>
         ))}
       </div>
-    </div>
-  );
+    </div>);
 };
 
 TabReviews.propTypes = {
-  reviewsFilm: PropTypes.shape(reviewPropTypes).isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape(reviewPropTypes)
+  ),
 };
 
-export default TabReviews;
+const mapStateToProps = (state) => ({
+  reviews: getReviews(state),
+  isFetching: state[NameSpace.DATA].isFetching,
+});
+
+export {TabReviews};
+export default connect(mapStateToProps)(TabReviews);

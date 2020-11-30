@@ -1,17 +1,16 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 
-import {filmPropTypes} from "../../prop-types";
+import ErrorPopup from "../error-popup/error-popup";
 import FilmList from "../film-list/film-list";
 import Logo from "../logo/logo";
+import Footer from "../footer/footer";
 import Avatar from "../avatar/avatar";
-import withShowMoreButtonCount from "../../hocs/with-show-more-button-count/with-show-more-button-count";
-import withActiveItem from "../../hocs/with-active-item/with-active-item";
-
-const FilmListHOC = withActiveItem(withShowMoreButtonCount(FilmList));
+import {filmPropTypes} from "../../prop-types";
 
 const MyListScreen = (props) => {
-  const {films} = props;
+  const {filmsFavorite} = props;
 
   return (
     <div className="user-page">
@@ -23,23 +22,22 @@ const MyListScreen = (props) => {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmListHOC films={films}/>
+        <FilmList films={filmsFavorite}/>
       </section>
-
-      <footer className="page-footer">
-        <Logo linkClassName={`logo__link logo__link--light`}/>
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer />
+      <ErrorPopup />
     </div>
   );
 };
 
 MyListScreen.propTypes = {
-  films: PropTypes.arrayOf(
+  filmsFavorite: PropTypes.arrayOf(
       PropTypes.shape(filmPropTypes)
   ).isRequired
 };
 
-export default MyListScreen;
+const mapStateToProps = ({USER}) => ({
+  filmsFavorite: USER.filmsFavorite,
+});
+
+export default connect(mapStateToProps)(MyListScreen);

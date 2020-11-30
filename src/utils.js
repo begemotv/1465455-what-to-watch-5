@@ -25,12 +25,12 @@ export const nameRating = (rating) => {
 export const convertDate = (timeStamp) => {
   const months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
-  let day = timeStamp.slice(-2);
+  let day = timeStamp.slice(8, 10);
   if (day[0] === `0`) {
     day = day.substr(1);
   }
 
-  let monthNumber = timeStamp.slice(-5, -3);
+  let monthNumber = timeStamp.slice(5, 7);
   if (monthNumber[0] === `0`) {
     monthNumber = monthNumber.substr(1);
   }
@@ -51,3 +51,23 @@ export const getTimeElapsed = (duration, progress) => {
   const timeElapsed = new Date(delta * 1000).toISOString().substr(11, 8);
   return timeElapsed;
 };
+
+export const convertRunTime = (minutes) => {
+  let runTime = ``;
+
+  if (minutes < 60) {
+    runTime = `${minutes}m`;
+  } else {
+    const runTimeHours = Math.floor(minutes / 60);
+    const runTimeMinutes = minutes % 60;
+    runTime = `${runTimeHours}h ${runTimeMinutes}m`;
+  }
+
+  return runTime;
+};
+
+export const convertRatingStarsToNumber = (ratingStars) => {
+  return ratingStars * 2;
+};
+
+export const noop = () => {};

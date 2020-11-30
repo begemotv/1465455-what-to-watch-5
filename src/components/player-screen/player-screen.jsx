@@ -1,34 +1,87 @@
-import React from "react";
+import React, {useState, useEffect, useRef} from "react";
 import PropTypes from 'prop-types';
 import {createBrowserHistory} from 'history';
+import {connect} from "react-redux";
 
 import {filmPropTypes} from "../../prop-types";
-import VideoPlayer from "../video-player/video-player";
+import {getFilm} from "../../store/selectors";
+import {getTimeElapsed} from "../../utils";
 
 const PlayerScreen = (props) => {
+  const [duration, setDuration] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [timeElapsed, setTimeElapsed] = useState(``);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    video.oncanplaythrough = () => {
+      setIsPlaying(true);
+      video.play();
+    };
+
+    video.onplay = () => {
+      setIsPlaying(true);
+    };
+
+    video.onpause = () => {
+      setIsPlaying(false);
+    };
+
+    video.ontimeupdate = () => {
+      handleTimeElapsed();
+    };
+
+    return () => {
+      video.oncanplaythrough = null;
+      video.onplay = null;
+      video.onpause = null;
+      video.ontimeupdate = null;
+    };
+  }, []);
+
+  const handleTimeElapsed = () => {
+    const video = videoRef.current;
+    setDuration(Math.floor(video.duration));
+    setProgress(Math.floor(video.currentTime));
+    setTimeElapsed(getTimeElapsed(Math.floor(video.duration), Math.floor(video.currentTime)));
+  };
+
+  const handleScreenModeChange = () => {
+    const video = videoRef.current;
+    video.requestFullscreen();
+  };
+
+  const handleVideoStatusChange = () => {
+    const video = videoRef.current;
+    if (!isPlaying) {
+      video.play();
+    } else {
+      video.pause();
+    }
+
+    setIsPlaying(!isPlaying);
+  };
+
   const {
     film: {
       name,
       previewImg,
       videoSrc
     },
-    duration,
-    isPlaying,
-    onVideoStatusChange,
-    onScreenModeChange,
-    progress,
-    timeElapsed
   } = props;
 
   let history = createBrowserHistory();
 
   return (
     <div className="player">
-      <VideoPlayer
-        {...props}
-        isCardPreview={false}
-        previewImg={previewImg}
-        videoSrc={videoSrc}
+      <video
+        className="player__video"
+        ref={videoRef}
+        src={videoSrc}
+        poster={previewImg}
       />
 
       <button
@@ -45,7 +98,8 @@ const PlayerScreen = (props) => {
             <progress
               className="player__progress"
               value={progress}
-              max={duration}>
+              max={duration}
+            >
             </progress>
             <div
               className="player__toggler"
@@ -58,7 +112,7 @@ const PlayerScreen = (props) => {
           <button
             type="button"
             className="player__play"
-            onClick={onVideoStatusChange}
+            onClick={handleVideoStatusChange}
           >
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref={isPlaying ? `#pause` : `#play-s`}></use>
@@ -70,7 +124,7 @@ const PlayerScreen = (props) => {
           <button
             type="button"
             className="player__full-screen"
-            onClick={onScreenModeChange}
+            onClick={handleScreenModeChange}
           >
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
@@ -84,13 +138,16 @@ const PlayerScreen = (props) => {
 };
 
 PlayerScreen.propTypes = {
-  duration: PropTypes.number.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  onVideoStatusChange: PropTypes.func.isRequired,
-  onScreenModeChange: PropTypes.func.isRequired,
-  progress: PropTypes.number.isRequired,
-  timeElapsed: PropTypes.string.isRequired
 };
 
-export default PlayerScreen;
+const mapStateToProps = (state, ownProps) => {
+  const {id} = ownProps;
+  const idInteger = Number.parseInt(id, 10);
+  return ({
+    film: getFilm(state, idInteger),
+  });
+};
+
+export {PlayerScreen};
+export default connect(mapStateToProps)(PlayerScreen);

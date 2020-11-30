@@ -2,11 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
 
-import {filmPropTypes} from "../../prop-types";
 import VideoPlayer from "../video-player/video-player";
-import withVideo from "../../hocs/with-video/with-video";
-
-const VideoPlayerHOC = withVideo(VideoPlayer);
+import {AppRoute} from "../../const";
+import {filmPropTypes} from "../../prop-types";
 
 const FilmCard = (props) => {
   const {
@@ -14,9 +12,10 @@ const FilmCard = (props) => {
       id,
       name,
       previewImg,
-      videoSrc,
+      videoSrcTrailer,
     },
     isCardActive,
+    onCardClick,
     onItemInteraction,
     onItemInteractionEnd
   } = props;
@@ -24,17 +23,17 @@ const FilmCard = (props) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={onCardClick}
       onMouseEnter={() => onItemInteraction(id)}
       onMouseLeave={onItemInteractionEnd}
     >
-      <Link to={`/films/${id}`} className="small-movie-card__link">
+      <Link to={`${AppRoute.FILMS}${id}`} className="small-movie-card__link">
         <div className="small-movie-card__image">
           {isCardActive &&
-                <VideoPlayerHOC
+                <VideoPlayer
                   isCardPreview={true}
                   previewImg={previewImg}
-                  videoSrc={videoSrc}
-                  delay={1000}
+                  videoSrc={videoSrcTrailer}
                 />
           }
           {!isCardActive &&
@@ -53,6 +52,7 @@ const FilmCard = (props) => {
 FilmCard.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
   isCardActive: PropTypes.bool.isRequired,
+  onCardClick: PropTypes.func.isRequired,
   onItemInteraction: PropTypes.func.isRequired,
   onItemInteractionEnd: PropTypes.func.isRequired,
 };
