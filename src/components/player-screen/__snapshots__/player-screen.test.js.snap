@@ -27,14 +27,14 @@ exports[`PlayerScreen renders when playing 1`] = `
       >
         <progress
           className="player__progress"
-          max={0}
-          value={0}
+          max="100"
+          value="0"
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "NaN%",
+              "left": "0%",
             }
           }
         >
@@ -44,7 +44,7 @@ exports[`PlayerScreen renders when playing 1`] = `
       <div
         className="player__time-value"
       >
-        
+        --:--:--
       </div>
     </div>
     <div
@@ -52,6 +52,7 @@ exports[`PlayerScreen renders when playing 1`] = `
     >
       <button
         className="player__play"
+        disabled={true}
         onClick={[Function]}
         type="button"
       >
@@ -93,6 +94,9 @@ exports[`PlayerScreen renders when playing 1`] = `
       </button>
     </div>
   </div>
+  <div
+    className="Toastify"
+  />
 </div>
 `;
 
@@ -123,14 +127,14 @@ exports[`PlayerScreen renders when stopped 1`] = `
       >
         <progress
           className="player__progress"
-          max={0}
-          value={0}
+          max="100"
+          value="0"
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "NaN%",
+              "left": "0%",
             }
           }
         >
@@ -140,7 +144,7 @@ exports[`PlayerScreen renders when stopped 1`] = `
       <div
         className="player__time-value"
       >
-        
+        --:--:--
       </div>
     </div>
     <div
@@ -148,6 +152,7 @@ exports[`PlayerScreen renders when stopped 1`] = `
     >
       <button
         className="player__play"
+        disabled={true}
         onClick={[Function]}
         type="button"
       >
@@ -189,5 +194,8 @@ exports[`PlayerScreen renders when stopped 1`] = `
       </button>
     </div>
   </div>
+  <div
+    className="Toastify"
+  />
 </div>
 `;

@@ -47,5 +47,6 @@ export const ErrorMessage = {
   FETCH_FILM_PROMO_ERROR: `Failed fetching promo film from server`,
   LOGIN_ERROR: `Error on login`,
   POST_REVIEW_ERROR: `Failed posting review to server`,
+  PROBLEM_WITH_SOURCE: `There was a problem with the video source`,
   SERVER_ERROR: `Something went wrong on the server`,
 };
