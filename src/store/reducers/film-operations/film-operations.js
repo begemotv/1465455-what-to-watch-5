@@ -1,12 +1,12 @@
 import {extend} from "../../../utils";
 import {ActionType} from "../../action";
-import {FILMS_INCREMENT_COUNT, DEFAULT_ID} from "../../../const";
+import {FILMS_INCREMENT_COUNT, DEFAULT_ID, DEFAULT_TAB} from "../../../const";
 
 const initialState = {
   activeFilmId: DEFAULT_ID,
   activeFilmIdGenre: ``,
   activeGenre: `All genres`,
-  activeTab: DEFAULT_ID,
+  activeTab: DEFAULT_TAB,
   filmCardsShownCount: FILMS_INCREMENT_COUNT,
 };
 

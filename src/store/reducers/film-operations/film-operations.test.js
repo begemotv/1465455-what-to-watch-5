@@ -1,13 +1,13 @@
 import {filmOperations} from "./film-operations";
 import {ActionType} from "../../action";
 import {activeGenreMock} from "../../../test-data/film-data";
-import {DEFAULT_ID, FILMS_INCREMENT_COUNT} from "../../../const";
+import {DEFAULT_ID, DEFAULT_TAB, FILMS_INCREMENT_COUNT} from "../../../const";
 
 const initialState = {
   activeFilmId: DEFAULT_ID,
   activeFilmIdGenre: ``,
   activeGenre: `All genres`,
-  activeTab: DEFAULT_ID,
+  activeTab: DEFAULT_TAB,
   filmCardsShownCount: FILMS_INCREMENT_COUNT,
 };
 
@@ -51,12 +51,12 @@ describe(`Sync operation work correctly`, () => {
 
   it(`Reducer should update active tab`, () => {
     expect(filmOperations({
-      activeTab: DEFAULT_ID,
+      activeTab: DEFAULT_TAB,
     }, {
       type: ActionType.CHANGE_ACTIVE_TAB,
-      payload: 1,
+      payload: `Details`,
     })).toEqual({
-      activeTab: 1
+      activeTab: `Details`
     });
   });
 
@@ -84,12 +84,12 @@ describe(`Sync operation work correctly`, () => {
 
   it(`Reducer should reset active tab`, () => {
     expect(filmOperations({
-      activeTab: 2,
+      activeTab: `Details`,
     }, {
       type: ActionType.RESET_ACTIVE_TAB,
-      payload: DEFAULT_ID,
+      payload: DEFAULT_TAB,
     })).toEqual({
-      activeTab: DEFAULT_ID
+      activeTab: DEFAULT_TAB
     });
   });
 });

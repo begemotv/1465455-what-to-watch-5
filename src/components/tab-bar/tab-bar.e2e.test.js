@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 import {TabBar} from "./tab-bar";
 import {filmMock} from "../../test-data/film-data";
-import {DEFAULT_ID} from "../../const";
+import {DEFAULT_TAB} from "../../const";
 
 configure({adapter: new Adapter()});
 
@@ -18,7 +18,7 @@ test(`TabBar allows to select a tab`, () => {
 
   const wrapper = shallow(
       <TabBar
-        activeTab={DEFAULT_ID}
+        activeTab={DEFAULT_TAB}
         film={filmMock}
         getActiveReviews={getActiveReviews}
         changeActiveTabAction={changeActiveTabAction}

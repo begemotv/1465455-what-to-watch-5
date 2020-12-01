@@ -10,7 +10,11 @@ import {filmPropTypes} from "../../prop-types";
 import {fetchFilmReviews} from "../../store/api-actions/api-actions";
 import {changeActiveTab} from "../../store/action";
 
-const TAB_NAMES = [`Overview`, `Details`, `Reviews`];
+const TabNames = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
+};
 
 const TabBar = (props) => {
   const {
@@ -20,20 +24,22 @@ const TabBar = (props) => {
     changeActiveTabAction,
   } = props;
 
+  const tabs = Object.values(TabNames);
+
   return (
     <React.Fragment>
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          {TAB_NAMES.map((tab, i) => (
+          {tabs.map((tab, i) => (
             <li
               key={i}
-              className={`movie-nav__item ${i === activeTab && `movie-nav__item--active`}`}>
+              className={`movie-nav__item ${tab === activeTab && `movie-nav__item--active`}`}>
               <Link
                 to="#"
                 className="movie-nav__link"
                 onClick={(evt) => {
                   evt.preventDefault();
-                  changeActiveTabAction(i);
+                  changeActiveTabAction(tab);
                   getActiveReviews(film.id);
                 }}
               >{tab}</Link>
@@ -42,13 +48,13 @@ const TabBar = (props) => {
         </ul>
       </nav>
       <div>
-        {activeTab === 0 &&
+        {activeTab === TabNames.OVERVIEW &&
             <TabOverview film={film}/>
         }
-        {activeTab === 1 &&
+        {activeTab === TabNames.DETAILS &&
             <TabDetails film={film}/>
         }
-        {activeTab === 2 &&
+        {activeTab === TabNames.REVIEWS &&
             <TabReviews id={film.id}/>
         }
       </div>
@@ -57,7 +63,7 @@ const TabBar = (props) => {
 };
 
 TabBar.propTypes = {
-  activeTab: PropTypes.number.isRequired,
+  activeTab: PropTypes.string.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
   changeActiveTabAction: PropTypes.func.isRequired,
   getActiveReviews: PropTypes.func.isRequired,
@@ -71,8 +77,8 @@ const mapDispatchToProps = (dispatch) => ({
   getActiveReviews(id) {
     dispatch(fetchFilmReviews(id));
   },
-  changeActiveTabAction(i) {
-    dispatch(changeActiveTab(i));
+  changeActiveTabAction(tab) {
+    dispatch(changeActiveTab(tab));
   },
 });
 

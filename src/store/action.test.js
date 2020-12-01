@@ -1,4 +1,4 @@
-import {DEFAULT_ID, FILMS_INCREMENT_COUNT, AuthorizationStatus} from '../const';
+import {DEFAULT_ID, DEFAULT_TAB, FILMS_INCREMENT_COUNT, AuthorizationStatus} from '../const';
 import {filmMock, filmsMock, reviewsMock, userMock, activeGenreMock} from '../test-data/film-data';
 import {ActionType, changeActiveFilmId, changeActiveFilmGenre, changeActiveTab, changeTabGenre, changeActiveUserData, changeReviewFormStatus, changeFetchingStatus, incrementfilmCardsShownCount, loadFilms, loadFilmsFavorite, requireAuthorization, redirectToRoute, loadfilmReviews, loadfilmPromo, resetfilmCardsShownCount, resetActiveTab} from './action';
 
@@ -111,7 +111,7 @@ describe(`Action creators work correctly`, () => {
   it(`Action creators for reseting active film tab returns correct action`, () => {
     expect(resetActiveTab()).toEqual({
       type: ActionType.RESET_ACTIVE_TAB,
-      payload: DEFAULT_ID,
+      payload: DEFAULT_TAB,
     });
   });
 });

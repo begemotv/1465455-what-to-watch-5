@@ -40,18 +40,12 @@ export const FILMS_INCREMENT_COUNT = 8;
 
 export const DEFAULT_ID = 0;
 
+export const DEFAULT_TAB = `Overview`;
+
 export const ErrorMessage = {
-  BAD_REQUEST: `Server received a bad request`,
-  CHECK_AUTHORIZATION_ERROR: `Failed checking authorization on server`,
-  FETCH_FILM_LIST_ERROR: `Failed fetching film list from server`,
   FETCH_FILM_REVIEWS_ERROR: `Failed fetching film reviews from server`,
   FETCH_FILM_PROMO_ERROR: `Failed fetching promo film from server`,
-  FETCH_FILM_LIST_FAVORITE_ERROR: `Failed fetching favorites film list from server`,
-  GENERIC: `Something went wrong`,
   LOGIN_ERROR: `Error on login`,
-  NOT_FOUND: `Page was not found`,
   POST_REVIEW_ERROR: `Failed posting review to server`,
-  POST_TO_FAVORITES_ERROR: `Failed posting film to favorites on server`,
   SERVER_ERROR: `Something went wrong on the server`,
-  UNAUTHORIZED: `User was not authorized`,
 };

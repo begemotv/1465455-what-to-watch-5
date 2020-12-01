@@ -17,7 +17,8 @@ const PlayerScreen = (props) => {
 
   useEffect(() => {
     const video = videoRef.current;
-    video.oncanplaythrough = () => {
+    video.oncanplay = () => {
+      setDuration(Math.floor(video.duration));
       setIsPlaying(true);
       video.play();
     };
@@ -44,7 +45,6 @@ const PlayerScreen = (props) => {
 
   const handleTimeElapsed = () => {
     const video = videoRef.current;
-    setDuration(Math.floor(video.duration));
     setProgress(Math.floor(video.currentTime));
     setTimeElapsed(getTimeElapsed(Math.floor(video.duration), Math.floor(video.currentTime)));
   };

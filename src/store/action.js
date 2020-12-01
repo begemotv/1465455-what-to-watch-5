@@ -1,4 +1,4 @@
-import {FILMS_INCREMENT_COUNT, DEFAULT_ID} from "../const";
+import {FILMS_INCREMENT_COUNT, DEFAULT_TAB} from "../const";
 
 export const ActionType = {
   CHANGE_ACTIVE_FILM_ID: `CHANGE_ACTIVE_FILM_ID`,
@@ -29,9 +29,9 @@ export const changeActiveFilmGenre = (genre) => ({
   payload: genre
 });
 
-export const changeActiveTab = (activeTabNumber) => ({
+export const changeActiveTab = (activeTab) => ({
   type: ActionType.CHANGE_ACTIVE_TAB,
-  payload: activeTabNumber
+  payload: activeTab
 });
 
 export const changeTabGenre = (genre) => ({
@@ -96,5 +96,5 @@ export const resetfilmCardsShownCount = () => ({
 
 export const resetActiveTab = () => ({
   type: ActionType.RESET_ACTIVE_TAB,
-  payload: DEFAULT_ID
+  payload: DEFAULT_TAB
 });
